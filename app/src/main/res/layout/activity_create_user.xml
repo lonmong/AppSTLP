@@ -1,0 +1,1011 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="stlpapp.finalproject.app.com.appstlp.RequestForHelpActivity">
+
+        <FrameLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="สร้างชื่อผู้ใช้งาน"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txt_personname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชื่อ"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="อีเมลล์"
+                        android:inputType="textEmailAddress" />
+
+                    <EditText
+                        android:id="@+id/txt_tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เบอร์โทร"
+                        android:inputType="phone" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="ชาย" />
+
+                        <RadioButton
+                            android:id="@+id/female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="หญิง" />
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_birthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="วันเกิด"
+                        android:inputType="textPersonName"
+                        android:onClick="birthDay" />
+
+                    <EditText
+                        android:id="@+id/txt_religion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ศาสนา"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_ethnic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชาติพันธุ์"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_nationality"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="สัญชาติ"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_homeid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เลขรหัสประจำบ้าน"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/txt_idcard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เลขประจำตัว"
+                        android:inputType="number" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupMarry"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <RadioButton
+                            android:id="@+id/single"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onMarryClick"
+                            android:text="โสด" />
+
+                        <RadioButton
+                            android:id="@+id/divorce"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onMarryClick"
+                            android:text="หย่า" />
+
+                        <RadioButton
+                            android:id="@+id/widow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onMarryClick"
+                            android:text="หม้าย" />
+
+                        <RadioButton
+                            android:id="@+id/notmarry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onMarryClick"
+                            android:text="ไม่จดทะเบียนสมรส" />
+
+                        <RadioButton
+                            android:id="@+id/marry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onMarryClick"
+                            android:text="จดทะเบียนสมรส" />
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_namespouse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชื่อคู่สมรส"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_idcardspouse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เลขประจำตัวคู่สมรส"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/txt_nationaltyspouse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="สัญชาติคู่สมรส"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_datemarry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="วันที่จดทะเบียนสมรส"
+                        android:onClick="dateMarry"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_addressspouse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่ของคู่สมรส"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupPlaceBirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/knowplacebirth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onPlacebirthClick"
+                            android:text="ทราบสถานที่เกิด" />
+
+                        <RadioButton
+                            android:id="@+id/dontknowplacebirth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onPlacebirthClick"
+                            android:text="ไม่ทราบสถานที่เกิด" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupThaiBirthOrAbroadBirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <RadioButton
+                            android:id="@+id/thaibirth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onThaiOrAbroadbirthClick"
+                            android:text="เกิดที่ไทย" />
+
+                        <RadioButton
+                            android:id="@+id/notthaibirth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onThaiOrAbroadbirthClick"
+                            android:text="เกิดนอกไทย" />
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_hospitalbirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชื่อสถานพยาบาลที่เกิด"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_villagebirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่หมู่บ้านที่เกิด"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupWitness"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/yes_witness"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onWitnessClick"
+                            android:text="มีพยานรู้เห็นการเกิด" />
+
+                        <RadioButton
+                            android:id="@+id/no_witness"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="onWitnessClick"
+                            android:text="ไม่มีพยานรู้เห็นการเกิด" />
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_namewitness1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชื่อพยานคนที่ 1"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_witnessrelationship1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เกี่ยวข้องเป็น"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupWitnessAlive1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/witness_alive1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="มีชีวิต" />
+
+                        <RadioButton
+                            android:id="@+id/witness_notalive1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="เสียชีวิต" />
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_addresswitness1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_namewitness2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชื่อพยานคนที่ 2"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_witnessrelationship2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เกี่ยวข้องเป็น"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupWitnessAlive2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/witness_alive2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="มีชีวิต" />
+
+                        <RadioButton
+                            android:id="@+id/witness_notalive2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="เสียชีวิต" />
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_addresswitness2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่"
+                        android:inputType="textPersonName" />
+
+
+                    <EditText
+                        android:id="@+id/txt_countrybirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ประเทศที่เกิด"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_districtcomethai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เข้ามาไทยทางด่านอำเภอ"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_datecomethai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="วันที่เดินทางเข้ามาไทย"
+                        android:inputType="textPersonName"
+                        android:onClick="dateComethai"/>
+
+                    <EditText
+                        android:id="@+id/txt_modecomethai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เดินทางเข้ามาไทยโดย"
+                        android:inputType="textPersonName"/>
+
+                    <EditText
+                        android:id="@+id/txt_namewitness3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชื่อพยานรู้เห็นการเดินทางเข้ามาไทย"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_witnessrelationship3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เกี่ยวข้องเป็น"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupWitnessAlive3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/witness_alive3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="มีชีวิต" />
+
+                        <RadioButton
+                            android:id="@+id/witness_notalive3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="เสียชีวิต" />
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_addresswitness3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่"
+                        android:inputType="textPersonName" />
+
+                    <TextView
+                        android:id="@+id/line6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="********************************************************"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ข้อมูลที่อยู่"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txt_addressregister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่ตามทะเบียนบ้าน"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupHomeStatusRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/homeselfregister"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="บ้านตนเอง" />
+
+                        <RadioButton
+                            android:id="@+id/rentalhomeregister"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="บ้านเช่า" />
+
+                        <RadioButton
+                            android:id="@+id/dependhomeregister"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="บ้านอาศัย" />
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_addressnow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่ปัจจุบัน"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupHomeStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/homeself"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="บ้านตนเอง" />
+
+                        <RadioButton
+                            android:id="@+id/rentalhome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="บ้านเช่า" />
+
+                        <RadioButton
+                            android:id="@+id/dependhome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="บ้านอาศัย" />
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_fromyear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:onClick="fromYears"
+                        android:hint="ระยะเวลาอาศัยตั้งแต่ปี"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/txt_toyear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ถึงปี"
+                        android:onClick="toYears"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/txt_addressbefor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่ก่อนหน้า"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupHomeStatusBefor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/homeselfbefor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="บ้านตนเอง" />
+
+                        <RadioButton
+                            android:id="@+id/rentalhomebefor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="บ้านเช่า" />
+
+                        <RadioButton
+                            android:id="@+id/dependhomebefor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="บ้านอาศัย" />
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_fromyearbefor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ระยะเวลาอาศัยตั้งแต่ปี"
+                        android:onClick="fromYearsbefor"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/txt_toyearbefor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ถึงปี"
+                        android:onClick="toYearsbefor"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/line7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="********************************************************"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ประวัติการศึกษา"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_add_education"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/educationlevel"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableTint="#FF4081"
+                                android:hint="ระดับการศึกษา/ชื่อสถานศึกษา/อำเภอ/จังหวัด"
+                                android:inputType="text"
+                                android:singleLine="true" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayoutBTNEdu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/btn_addeducation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="doAddEducation"
+                            app:srcCompat="@android:drawable/ic_input_add" />
+
+                        <ImageButton
+                            android:id="@+id/btn_deleteeducation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:onClick="doRemoveEducation"
+                            app:srcCompat="@android:drawable/ic_delete" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/line8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="********************************************************"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ข้อมูลบิดา/มารดา"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txt_namefather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชื่อบิดา"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupFather"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/father_alive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="มีชีวิต" />
+
+                        <RadioButton
+                            android:id="@+id/father_notalive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="เสียชีวิต" />
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_fatherbirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="วันเกิด"
+                        android:inputType="textPersonName"
+                        android:onClick="fatherBirth" />
+
+                    <EditText
+                        android:id="@+id/txt_idcardfather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เลขประจำตัวประชาชน 13 หลัก"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/txt_ethnicfather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชาติพันธุ์"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_nationaltyfather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="สัญชาติ"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_datecomethaifather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="วันที่เดินทางมาไทย"
+                        android:inputType="textPersonName"
+                        android:onClick="dateComethaifather" />
+
+                    <EditText
+                        android:id="@+id/txt_addressfather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_namemother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชื่อมารดา"
+                        android:inputType="textPersonName" />
+
+                    <RadioGroup
+                        android:id="@+id/RadioGroupMother"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/mother_alive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="มีชีวิต" />
+
+                        <RadioButton
+                            android:id="@+id/mother_notalive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="เสียชีวิต" />
+
+                    </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/txt_motherbirth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="วันเกิด"
+                        android:inputType="textPersonName"
+                        android:onClick="motherBirth" />
+
+                    <EditText
+                        android:id="@+id/txt_idcardmother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="เลขประจำตัวประชาชน 13 หลัก"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/txt_ethnicmother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชาติพันธุ์"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_nationaltymother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="สัญชาติ"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_datecomethaimother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="วันที่เดินทางมาไทย"
+                        android:inputType="textPersonName"
+                        android:onClick="dateComethaimother" />
+
+                    <EditText
+                        android:id="@+id/txt_addressmother"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ที่อยู่"
+                        android:inputType="textPersonName" />
+
+                    <TextView
+                        android:id="@+id/line11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="********************************************************"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="ข้อมูลชื่อผู้ใช้งานและรหัสผ่าน"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txt_usernameregister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ชื่อผู้ใช้งาน"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/txt_passwordregister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="รหัสผ่าน"
+                        android:inputType="textPassword" />
+
+                    <EditText
+                        android:id="@+id/txt_confirmpassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="ยืนยันรหัสผ่าน"
+                        android:inputType="textPassword" />
+
+                    <Button
+                        android:id="@+id/btn_cretaeuser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="isAddUser"
+                        android:text="สร้างชื่อผู้ใช้งาน"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+            </ScrollView>
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+</layout>
