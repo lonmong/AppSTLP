@@ -191,6 +191,7 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                     Listdetailrequest.addView(textViewStatuswitness);
 
                     if (requestForHelpModel.getRequestForHelp().getStatelessperon().getStatuswitness() == 1) {
+
                         final WSManager manager = new WSManager(GiveSuggenstionActivity.this);
                         final ProgressDialog progress = ProgressDialog.show(GiveSuggenstionActivity.this, getString(R.string.please_wait),
                                 getString(R.string.please_wait), true);

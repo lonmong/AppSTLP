@@ -45,15 +45,15 @@ public class ExportToPDFController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.getdetailrequestbyidrequest_url), requestForHelpModel.toJSONString());
+        task.execute(context.getString(R.string.exportpdf_getdetailrequestbyidrequest_url), requestForHelpModel.toJSONString());
 
     }
 
     public void detailBestSuggestion(Object object,final ExportToPDFControllerListener listener) {
-        if (!(object instanceof RequestForHelpModel)) {
+        if (!(object instanceof AssignModel)) {
             return;
         }
-        final RequestForHelpModel requestForHelpModel = (RequestForHelpModel) object;
+        final AssignModel assignModel = (AssignModel) object;
 
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
@@ -68,6 +68,6 @@ public class ExportToPDFController {
             }
         });
 
-        task.execute(context.getString(R.string.getAssignByUsernamerequestAS3_url),requestForHelpModel.toJSONString());
+        task.execute(context.getString(R.string.detailBestsuggestion_url),assignModel.toJSONString());
     }
 }

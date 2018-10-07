@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import stlpapp.finalproject.app.com.appstlp.controller.GetListCenterController;
 import stlpapp.finalproject.app.com.appstlp.controller.RequestForHelpController;
 import stlpapp.finalproject.app.com.appstlp.databinding.ActivityRequestForHelpBinding;
 import stlpapp.finalproject.app.com.appstlp.model.CenterModel;
@@ -301,10 +300,10 @@ public class RequestForHelpActivity extends AppCompatActivity {
     }
 
     private void showListCenter() {
-        final GetListCenterController manager = new GetListCenterController(this);
+        final RequestForHelpController manager = new RequestForHelpController(this);
         final ProgressDialog progress = ProgressDialog.show(this, getString(R.string.please_wait),
                 getString(R.string.please_wait), true);
-        manager.getListCenter(new GetListCenterController.GetListCenterControllerListener() {
+        manager.getListCenter(new RequestForHelpController.RequestForHelpControllerListener() {
             @Override
             public void onComplete(Object response) {
                 progress.dismiss();

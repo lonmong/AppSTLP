@@ -557,18 +557,13 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                 getString(R.string.please_wait), true);
 
                         ExportToPDFController manager = ExportToPDFController.getWsManager(ExportToPDFActivity.this);
-                        final RequestForHelpModel requestForHelpModel1 = new RequestForHelpModel();
-                        RequestForHelp requestForHelp1 = new RequestForHelp();
-                        requestForHelp1.setRequestid(requestid);
-                        requestForHelpModel1.setRequestForHelp(requestForHelp1);
+                        final AssignModel assignModel = new AssignModel();
+                        assignModel.getAssign().getRequestforhelp().setRequestid(requestid);
 
-                        manager.detailBestSuggestion(requestForHelpModel1, new ExportToPDFController.ExportToPDFControllerListener() {
+                        manager.detailBestSuggestion(assignModel, new ExportToPDFController.ExportToPDFControllerListener() {
                             @Override
                             public void onComplete(Object response) {
-                                AssignModel assignModel = (AssignModel) response;
-                                final List<AssignModel.Assign> assigns = assignModel.getAssignList();
-                                for (int i = 0; i < assigns.size(); i++) {
-
+                                AssignModel assignModel1 = (AssignModel) response;
                                     TextView textViewfactperson = new TextView(ExportToPDFActivity.this);
                                     textViewfactperson.setText("=ข้อเท็จจริงของ=");
                                     textViewfactperson.setTypeface(null, Typeface.BOLD);
@@ -576,7 +571,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                     Listdetailrequest.addView(textViewfactperson);
 
                                     TextView textViewfactpersonshow = new TextView(ExportToPDFActivity.this);
-                                    textViewfactpersonshow.setText(assigns.get(i).getFactperson());
+                                    textViewfactpersonshow.setText(assignModel1.getAssign().getFactperson());
                                     factpersonshow = textViewfactpersonshow.getText().toString();
                                     Listdetailrequest.addView(textViewfactpersonshow);
 
@@ -587,7 +582,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                     Listdetailrequest.addView(textViewfactfathermother);
 
                                     TextView textViewfactfathermothershow = new TextView(ExportToPDFActivity.this);
-                                    textViewfactfathermothershow.setText(assigns.get(i).getFactfathermother());
+                                    textViewfactfathermothershow.setText(assignModel1.getAssign().getFactfathermother());
                                     factfmshow = textViewfactfathermothershow.getText().toString();
                                     Listdetailrequest.addView(textViewfactfathermothershow);
 
@@ -599,7 +594,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                     Listdetailrequest.addView(textViewforlegalopinion);
 
                                     TextView textViewforlegalopinionshow = new TextView(ExportToPDFActivity.this);
-                                    textViewforlegalopinionshow.setText(assigns.get(i).getForlegalopinion());
+                                    textViewforlegalopinionshow.setText(assignModel1.getAssign().getForlegalopinion());
                                     forlegalshow = textViewforlegalopinionshow.getText().toString();
                                     Listdetailrequest.addView(textViewforlegalopinionshow);
 
@@ -610,7 +605,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                     Listdetailrequest.addView(textViewperonstatus);
 
                                     TextView textViewperonstatusshow = new TextView(ExportToPDFActivity.this);
-                                    textViewperonstatusshow.setText(assigns.get(i).getPersonstatus());
+                                    textViewperonstatusshow.setText(assignModel1.getAssign().getPersonstatus());
                                     personstatusshow = textViewperonstatusshow.getText().toString();
                                     Listdetailrequest.addView(textViewperonstatusshow);
 
@@ -620,13 +615,13 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                     Listdetailrequest.addView(line);
 
                                     final TextView textViewSuggesFrom = new TextView(ExportToPDFActivity.this);
-                                    textViewSuggesFrom.setText("คำแนะนำจาก : " + assigns.get(i).getStaff().getNameperson());
+                                    textViewSuggesFrom.setText("คำแนะนำจาก : " + assignModel1.getAssign().getStaff().getNameperson());
                                     textViewSuggesFrom.setTextColor(Color.parseColor("#BF9100"));
                                     suggesfrom = textViewSuggesFrom.getText().toString();
                                     Listdetailrequest.addView(textViewSuggesFrom);
 
                                     final TextView textViewNamecenter = new TextView(ExportToPDFActivity.this);
-                                    textViewNamecenter.setText("สังกัด : " + assigns.get(i).getStaff().getCenter().getNamecenter());
+                                    textViewNamecenter.setText("สังกัด : " + assignModel1.getAssign().getStaff().getCenter().getNamecenter());
                                     textViewNamecenter.setTextColor(Color.parseColor("#BF9100"));
                                     namecenter = textViewNamecenter.getText().toString();
                                     Listdetailrequest.addView(textViewNamecenter);
@@ -648,10 +643,9 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
                                             genPDFFile();
-
                                         }
                                     });
-                                }
+
                                 progress.dismiss();
                             }
 

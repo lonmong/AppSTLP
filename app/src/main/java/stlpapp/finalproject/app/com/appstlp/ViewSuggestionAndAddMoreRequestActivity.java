@@ -118,7 +118,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
         welcomeBinding.cardviewprofile.setVisibility(View.GONE);
         welcomeBinding.cardviewdetailmorerequest.setVisibility(View.GONE);
         setProfile();
-        detailRequestByusername();
+        listSuggestion();
 
 
 
@@ -559,7 +559,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
         }
 
     }
-    public void detailRequestByusername(){
+    public void listSuggestion(){
         StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
         StatelessPerson statelessPerson = new StatelessPerson();
         statelessPerson.setUsername(username);

@@ -5,6 +5,7 @@ import android.content.Context;
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
 import stlpapp.finalproject.app.com.appstlp.task.WSTask;
+import stlpapp.finalproject.app.com.appstlp.model.CenterModel;
 
 
 public class RequestForHelpController {
@@ -25,6 +26,22 @@ public class RequestForHelpController {
         if (wsManager == null)
             wsManager = new RequestForHelpController(context);
         return wsManager;
+    }
+
+    public void getListCenter(final RequestForHelpControllerListener listener) {
+        WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
+            @Override
+            public void onComplete(String response) {
+                CenterModel Center= new CenterModel(response);
+                listener.onComplete(Center);
+            }
+
+            @Override
+            public void onError(String err) {
+                listener.onError(err);
+            }
+        });
+        task.execute(context.getString(R.string.list_center_url));
     }
 
     public void isAddRequest(Object object, final RequestForHelpControllerListener listener) {
