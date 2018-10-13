@@ -819,13 +819,17 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                 ViewSuggesstionController manager = ViewSuggesstionController.getWsManager(ViewSuggestionAndAddMoreRequestActivity.this);
                 final AssignModel assignModel = new AssignModel();
                 assignModel.getAssign().getRequestforhelp().setRequestid(idrequest);
+
                 manager.listSuggestionByIdRequest(assignModel, new ViewSuggesstionController.ViewSuggesstionControllerListener() {
                     @Override
                     public void onComplete(Object response) {
                         AssignModel assignModel1 = (AssignModel) response;
                         List<AssignModel.Assign> assigns = assignModel1.getAssignList();
+                        RequestForHelp requestForHelp = new RequestForHelp();
+                        requestForHelp.setAssigntList(assigns);
+
                         final LinearLayout linearLayoutSuggestion = (LinearLayout)findViewById(R.id.ListSuggestion);
-                        for(int i=0;i<assigns.size();i++){
+                        for(int i=0;i<requestForHelp.getAssigntList().size();i++){
                             TextView textViewcount = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                             textViewcount.setText("คำร้องครั้งที่ : "+(i+1));
                             textViewcount.setTypeface(null, Typeface.BOLD);
@@ -838,44 +842,40 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                             linearLayoutSuggestion.addView(textViewfactperson);
 
                             TextView textViewfactpersonshow = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewfactpersonshow.setText(assigns.get(i).getFactperson());
+                            textViewfactpersonshow.setText(requestForHelp.getAssigntList().get(i).getFactperson());
                             textViewfactpersonshow.setTextColor(Color.parseColor("#11BA06"));
                             linearLayoutSuggestion.addView(textViewfactpersonshow);
 
                             TextView textViewfactfathermother = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewfactfathermother.setText("=ข้อเท็จจริงของบิดา/มารดา ของ=");
+                            textViewfactfathermother.setText("\n\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
                             textViewfactfathermother.setTypeface(null, Typeface.BOLD);
                             linearLayoutSuggestion.addView(textViewfactfathermother);
 
                             TextView textViewfactfathermothershow = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewfactfathermothershow.setText(assigns.get(i).getFactfathermother());
+                            textViewfactfathermothershow.setText(requestForHelp.getAssigntList().get(i).getFactfathermother());
                             textViewfactfathermothershow.setTextColor(Color.parseColor("#11BA06"));
                             linearLayoutSuggestion.addView(textViewfactfathermothershow);
 
 
                             TextView textViewforlegalopinion = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewforlegalopinion.setText("=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
+                            textViewforlegalopinion.setText("\n\n=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
                             textViewforlegalopinion.setTypeface(null, Typeface.BOLD);
                             linearLayoutSuggestion.addView(textViewforlegalopinion);
 
                             TextView textViewforlegalopinionshow = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewforlegalopinionshow.setText(assigns.get(i).getForlegalopinion());
+                            textViewforlegalopinionshow.setText(requestForHelp.getAssigntList().get(i).getForlegalopinion());
                             textViewforlegalopinionshow.setTextColor(Color.parseColor("#11BA06"));
                             linearLayoutSuggestion.addView(textViewforlegalopinionshow);
 
                             TextView textViewperonstatus = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewperonstatus.setText("=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
+                            textViewperonstatus.setText("\n\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
                             textViewperonstatus.setTypeface(null, Typeface.BOLD);
                             linearLayoutSuggestion.addView(textViewperonstatus);
 
                             TextView textViewperonstatusshow = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewperonstatusshow.setText(assigns.get(i).getPersonstatus());
+                            textViewperonstatusshow.setText(requestForHelp.getAssigntList().get(i).getPersonstatus());
                             textViewperonstatusshow.setTextColor(Color.parseColor("#11BA06"));
                             linearLayoutSuggestion.addView(textViewperonstatusshow);
-
-                            TextView line = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            line.setText("******************************");
-                            linearLayoutSuggestion.addView(line);
                         }
 
                     }
@@ -928,7 +928,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                             Listdetailrequest.addView(answer);
                             line3.setText("----------------------------------");
                             Listdetailrequest.addView(line3);
-                            if(moreRequests.get(i).getStatusmrequest() == 1){
+                           /* if(moreRequests.get(i).getStatusmrequest() == 1){
                                 Button btndelete = new Button(ViewSuggestionAndAddMoreRequestActivity.this);
                                 btndelete.setText("ลบ");
                                 btndelete.setTypeface(null, Typeface.BOLD);
@@ -983,7 +983,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
 
                                     }
                                 });
-                            }
+                            }*/
 
                         }
                     }
@@ -1014,7 +1014,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
 
         MoreRequestController manager = MoreRequestController.getWsManager(ViewSuggestionAndAddMoreRequestActivity.this);
         MoreRequestModel moreRequestModel = new MoreRequestModel();
-        moreRequestModel.getMoreRequest().setWhatstoryforrequest(welcomeBinding.txtWhatStory.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C"));
+        moreRequestModel.getMoreRequest().setWhatstoryforrequest(welcomeBinding.txtWhatStory.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C").replaceAll("\n","%0A"));
         moreRequestModel.getMoreRequest().setAnswer("-");
         moreRequestModel.getMoreRequest().setStatusmrequest(1);
         moreRequestModel.getMoreRequest().getRequestforhelp().setRequestid(idrequest);

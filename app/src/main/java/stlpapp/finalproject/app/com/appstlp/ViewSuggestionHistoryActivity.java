@@ -512,7 +512,7 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
 
 
                                 TextView textViewfactfathermother = new TextView(ViewSuggestionHistoryActivity.this);
-                                textViewfactfathermother.setText("=ข้อเท็จจริงของบิดา/มารดา ของ=");
+                                textViewfactfathermother.setText("\n\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
                                 textViewfactfathermother.setTypeface(null, Typeface.BOLD);
                                 Listdetailrequest.addView(textViewfactfathermother);
 
@@ -522,7 +522,7 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
 
 
                                 TextView textViewforlegalopinion = new TextView(ViewSuggestionHistoryActivity.this);
-                                textViewforlegalopinion.setText("=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
+                                textViewforlegalopinion.setText("\n\n=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
                                 textViewforlegalopinion.setTypeface(null, Typeface.BOLD);
                                 Listdetailrequest.addView(textViewforlegalopinion);
 
@@ -531,7 +531,7 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                                 Listdetailrequest.addView(textViewforlegalopinionshow);
 
                                 TextView textViewperonstatus = new TextView(ViewSuggestionHistoryActivity.this);
-                                textViewperonstatus.setText("=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
+                                textViewperonstatus.setText("\n\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
                                 textViewperonstatus.setTypeface(null, Typeface.BOLD);
                                 Listdetailrequest.addView(textViewperonstatus);
 

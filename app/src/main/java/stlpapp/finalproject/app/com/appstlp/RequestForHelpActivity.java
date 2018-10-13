@@ -1,8 +1,10 @@
 package stlpapp.finalproject.app.com.appstlp;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +15,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import stlpapp.finalproject.app.com.appstlp.controller.ChooseTheBestSuggestionController;
 import stlpapp.finalproject.app.com.appstlp.controller.RequestForHelpController;
 import stlpapp.finalproject.app.com.appstlp.databinding.ActivityRequestForHelpBinding;
+import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
 import stlpapp.finalproject.app.com.appstlp.model.CenterModel;
 import stlpapp.finalproject.app.com.appstlp.model.RequestForHelp;
 import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
@@ -158,19 +162,59 @@ public class RequestForHelpActivity extends AppCompatActivity {
     public void isAddRequest(View view) {
         if (mBinding.RadioGroupCerBirth.getCheckedRadioButtonId()==-1) {
             mBinding.RadioGroupCerBirth.requestFocus();
-            Toast.makeText(RequestForHelpActivity.this,R.string.please_select_status_c_birth,Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(RequestForHelpActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_status_c_birth);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }else if (mBinding.RadioGroupCerRegister.getCheckedRadioButtonId()==-1) {
             mBinding.RadioGroupCerRegister.requestFocus();
-            Toast.makeText(RequestForHelpActivity.this,R.string.please_select_status_cer_register,Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(RequestForHelpActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_status_cer_register);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }else if (mBinding.RadioGroupCerIDCard.getCheckedRadioButtonId()==-1) {
             mBinding.RadioGroupCerIDCard.requestFocus();
-            Toast.makeText(RequestForHelpActivity.this,R.string.please_select_status_cer_id_card,Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(RequestForHelpActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_status_cer_id_card);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }else if (mBinding.RadioGroupCenter.getCheckedRadioButtonId()==-1) {
             mBinding.RadioGroupCenter.requestFocus();
-            Toast.makeText(RequestForHelpActivity.this,R.string.please_select_center,Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(RequestForHelpActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_center);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }
 
@@ -287,7 +331,9 @@ public class RequestForHelpActivity extends AppCompatActivity {
                 progress.dismiss();
                 Toast.makeText(RequestForHelpActivity.this, "เขียนคำร้องสำเร็จ", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RequestForHelpActivity.this, MainUserActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
 
             @Override
@@ -309,6 +355,7 @@ public class RequestForHelpActivity extends AppCompatActivity {
                 progress.dismiss();
                 CenterModel centerModel = (CenterModel) response;
                 List<CenterModel.Center> centers = centerModel.getCenterList();
+
                 RadioGroup radioGroupcenter = (RadioGroup)findViewById(R.id.RadioGroupCenter);
                 for(int i = 0 ; i<centers.size();i++){
                     final RadioButton radioButtonCenter = new RadioButton(RequestForHelpActivity.this);

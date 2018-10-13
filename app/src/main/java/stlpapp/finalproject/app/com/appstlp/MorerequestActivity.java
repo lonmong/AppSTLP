@@ -516,7 +516,7 @@ public class MorerequestActivity extends AppCompatActivity {
 
 
                                 TextView textViewfactfathermother = new TextView(MorerequestActivity.this);
-                                textViewfactfathermother.setText("=ข้อเท็จจริงของบิดา/มารดา ของ=");
+                                textViewfactfathermother.setText("\n\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
                                 textViewfactfathermother.setTypeface(null, Typeface.BOLD);
                                 Listdetailrequest.addView(textViewfactfathermother);
 
@@ -526,7 +526,7 @@ public class MorerequestActivity extends AppCompatActivity {
 
 
                                 TextView textViewforlegalopinion = new TextView(MorerequestActivity.this);
-                                textViewforlegalopinion.setText("=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
+                                textViewforlegalopinion.setText("\n\n=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
                                 textViewforlegalopinion.setTypeface(null, Typeface.BOLD);
                                 Listdetailrequest.addView(textViewforlegalopinion);
 
@@ -535,7 +535,7 @@ public class MorerequestActivity extends AppCompatActivity {
                                 Listdetailrequest.addView(textViewforlegalopinionshow);
 
                                 TextView textViewperonstatus = new TextView(MorerequestActivity.this);
-                                textViewperonstatus.setText("=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
+                                textViewperonstatus.setText("\n\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
                                 textViewperonstatus.setTypeface(null, Typeface.BOLD);
                                 Listdetailrequest.addView(textViewperonstatus);
 
@@ -590,7 +590,7 @@ public class MorerequestActivity extends AppCompatActivity {
 
                                             if(moreRequests.get(i).getStatusmrequest()==1){
                                                 Button detailmbtn = new Button(MorerequestActivity.this);
-                                                detailmbtn.setText("ตอบคำร้อง");
+                                                detailmbtn.setText("ตอบคำร้อง\n");
                                                 Listdetailrequest.addView(detailmbtn);
                                                 line.setText("");
                                                 Listdetailrequest.addView(line);

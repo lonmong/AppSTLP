@@ -78,40 +78,44 @@ public class SearchIDCardTypeActivity extends AppCompatActivity {
             manager.searchIDCardTypeByPattern(idCardTypeModel, new SearchIDCardTypeController.SearchIDCardTypeControllerListener() {
                 @Override
                 public void onComplete(Object response) {
-                    if(((response instanceof IDCardTypeModel))){
-                        IDCardTypeModel idCardTypeModel1 = (IDCardTypeModel)response;
-                        IDCardTypeModel.IDCardType idCardType = idCardTypeModel1.getIdCardType();
-                        idCardTypeModel.setIdCardType(idCardType);
-                    }
+                    IDCardTypeModel idCardTypeModel1 = (IDCardTypeModel)response;
+
+                    IDCardTypeModel.IDCardType idCardType = new IDCardTypeModel.IDCardType();
+                    idCardType.setIdcardno(idCardTypeModel1.getIdCardType().getIdcardno());
+                    idCardType.setIdcardcall(idCardTypeModel1.getIdCardType().getIdcardcall());
+                    idCardType.setIdcardmean(idCardTypeModel1.getIdCardType().getIdcardmean());
+                    idCardType.setIdcardjob(idCardTypeModel1.getIdCardType().getIdcardjob());
+                    idCardType.setBenefitsfromgovern(idCardTypeModel1.getIdCardType().getBenefitsfromgovern());
+
                     progress.dismiss();
 
                     searchIdcardTypeBinding.textView1.setVisibility(View.VISIBLE);
                     searchIdcardTypeBinding.txtShowidcard.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcard.setText(idCardTypeModel.getIdCardType().getIdcardno());
+                    searchIdcardTypeBinding.txtShowidcard.setText(idCardType.getIdcardno());
 
                     searchIdcardTypeBinding.line1.setVisibility(View.VISIBLE);
                     searchIdcardTypeBinding.textView2.setVisibility(View.VISIBLE);
                     searchIdcardTypeBinding.txtShowidcardcall.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardcall.setText(idCardTypeModel.getIdCardType().getIdcardcall());
+                    searchIdcardTypeBinding.txtShowidcardcall.setText(idCardType.getIdcardcall());
 
                     searchIdcardTypeBinding.line2.setVisibility(View.VISIBLE);
                     searchIdcardTypeBinding.textView3.setVisibility(View.VISIBLE);
                     searchIdcardTypeBinding.txtShowidcardmean.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardmean.setText(idCardTypeModel.getIdCardType().getIdcardmean());
+                    searchIdcardTypeBinding.txtShowidcardmean.setText(idCardType.getIdcardmean());
 
                     searchIdcardTypeBinding.line3.setVisibility(View.VISIBLE);
                     searchIdcardTypeBinding.textView4.setVisibility(View.VISIBLE);
                     searchIdcardTypeBinding.txtShowjob.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowjob.setText(idCardTypeModel.getIdCardType().getIdcardjob());
+                    searchIdcardTypeBinding.txtShowjob.setText(idCardType.getIdcardjob());
 
                     searchIdcardTypeBinding.line4.setVisibility(View.VISIBLE);
                     searchIdcardTypeBinding.textView5.setVisibility(View.VISIBLE);
                     searchIdcardTypeBinding.txtShowbenefit.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowbenefit.setText(idCardTypeModel.getIdCardType().getBenefitsfromgovern());
+                    searchIdcardTypeBinding.txtShowbenefit.setText(idCardType.getBenefitsfromgovern());
 
                     searchIdcardTypeBinding.line5.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView6.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.imageViewIdcard.setVisibility(View.VISIBLE);
+                    searchIdcardTypeBinding.textView6.setVisibility(View.GONE);
+                    searchIdcardTypeBinding.imageViewIdcard.setVisibility(View.GONE);
                 }
 
                 @Override
@@ -143,8 +147,8 @@ public class SearchIDCardTypeActivity extends AppCompatActivity {
                     searchIdcardTypeBinding.txtShowbenefit.setText("ไม่พบข้อมูล?");
 
                     searchIdcardTypeBinding.line5.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView6.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.imageViewIdcard.setVisibility(View.VISIBLE);
+                    searchIdcardTypeBinding.textView6.setVisibility(View.GONE);
+                    searchIdcardTypeBinding.imageViewIdcard.setVisibility(View.GONE);
                 }
             });
         }

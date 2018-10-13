@@ -505,10 +505,12 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                             public void onComplete(Object response) {
                                 AssignModel assignModel = (AssignModel) response;
                                 final List<AssignModel.Assign> assigns = assignModel.getAssignList();
-                                for(int i=0;i<assigns.size();i++) {
+                                final RequestForHelp requestForHelp1 = new RequestForHelp();
+                                requestForHelp1.setAssigntList(assigns);
+                                for(int i=0;i<requestForHelp1.getAssigntList().size();i++) {
                                     if(telcenter.equalsIgnoreCase(assigns.get(i).getStaff().getCenter().getTelcenter())) {
                                         final TextView textViewIdrequest = new TextView(ChooseTheBestSuggestionActivity.this);
-                                        textViewIdrequest.setText("คำแนะนำจาก : " + assigns.get(i).getStaff().getNameperson());
+                                        textViewIdrequest.setText("คำแนะนำจาก : " + requestForHelp1.getAssigntList().get(i).getStaff().getNameperson());
 
                                         Button btnmanageassign = new Button(ChooseTheBestSuggestionActivity.this);
                                         btnmanageassign.setText("กดเพื่อดูรายละเอียด");
@@ -523,8 +525,8 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(View view) {
                                                 Intent intent = new Intent(ChooseTheBestSuggestionActivity.this, DetailSuggestionActivity.class);
-                                                intent.putExtra("nameperson", assigns.get(finalI).getRequestforhelp().getStatelessperon().getNameperson());
-                                                intent.putExtra("assignid", assigns.get(finalI).getAssignid());
+                                                intent.putExtra("nameperson", requestForHelp1.getAssigntList().get(finalI).getRequestforhelp().getStatelessperon().getNameperson());
+                                                intent.putExtra("assignid", requestForHelp1.getAssigntList().get(finalI).getAssignid());
                                                 startActivity(intent);
                                             }
                                         });

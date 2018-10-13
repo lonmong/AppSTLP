@@ -1,9 +1,11 @@
 package stlpapp.finalproject.app.com.appstlp;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -487,24 +489,46 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                         textViewHeadSuggestion.setTextColor(Color.parseColor("#BF9100"));
                         Listdetailrequest.addView(textViewHeadSuggestion);
 
+                        final TextView editTextFactPersonShow = new TextView(GiveSuggenstionActivity.this);
+                        editTextFactPersonShow.setText("*ข้อเท็จจริงของ*");
+                        editTextFactPersonShow.setTextSize(16);
+                        editTextFactPersonShow.setTypeface(null, Typeface.BOLD);
+                        Listdetailrequest.addView(editTextFactPersonShow);
                         final EditText editTextFactPerson = new EditText(GiveSuggenstionActivity.this);
                         editTextFactPerson.setHint("ข้อเท็จจริงของ");
-                        editTextFactPerson.setTextSize(16);
+                        editTextFactPerson.setTextSize(14);
                         Listdetailrequest.addView(editTextFactPerson);
 
+
+
+                        final TextView editTextFactFatherMothershow = new TextView(GiveSuggenstionActivity.this);
+                        editTextFactFatherMothershow.setText("\n*ข้อเท็จจริงบิดา/มารดาของ*");
+                        editTextFactFatherMothershow.setTextSize(16);
+                        editTextFactFatherMothershow.setTypeface(null, Typeface.BOLD);
+                        Listdetailrequest.addView(editTextFactFatherMothershow);
                         final EditText editTextFactFatherMother = new EditText(GiveSuggenstionActivity.this);
                         editTextFactFatherMother.setHint("ข้อเท็จจริงบิดา/มารดาของ");
-                        editTextFactFatherMother.setTextSize(16);
+                        editTextFactFatherMother.setTextSize(14);
                         Listdetailrequest.addView(editTextFactFatherMother);
 
+                        final TextView editTextForLegalOpinionshow = new TextView(GiveSuggenstionActivity.this);
+                        editTextForLegalOpinionshow.setText("\n*ความคิดเห็นทางกฎหมาย(การทะเบียนราษฎร และสัญชาติ)*");
+                        editTextForLegalOpinionshow.setTextSize(16);
+                        editTextForLegalOpinionshow.setTypeface(null, Typeface.BOLD);
+                        Listdetailrequest.addView(editTextForLegalOpinionshow);
                         final EditText editTextForLegalOpinion = new EditText(GiveSuggenstionActivity.this);
                         editTextForLegalOpinion.setHint("ความคิดเห็นทางกฎหมาย(การทะเบียนราษฎร และสัญชาติ)");
-                        editTextForLegalOpinion.setTextSize(16);
+                        editTextForLegalOpinion.setTextSize(14);
                         Listdetailrequest.addView(editTextForLegalOpinion);
 
+                        final TextView editTextPersonStatusshow = new TextView(GiveSuggenstionActivity.this);
+                        editTextPersonStatusshow.setHint("\n*คำแนะนำขั้นตอนดำเนินการพัฒนาสถานะ*");
+                        editTextPersonStatusshow.setTextSize(16);
+                        editTextPersonStatusshow.setTypeface(null, Typeface.BOLD);
+                        Listdetailrequest.addView(editTextPersonStatusshow);
                         final EditText editTextPersonStatus = new EditText(GiveSuggenstionActivity.this);
                         editTextPersonStatus.setHint("คำแนะนำขั้นตอนดำเนินการพัฒนาสถานะ");
-                        editTextPersonStatus.setTextSize(16);
+                        editTextPersonStatus.setTextSize(14);
                         Listdetailrequest.addView(editTextPersonStatus);
 
                         Button btngivesuggestion = new Button(GiveSuggenstionActivity.this);
@@ -528,33 +552,50 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                                     editTextPersonStatus.setError("กรุณากรอกข้อมูล");
                                     editTextPersonStatus.requestFocus();
                                 }else{
-                                    GiveSuggestionController manager = GiveSuggestionController.getWsManager(GiveSuggenstionActivity.this);
-                                    AssignModel assignModel = new AssignModel();
-                                    assignModel.getAssign().setAssignid(assignid);
-                                    assignModel.getAssign().setFactperson(editTextFactPerson.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C").replaceAll("\n","%0A"));
-                                    assignModel.getAssign().setFactfathermother(editTextFactFatherMother.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C").replaceAll("\n","%0A"));
-                                    assignModel.getAssign().setForlegalopinion(editTextForLegalOpinion.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C").replaceAll("\n","%0A"));
-                                    assignModel.getAssign().setPersonstatus(editTextPersonStatus.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C").replaceAll("\n","%0A"));
-
-                                    final ProgressDialog progress = ProgressDialog.show(GiveSuggenstionActivity.this, getString(R.string.please_wait),
-                                            getString(R.string.please_wait), true);
-                                    manager.setSuggestionRequest(assignModel, new WSManager.WSManagerListener() {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(GiveSuggenstionActivity.this);
+                                    builder.setTitle("คำเตือน");
+                                    builder.setMessage("ยืนยันการพิจารณาหรือไม่?");
+                                    builder.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
                                         @Override
-                                        public void onComplete(Object response) {
-                                            progress.dismiss();
-                                            Toast.makeText(GiveSuggenstionActivity.this, "เสร็จสิ้นการพิจารณา", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(GiveSuggenstionActivity.this, MainUserActivity.class);
-                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            startActivity(intent);
-                                            finish();
-                                        }
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            GiveSuggestionController manager = GiveSuggestionController.getWsManager(GiveSuggenstionActivity.this);
+                                            AssignModel assignModel = new AssignModel();
+                                            assignModel.getAssign().setAssignid(assignid);
+                                            assignModel.getAssign().setFactperson(editTextFactPerson.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C").replaceAll("\n","%0A"));
+                                            assignModel.getAssign().setFactfathermother(editTextFactFatherMother.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C").replaceAll("\n","%0A"));
+                                            assignModel.getAssign().setForlegalopinion(editTextForLegalOpinion.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C").replaceAll("\n","%0A"));
+                                            assignModel.getAssign().setPersonstatus(editTextPersonStatus.getText().toString().replaceAll(" ","+").replaceAll("/","%2F").replaceAll(",","%2C").replaceAll("\n","%0A"));
 
-                                        @Override
-                                        public void onError(String err) {
-                                            progress.dismiss();
-                                            Toast.makeText(GiveSuggenstionActivity.this, err, Toast.LENGTH_LONG).show();
+                                            final ProgressDialog progress = ProgressDialog.show(GiveSuggenstionActivity.this, getString(R.string.please_wait),
+                                                    getString(R.string.please_wait), true);
+                                            manager.setSuggestionRequest(assignModel, new WSManager.WSManagerListener() {
+                                                @Override
+                                                public void onComplete(Object response) {
+                                                    progress.dismiss();
+                                                    Toast.makeText(GiveSuggenstionActivity.this, "เสร็จสิ้นการพิจารณา", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(GiveSuggenstionActivity.this, MainUserActivity.class);
+                                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+
+                                                @Override
+                                                public void onError(String err) {
+                                                    progress.dismiss();
+                                                    Toast.makeText(GiveSuggenstionActivity.this, err, Toast.LENGTH_LONG).show();
+                                                }
+                                            });
                                         }
                                     });
+                                    builder.setNeutralButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        }
+                                    });
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+
                                 }
 
                             }

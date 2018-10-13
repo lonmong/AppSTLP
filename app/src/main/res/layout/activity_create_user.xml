@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:hint="อีเมลล์"
+                        android:hint="อีเมล"
                         android:inputType="textEmailAddress" />
 
                     <EditText
@@ -138,6 +138,14 @@
                         android:ems="10"
                         android:hint="เลขประจำตัว"
                         android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="********************************************************"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <RadioGroup
                         android:id="@+id/RadioGroupMarry"
@@ -231,6 +239,14 @@
                         android:ems="10"
                         android:hint="ที่อยู่ของคู่สมรส"
                         android:inputType="textPersonName" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="********************************************************"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <RadioGroup
                         android:id="@+id/RadioGroupPlaceBirth"
@@ -568,6 +584,14 @@
 
                     </RadioGroup>
 
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="********************************************************"
+                        android:textColor="@android:color/holo_red_dark" />
+
                     <EditText
                         android:id="@+id/txt_addressnow"
                         android:layout_width="match_parent"
@@ -626,6 +650,14 @@
                         android:hint="ถึงปี"
                         android:onClick="toYears"
                         android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="********************************************************"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <EditText
                         android:id="@+id/txt_addressbefor"
@@ -858,6 +890,14 @@
                         android:ems="10"
                         android:hint="ที่อยู่"
                         android:inputType="textPersonName" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="********************************************************"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <EditText
                         android:id="@+id/txt_namemother"

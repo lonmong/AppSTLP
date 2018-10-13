@@ -49,7 +49,7 @@ public class ExportToPDFController {
 
     }
 
-    public void detailBestSuggestion(Object object,final ExportToPDFControllerListener listener) {
+    public void detailBestSuggestionByIdrequestAndStatusAssign(Object object,final ExportToPDFControllerListener listener) {
         if (!(object instanceof AssignModel)) {
             return;
         }

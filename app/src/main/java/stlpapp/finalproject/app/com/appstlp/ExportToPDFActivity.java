@@ -560,7 +560,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                         final AssignModel assignModel = new AssignModel();
                         assignModel.getAssign().getRequestforhelp().setRequestid(requestid);
 
-                        manager.detailBestSuggestion(assignModel, new ExportToPDFController.ExportToPDFControllerListener() {
+                        manager.detailBestSuggestionByIdrequestAndStatusAssign(assignModel, new ExportToPDFController.ExportToPDFControllerListener() {
                             @Override
                             public void onComplete(Object response) {
                                 AssignModel assignModel1 = (AssignModel) response;

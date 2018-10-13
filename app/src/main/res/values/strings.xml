@@ -25,7 +25,7 @@
     <string name="please_select_gender">กรุณาเลือกเพศของท่าน?</string>
     <string name="error_invalid_email">อีเมลล์ไม่ถูกต้อง?</string>
     <string name="please_input_birthday">กรุณากรอกวันเกิด?</string>
-    <string name="birthday_not_match">กรุณากรอกวันเกิดให้ถูกต้อง?</string>
+    <string name="birthday_not_match">กรุณากรอกวันเกิดให้ถูกต้อง(วัน/เดือน/ปีค.ศ.)?</string>
     <string name="please_input_religion">กรุณากรอกศาสนา?</string>
     <string name="please_input_ethnic">กรุณากรอกชาติพันธุ์?</string>
     <string name="have_nationality">มีสัญชาติหรือไม่?</string>
@@ -43,6 +43,7 @@
     <string name="please_select_home_status_now">กรุณาเลือกสถานะที่อยู่ปัจจุบัน?</string>
     <string name="please_select_status_be_alive_f">กรุณาเลือกสถานะการมีชีวิตบิดา?</string>
     <string name="please_select_status_be_alive_m">กรุณาเลือกสถานะการมีชีวิตมารดา?</string>
+    <string name="no_idcard_no">กรณีไม่มีเลข 13 หลักให้กรอกเลข 0 ทั้ง 13 ตัว </string>
     <string name="please_select_status_c_birth">กรุณาเลือกสถานะการมีเอกสารรับรองการเกิด?</string>
     <string name="please_select_status_cer_register">กรุณาเลือกสถานะการมีเอกสารหลักฐานประเภททะเบียน?</string>
     <string name="please_select_status_cer_id_card">กรุณาเลือกสถานะการมีเอกสารหลักฐานประเภทบัตรประจำตัว?</string>
@@ -51,7 +52,7 @@
     <string name="please_select_status_witness_be_alive">กรุณาเลือกสถานะการมีชีวิตของพยานคนที่1?</string>
 
     <!--URL-->
-    <string name="root_url">http://10.0.6.79:8080</string>
+    <string name="root_url">http://10.0.20.111:8080</string>
     <string name="login_url">/loginmobile/login</string>
     <string name="searchidcardtype_url">/searchidcardtype/searchidcardtypebypattern</string>
     <string name="detailrequestbyusername_url">/requestforhelp/detailrequestbyusername</string>
@@ -80,6 +81,7 @@
     <string name="list_education_url">/list/education</string>
     <string name="list_idcardtype_url">/list/idcardtype</string>
     <string name="list_parent_url">/list/parent</string>
+    <string name="list_assignbyidrequest_url">/list/assignbyidrequest</string>
     <string name="list_morerequest_url">/morerequestforhelp/listmorerequestbyidrequest</string>
     <string name="list_witness_url">/list/witness</string>
     <string name="list_address_url">/list/address</string>

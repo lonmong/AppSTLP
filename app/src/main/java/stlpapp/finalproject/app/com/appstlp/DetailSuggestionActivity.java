@@ -67,7 +67,7 @@ public class DetailSuggestionActivity extends AppCompatActivity {
                 detailsuggestion.addView(textViewfactpersonshow);
 
                 TextView textViewfactfathermother = new TextView(DetailSuggestionActivity.this);
-                textViewfactfathermother.setText("=ข้อเท็จจริงของบิดา/มารดา ของ=");
+                textViewfactfathermother.setText("\n\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
                 textViewfactfathermother.setTypeface(null, Typeface.BOLD);
                 detailsuggestion.addView(textViewfactfathermother);
 
@@ -77,7 +77,7 @@ public class DetailSuggestionActivity extends AppCompatActivity {
 
 
                 TextView textViewforlegalopinion = new TextView(DetailSuggestionActivity.this);
-                textViewforlegalopinion.setText("=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
+                textViewforlegalopinion.setText("\n\n=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
                 textViewforlegalopinion.setTypeface(null, Typeface.BOLD);
                 detailsuggestion.addView(textViewforlegalopinion);
 
@@ -86,7 +86,7 @@ public class DetailSuggestionActivity extends AppCompatActivity {
                 detailsuggestion.addView(textViewforlegalopinionshow);
 
                 TextView textViewperonstatus = new TextView(DetailSuggestionActivity.this);
-                textViewperonstatus.setText("=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
+                textViewperonstatus.setText("\n\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
                 textViewperonstatus.setTypeface(null, Typeface.BOLD);
                 detailsuggestion.addView(textViewperonstatus);
 

@@ -29,7 +29,7 @@ public class ViewSuggestionHistoryController {
         return wsManager;
     }
 
-    public void listSuggestionHistory(Object object,final ViewSuggestionHistoryControllerListener listener) {
+    public void listSuggestionHistoryByUsernameAndStatusAssign(Object object,final ViewSuggestionHistoryControllerListener listener) {
         if (!(object instanceof StaffModel)) {
             return;
         }

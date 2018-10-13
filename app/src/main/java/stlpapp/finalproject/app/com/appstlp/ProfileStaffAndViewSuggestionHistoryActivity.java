@@ -217,11 +217,14 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
         final StaffModel staffModel = new StaffModel();
         staffModel.getStaff().setUsername(username);
 
-        manager.listSuggestionHistory(staffModel, new ViewSuggestionHistoryController.ViewSuggestionHistoryControllerListener() {
+        manager.listSuggestionHistoryByUsernameAndStatusAssign(staffModel, new ViewSuggestionHistoryController.ViewSuggestionHistoryControllerListener() {
             @Override
             public void onComplete(Object response) {
                 AssignModel assignModel = (AssignModel) response;
                 final List<AssignModel.Assign> assigns = assignModel.getAssignList();
+                Staff staff = new Staff();
+                staff.setAssignList(assigns);
+
                 LinearLayout linearLayoutAssignFinish = (LinearLayout) findViewById(R.id.ListAssignFinish);
                 for(int i=0;i<assigns.size();i++) {
                         final TextView textViewIdrequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);

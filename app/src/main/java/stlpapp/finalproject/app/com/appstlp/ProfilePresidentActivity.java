@@ -141,29 +141,32 @@ public class ProfilePresidentActivity extends AppCompatActivity {
             public void onComplete(Object response) {
                 RequestForHelpModel requestForHelpModel = (RequestForHelpModel) response;
                 final List<RequestForHelp> requestForHelps = requestForHelpModel.getRequestForHelpList();
+                final CenterModel.Center center = new CenterModel.Center();
+                center.setRequestForHelpsList(requestForHelps);
+
                 LinearLayout linearLayoutRequest = (LinearLayout) findViewById(R.id.ListRequestCenter);
                 LinearLayout linearLayoutRequestapprove = (LinearLayout) findViewById(R.id.ListRequestCenterApprove);
                 LinearLayout linearLayoutRequestfinish = (LinearLayout) findViewById(R.id.ListRequestCenterfinish);
-                for(int i=0;i<requestForHelps.size();i++) {
+                for(int i=0;i<center.getRequestForHelpsList().size();i++) {
                     if (requestForHelps.get(i).getStatusrequest() == 1) {
                         TextView textViewPersonName = new TextView(ProfilePresidentActivity.this);
-                        textViewPersonName.setText("คำร้องของ : " + requestForHelps.get(i).getStatelessperon().getNameperson());
+                        textViewPersonName.setText("คำร้องของ : " + center.getRequestForHelpsList().get(i).getStatelessperon().getNameperson());
 
                         TextView textViewreIdcardPerson = new TextView(ProfilePresidentActivity.this);
-                        textViewreIdcardPerson.setText("เลขประจำตัว 13 หลัก : " + requestForHelps.get(i).getStatelessperon().getIdcard());
+                        textViewreIdcardPerson.setText("เลขประจำตัว 13 หลัก : " + center.getRequestForHelpsList().get(i).getStatelessperon().getIdcard());
 
                         TextView textViewGender = new TextView(ProfilePresidentActivity.this);
-                        if (requestForHelps.get(i).getStatelessperon().getGender() == 1) {
+                        if (center.getRequestForHelpsList().get(i).getStatelessperon().getGender() == 1) {
                             textViewGender.setText("เพศ : ชาย");
                         } else {
                             textViewGender.setText("เพศ : หญิง");
                         }
 
                         TextView textViewStatusRequest = new TextView(ProfilePresidentActivity.this);
-                        if (requestForHelps.get(i).getStatusrequest() == 1) {
+                        if (center.getRequestForHelpsList().get(i).getStatusrequest() == 1) {
                             textViewStatusRequest.setText("สถานะคำร้อง : รอการอนุมัติจากประธานศูนย์");
                             textViewStatusRequest.setTextColor(Color.parseColor("#F70202"));
-                        } else if (requestForHelps.get(i).getStatusrequest() == 2) {
+                        } else if (center.getRequestForHelpsList().get(i).getStatusrequest() == 2) {
                             textViewStatusRequest.setText("สถานะคำร้อง : เจ้าหน้าที่กำลังพิจารณา");
                             textViewStatusRequest.setTextColor(Color.parseColor("#B30AF7"));
                         }
@@ -182,31 +185,31 @@ public class ProfilePresidentActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(ProfilePresidentActivity.this, DetailRequestActivity.class);
-                                intent.putExtra("username", requestForHelps.get(finalI).getStatelessperon().getUsername());
+                                intent.putExtra("username", center.getRequestForHelpsList().get(finalI).getStatelessperon().getUsername());
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
                             }
                         });
-                    }else if (requestForHelps.get(i).getStatusrequest() == 2) {
+                    }else if (center.getRequestForHelpsList().get(i).getStatusrequest() == 2) {
                         TextView textViewPersonName = new TextView(ProfilePresidentActivity.this);
-                        textViewPersonName.setText("คำร้องของ : " + requestForHelps.get(i).getStatelessperon().getNameperson());
+                        textViewPersonName.setText("คำร้องของ : " + center.getRequestForHelpsList().get(i).getStatelessperon().getNameperson());
 
                         TextView textViewreIdcardPerson = new TextView(ProfilePresidentActivity.this);
-                        textViewreIdcardPerson.setText("เลขประจำตัว 13 หลัก : " + requestForHelps.get(i).getStatelessperon().getIdcard());
+                        textViewreIdcardPerson.setText("เลขประจำตัว 13 หลัก : " + center.getRequestForHelpsList().get(i).getStatelessperon().getIdcard());
 
                         TextView textViewGender = new TextView(ProfilePresidentActivity.this);
-                        if (requestForHelps.get(i).getStatelessperon().getGender() == 1) {
+                        if (center.getRequestForHelpsList().get(i).getStatelessperon().getGender() == 1) {
                             textViewGender.setText("เพศ : ชาย");
                         } else {
                             textViewGender.setText("เพศ : หญิง");
                         }
 
                         TextView textViewStatusRequest = new TextView(ProfilePresidentActivity.this);
-                        if (requestForHelps.get(i).getStatusrequest() == 1) {
+                        if (center.getRequestForHelpsList().get(i).getStatusrequest() == 1) {
                             textViewStatusRequest.setText("สถานะคำร้อง : รอการอนุมัติจากประธานศูนย์");
                             textViewStatusRequest.setTextColor(Color.parseColor("#F70202"));
-                        } else if (requestForHelps.get(i).getStatusrequest() == 2) {
+                        } else if (center.getRequestForHelpsList().get(i).getStatusrequest() == 2) {
                             textViewStatusRequest.setText("สถานะคำร้อง : เจ้าหน้าที่กำลังพิจารณา");
                             textViewStatusRequest.setTextColor(Color.parseColor("#B30AF7"));
                         }
@@ -225,36 +228,36 @@ public class ProfilePresidentActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(ProfilePresidentActivity.this, ChooseTheBestSuggestionActivity.class);
-                                intent.putExtra("username", requestForHelps.get(finalI).getStatelessperon().getUsername());
-                                intent.putExtra("idrequest", requestForHelps.get(finalI).getRequestid());
+                                intent.putExtra("username", center.getRequestForHelpsList().get(finalI).getStatelessperon().getUsername());
+                                intent.putExtra("idrequest", center.getRequestForHelpsList().get(finalI).getRequestid());
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
 
                             }
                         });
-                    }else if (requestForHelps.get(i).getStatusrequest() == 3) {
+                    }else if (center.getRequestForHelpsList().get(i).getStatusrequest() == 3) {
                         TextView textViewPersonName = new TextView(ProfilePresidentActivity.this);
-                        textViewPersonName.setText("คำร้องของ : " + requestForHelps.get(i).getStatelessperon().getNameperson());
+                        textViewPersonName.setText("คำร้องของ : " + center.getRequestForHelpsList().get(i).getStatelessperon().getNameperson());
 
                         TextView textViewreIdcardPerson = new TextView(ProfilePresidentActivity.this);
-                        textViewreIdcardPerson.setText("เลขประจำตัว 13 หลัก : " + requestForHelps.get(i).getStatelessperon().getIdcard());
+                        textViewreIdcardPerson.setText("เลขประจำตัว 13 หลัก : " + center.getRequestForHelpsList().get(i).getStatelessperon().getIdcard());
 
                         TextView textViewGender = new TextView(ProfilePresidentActivity.this);
-                        if (requestForHelps.get(i).getStatelessperon().getGender() == 1) {
+                        if (center.getRequestForHelpsList().get(i).getStatelessperon().getGender() == 1) {
                             textViewGender.setText("เพศ : ชาย");
                         } else {
                             textViewGender.setText("เพศ : หญิง");
                         }
 
                         TextView textViewStatusRequest = new TextView(ProfilePresidentActivity.this);
-                        if (requestForHelps.get(i).getStatusrequest() == 1) {
+                        if (center.getRequestForHelpsList().get(i).getStatusrequest() == 1) {
                             textViewStatusRequest.setText("สถานะคำร้อง : รอการอนุมัติจากประธานศูนย์");
                             textViewStatusRequest.setTextColor(Color.parseColor("#F70202"));
-                        } else if (requestForHelps.get(i).getStatusrequest() == 2) {
+                        } else if (center.getRequestForHelpsList().get(i).getStatusrequest() == 2) {
                             textViewStatusRequest.setText("สถานะคำร้อง : เจ้าหน้าที่กำลังพิจารณา");
                             textViewStatusRequest.setTextColor(Color.parseColor("#B30AF7"));
-                        }else if (requestForHelps.get(i).getStatusrequest() == 3) {
+                        }else if (center.getRequestForHelpsList().get(i).getStatusrequest() == 3) {
                             textViewStatusRequest.setText("สถานะคำร้อง : การพิจารณาเสร็จสิ้น");
                             textViewStatusRequest.setTextColor(Color.parseColor("#0FA700"));
                         }
@@ -274,8 +277,8 @@ public class ProfilePresidentActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(ProfilePresidentActivity.this, ExportToPDFActivity.class);
-                                intent.putExtra("username", requestForHelps.get(finalI).getStatelessperon().getUsername());
-                                intent.putExtra("requestid", requestForHelps.get(finalI).getRequestid());
+                                intent.putExtra("username", center.getRequestForHelpsList().get(finalI).getStatelessperon().getUsername());
+                                intent.putExtra("requestid", center.getRequestForHelpsList().get(finalI).getRequestid());
                                 intent.putExtra("presidentname",staff.getNameperson());
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);

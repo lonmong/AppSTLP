@@ -62,11 +62,14 @@ public class SelectStaffForRequestActivity extends AppCompatActivity {
                 progress.dismiss();
                 StaffModel staffModel = (StaffModel) response;
                 final List<Staff> staffs = staffModel.getStaffList();
+                final CenterModel.Center center = new CenterModel.Center();
+                center.setStaffList(staffs);
+
                 LinearLayout linearLayoutListStaff = (LinearLayout) findViewById(R.id.stafflist);
-                for (int i = 0; i < staffs.size(); i++) {
+                for (int i = 0; i < center.getStaffList().size(); i++) {
                     final CheckBox checkBoxSelect = new CheckBox(SelectStaffForRequestActivity.this);
-                    checkBoxSelect.setText(staffs.get(i).getNameperson() + " ตำแหน่ง : " + staffs.get(i).getPosition().replaceAll("\\+"," "));
-                    checkBoxSelect.setHint(staffs.get(i).getUsername());
+                    checkBoxSelect.setText(center.getStaffList().get(i).getNameperson() + " ตำแหน่ง : " + staffs.get(i).getPosition().replaceAll("\\+"," "));
+                    checkBoxSelect.setHint(center.getStaffList().get(i).getUsername());
                     final int finalI = i;
                     checkBoxSelect.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -74,7 +77,7 @@ public class SelectStaffForRequestActivity extends AppCompatActivity {
                             if(checkBoxSelect.isChecked()){
                                 AlertDialog.Builder builder = new AlertDialog.Builder(SelectStaffForRequestActivity.this);
                                 builder.setTitle("คำเตือน");
-                                builder.setMessage("ส่งคำร้องให้กับ "+staffs.get(finalI).getNameperson() + " หรือไม่?");
+                                builder.setMessage("ส่งคำร้องให้กับ "+center.getStaffList().get(finalI).getNameperson() + " หรือไม่?");
                                 builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {

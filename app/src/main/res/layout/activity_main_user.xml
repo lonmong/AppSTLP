@@ -28,131 +28,17 @@
                 android:gravity="center"
                 android:id="@+id/linear_main">
 
-                <LinearLayout
-                    android:id="@+id/linear_stateless"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/cardview2"
-                        android:layout_width="340dp"
-                        android:layout_height="150dp"
-                        android:layout_margin="10dp"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:onClick="intenttoProfileStatelessPerson">
-
-                        <LinearLayout
-                            android:id="@+id/StatelessMain"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="20dp">
-
-                            <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
-                                android:background="@drawable/mainpage"
-                                android:padding="10dp" />
-
-                            <TextView
-                                android:id="@+id/text01"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="เข้าสู่เมนูหลักสำหรับบุคคลไร้รัฐไร้สัญชาติ"
-                                android:textStyle="bold" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="10dp"
-                                android:background="@color/lightgray" />
-
-                            <TextView
-                                android:id="@+id/textView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:padding="5dp"
-                                android:text="Check your bank activities"
-                                android:textColor="@android:color/darker_gray" />
-
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_requestforhelp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/cardviewrequestforhelp"
-                        android:layout_width="340dp"
-                        android:layout_height="150dp"
-                        android:layout_margin="10dp"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:onClick="intentRequestForHelp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="20dp">
-
-                            <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
-                                android:background="@drawable/requesticon"
-                                android:padding="10dp" />
-
-                            <TextView
-                                android:id="@+id/text03"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="เขียนคำร้องขอความช่วยเหลือ"
-                                android:textStyle="bold" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="10dp"
-                                android:background="@color/lightgray" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:padding="5dp"
-                                android:text="Check your bank activities"
-                                android:textColor="@android:color/darker_gray" />
-
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>
-
                 <android.support.v7.widget.CardView
-                    android:id="@+id/cardviewidcardtype"
+                    android:id="@+id/statelesspersonmain"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:layout_weight="1"
                     android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="intenttoProfileStatelessPerson">
 
                     <LinearLayout
-                        android:id="@+id/linear_idcardtype"
+                        android:id="@+id/StatelessMain"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -160,10 +46,18 @@
                         android:padding="20dp">
 
                         <ImageView
-                            android:layout_width="100dp"
+                            android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:background="@drawable/idcard"
+                            android:background="@drawable/mainpage"
                             android:padding="10dp" />
+
+                        <TextView
+                            android:id="@+id/text01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="เข้าสู่เมนูหลักสำหรับบุคคลไร้รัฐไร้สัญชาติ"
+                            android:textStyle="bold" />
 
                         <View
                             android:layout_width="match_parent"
@@ -174,117 +68,171 @@
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
-                <LinearLayout
-                    android:id="@+id/linear_staff"
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardviewrequestforhelp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="intentRequestForHelp">
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/cardview3"
-                        android:layout_width="340dp"
-                        android:layout_height="150dp"
-                        android:layout_margin="10dp"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:onClick="intenttostaffprofile">
+                    <LinearLayout
+                        android:id="@+id/linearrequest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-                        <LinearLayout
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/requesticon"
+                            android:padding="10dp" />
+
+                        <TextView
+                            android:id="@+id/text03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="เขียนคำร้องขอความช่วยเหลือ"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textStatusRequest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="สถานะคำร้อง"
+                            android:textStyle="bold" />
+
+                        <View
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="20dp">
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="@color/lightgray" />
 
-                            <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
-                                android:background="@drawable/mainpage"
-                                android:padding="10dp" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                            <TextView
-                                android:id="@+id/text02"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="เข้าสู่เมนูหลักสำหรับเจ้าหน้าที่"
-                                android:textStyle="bold" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="10dp"
-                                android:background="@color/lightgray" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:padding="5dp"
-                                android:text="Check your bank activities"
-                                android:textColor="@android:color/darker_gray" />
-
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear_president"
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardviewstaff"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="intenttostaffprofile">
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/cardview4"
-                        android:layout_width="340dp"
-                        android:layout_height="150dp"
-                        android:layout_margin="10dp"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:onClick="intenttopresidentprofile">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-                        <LinearLayout
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/mainpage"
+                            android:padding="10dp" />
+
+                        <TextView
+                            android:id="@+id/text02"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="เข้าสู่เมนูหลักสำหรับเจ้าหน้าที่"
+                            android:textStyle="bold" />
+
+                        <View
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="20dp">
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="@color/lightgray" />
 
-                            <ImageView
-                                android:layout_width="64dp"
-                                android:layout_height="64dp"
-                                android:background="@drawable/mainpage"
-                                android:padding="10dp" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                            <TextView
-                                android:id="@+id/text05"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:text="เข้าสู่เมนูหลักสำหรับประธานศูนย์ฯ"
-                                android:textStyle="bold" />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardviewpresident"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="intenttopresidentprofile">
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_margin="10dp"
-                                android:background="@color/lightgray" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:padding="5dp"
-                                android:text="Check your bank activities"
-                                android:textColor="@android:color/darker_gray" />
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/mainpage"
+                            android:padding="10dp" />
 
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/text05"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="เข้าสู่เมนูหลักสำหรับประธานศูนย์ฯ"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="@color/lightgray" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardviewlogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:onClick="logOut">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/logouticon"
+                            android:padding="10dp" />
+
+                        <TextView
+                            android:id="@+id/text055"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="ออกจากระบบ"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="@color/lightgray" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

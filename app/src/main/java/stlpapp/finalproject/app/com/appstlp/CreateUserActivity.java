@@ -2,8 +2,10 @@ package stlpapp.finalproject.app.com.appstlp;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -129,6 +131,7 @@ public class CreateUserActivity extends AppCompatActivity {
                     }
                 }, mYear, mMonth, mDay);
         dpd.show();
+
     }
 
     public void toYears(View view){
@@ -276,43 +279,28 @@ public class CreateUserActivity extends AppCompatActivity {
                 mBinding.RadioGroupThaiBirthOrAbroadBirth.setVisibility(View.GONE);
                 mBinding.RadioGroupThaiBirthOrAbroadBirth.check(0);
                 mBinding.txtHospitalbirth.setVisibility(View.GONE);
-                mBinding.txtHospitalbirth.setText("-");
                 mBinding.txtVillagebirth.setVisibility(View.GONE);
-                mBinding.txtVillagebirth.setText("-");
                 mBinding.RadioGroupWitness.setVisibility(View.GONE);
                 mBinding.RadioGroupWitness.check(0);
                 mBinding.txtNamewitness1.setVisibility(View.GONE);
-                mBinding.txtNamewitness1.setText("-");
                 mBinding.txtWitnessrelationship1.setVisibility(View.GONE);
-                mBinding.txtWitnessrelationship1.setText("-");
                 mBinding.RadioGroupWitnessAlive1.setVisibility(View.GONE);
                 mBinding.RadioGroupWitnessAlive1.check(0);
                 mBinding.txtAddresswitness1.setVisibility(View.GONE);
-                mBinding.txtAddresswitness1.setText("-");
                 mBinding.txtNamewitness2.setVisibility(View.GONE);
-                mBinding.txtNamewitness2.setText("-");
                 mBinding.txtWitnessrelationship2.setVisibility(View.GONE);
-                mBinding.txtWitnessrelationship2.setText("-");
                 mBinding.RadioGroupWitnessAlive2.setVisibility(View.GONE);
                 mBinding.RadioGroupWitnessAlive2.check(0);
                 mBinding.txtAddresswitness2.setVisibility(View.GONE);
-                mBinding.txtAddresswitness2.setText("-");
                 mBinding.txtCountrybirth.setVisibility(View.GONE);
-                mBinding.txtCountrybirth.setText("-");
                 mBinding.txtDistrictcomethai.setVisibility(View.GONE);
-                mBinding.txtDistrictcomethai.setText("-");
                 mBinding.txtDatecomethai.setVisibility(View.GONE);
-                mBinding.txtDatecomethai.setText("-");
                 mBinding.txtModecomethai.setVisibility(View.GONE);
-                mBinding.txtModecomethai.setText("-");
                 mBinding.txtNamewitness3.setVisibility(View.GONE);
-                mBinding.txtNamewitness3.setText("-");
-                mBinding.txtWitnessrelationship3.setVisibility(View.GONE);
-                mBinding.txtWitnessrelationship3.setText("-");
+                mBinding.txtWitnessrelationship3.setVisibility(View.GONE);;
                 mBinding.RadioGroupWitnessAlive3.setVisibility(View.GONE);
                 mBinding.RadioGroupWitnessAlive3.check(0);
-                mBinding.txtAddresswitness3.setVisibility(View.GONE);
-                mBinding.txtAddresswitness3.setText("-");
+                mBinding.txtAddresswitness3.setVisibility(View.GONE);;
                 break;
             default:
                 break;
@@ -440,10 +428,18 @@ public class CreateUserActivity extends AppCompatActivity {
             mBinding.txtEmail.requestFocus();
             mBinding.txtEmail.setError(getString(R.string.error_invalid_email));
             return;
-        } else
-        if (mBinding.RadioGroupGender.getCheckedRadioButtonId()==-1) {
-            mBinding.RadioGroupGender.requestFocus();
-            Toast.makeText(CreateUserActivity.this,R.string.please_select_gender,Toast.LENGTH_LONG).show();
+        } else if (mBinding.RadioGroupGender.getCheckedRadioButtonId()==-1) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateUserActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_gender);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }else if (mBinding.txtBirthday.getText() == null || mBinding.txtBirthday.getText().toString().isEmpty()) {
             mBinding.txtBirthday.requestFocus();
@@ -461,117 +457,82 @@ public class CreateUserActivity extends AppCompatActivity {
             mBinding.txtEthnic.requestFocus();
             mBinding.txtEthnic.setError(getString(R.string.please_input_ethnic));
             return;
-        }else if (mBinding.txtNationality.getText() == null || mBinding.txtNationality.getText().toString().isEmpty()) {
-            mBinding.txtNationality.requestFocus();
-            mBinding.txtNationality.setError(getString(R.string.have_nationality));
-            return;
-        }else if (mBinding.txtHomeid.getText() == null || mBinding.txtHomeid.getText().toString().isEmpty()) {
-            mBinding.txtHomeid.requestFocus();
-            mBinding.txtHomeid.setError(getString(R.string.please_input_home_id));
-            return;
-        }else if (!mBinding.txtHomeid.getText().toString().matches(homeidPattern)) {
-            mBinding.txtHomeid.requestFocus();
-            mBinding.txtHomeid.setError(getString(R.string.home_id_not_match));
-            return;
-        }else if (mBinding.txtIdcard.getText() == null || mBinding.txtIdcard.getText().toString().isEmpty()) {
-            mBinding.txtIdcard.requestFocus();
-            mBinding.txtIdcard.setError(getString(R.string.please_input_id_card));
-            return;
-        }else if (!mBinding.txtIdcard.getText().toString().matches(idcardPattern)) {
-            mBinding.txtIdcard.requestFocus();
-            mBinding.txtIdcard.setError(getString(R.string.id_card_not_match));
-            return;
         }else if (mBinding.RadioGroupMarry.getCheckedRadioButtonId()==-1) {
-            mBinding.RadioGroupMarry.requestFocus();
-            Toast.makeText(CreateUserActivity.this,R.string.please_select_status_marry,Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateUserActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_status_marry);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }else if (mBinding.RadioGroupPlaceBirth.getCheckedRadioButtonId()==-1) {
-            mBinding.RadioGroupPlaceBirth.requestFocus();
-            Toast.makeText(CreateUserActivity.this,R.string.please_select_place_birth,Toast.LENGTH_LONG).show();
-            return;
-        }else if (mBinding.txtAddressregister.getText().toString()==null||mBinding.txtAddressregister.getText().toString().isEmpty()) {
-            mBinding.txtAddressregister.requestFocus();
-            mBinding.txtAddressregister.setError(getString(R.string.please_input_address));
-            return;
-        }else if (mBinding.RadioGroupHomeStatusRegister.getCheckedRadioButtonId()==-1) {
-            mBinding.RadioGroupHomeStatusRegister.requestFocus();
-            Toast.makeText(CreateUserActivity.this,R.string.please_select_home_status_register,Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateUserActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_place_birth);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }else if (mBinding.txtAddressnow.getText().toString()==null||mBinding.txtAddressnow.getText().toString().isEmpty()) {
             mBinding.txtAddressnow.requestFocus();
             mBinding.txtAddressnow.setError(getString(R.string.please_input_address));
             return;
         }else if (mBinding.RadioGroupHomeStatus.getCheckedRadioButtonId()==-1) {
-            mBinding.RadioGroupHomeStatus.requestFocus();
-            Toast.makeText(CreateUserActivity.this,R.string.please_select_home_status_now,Toast.LENGTH_LONG).show();
-            return;
-        }else if (mBinding.educationlevel.getText().toString()==null||mBinding.educationlevel.getText().toString().isEmpty()) {
-            mBinding.educationlevel.requestFocus();
-            mBinding.educationlevel.setError(getString(R.string.please_input_education));
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateUserActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_home_status_now);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }else if (mBinding.txtNamefather.getText().toString()==null||mBinding.txtNamefather.getText().toString().isEmpty()) {
             mBinding.txtNamefather.requestFocus();
             mBinding.txtNamefather.setError(getString(R.string.please_input_father_name));
             return;
         }else if (mBinding.RadioGroupFather.getCheckedRadioButtonId()==-1) {
-            mBinding.RadioGroupFather.requestFocus();
-            Toast.makeText(CreateUserActivity.this,R.string.please_select_status_be_alive_f,Toast.LENGTH_LONG).show();
-            return;
-        }else if (mBinding.txtFatherbirth.getText().toString()==null||mBinding.txtFatherbirth.getText().toString().isEmpty()) {
-            mBinding.txtFatherbirth.requestFocus();
-            mBinding.txtFatherbirth.setError(getString(R.string.please_input_birthday));
-            return;
-        }else if (mBinding.txtIdcardfather.getText().toString()==null||mBinding.txtIdcardfather.getText().toString().isEmpty()) {
-            mBinding.txtIdcardfather.requestFocus();
-            mBinding.txtIdcardfather.setError(getString(R.string.please_input_id_card));
-            return;
-        }else if (!mBinding.txtIdcardfather.getText().toString().matches(idcardPattern)) {
-            mBinding.txtIdcardfather.requestFocus();
-            mBinding.txtIdcardfather.setError(getString(R.string.id_card_not_match));
-            return;
-        }else if (mBinding.txtEthnicfather.getText().toString()==null||mBinding.txtEthnicfather.getText().toString().isEmpty()) {
-            mBinding.txtEthnicfather.requestFocus();
-            mBinding.txtEthnicfather.setError(getString(R.string.please_input_ethnic));
-            return;
-        }else if (mBinding.txtNationaltyfather.getText().toString()==null||mBinding.txtNationaltyfather.getText().toString().isEmpty()) {
-            mBinding.txtNationaltyfather.requestFocus();
-            mBinding.txtNationaltyfather.setError(getString(R.string.have_nationality));
-            return;
-        }else if (mBinding.txtAddressfather.getText().toString()==null||mBinding.txtAddressfather.getText().toString().isEmpty()) {
-            mBinding.txtAddressfather.requestFocus();
-            mBinding.txtAddressfather.setError(getString(R.string.please_input_address));
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateUserActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_status_be_alive_f);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }else if (mBinding.txtNamemother.getText().toString()==null||mBinding.txtNamemother.getText().toString().isEmpty()) {
             mBinding.txtNamemother.requestFocus();
             mBinding.txtNamemother.setError(getString(R.string.please_input_mother_name));
             return;
         }else if (mBinding.RadioGroupMother.getCheckedRadioButtonId()==-1) {
-            mBinding.RadioGroupMother.requestFocus();
-            Toast.makeText(CreateUserActivity.this,R.string.please_select_status_be_alive_m,Toast.LENGTH_LONG).show();
-            return;
-        }else if (mBinding.txtMotherbirth.getText().toString()==null||mBinding.txtMotherbirth.getText().toString().isEmpty()) {
-            mBinding.txtMotherbirth.requestFocus();
-            mBinding.txtMotherbirth.setError(getString(R.string.please_input_birthday));
-            return;
-        }else if (mBinding.txtIdcardmother.getText().toString()==null||mBinding.txtIdcardmother.getText().toString().isEmpty()) {
-            mBinding.txtIdcardmother.requestFocus();
-            mBinding.txtIdcardmother.setError(getString(R.string.please_input_id_card));
-            return;
-        }else if (!mBinding.txtIdcardmother.getText().toString().matches(idcardPattern)) {
-            mBinding.txtIdcardmother.requestFocus();
-            mBinding.txtIdcardmother.setError(getString(R.string.id_card_not_match));
-            return;
-        }else if (mBinding.txtEthnicmother.getText().toString()==null||mBinding.txtEthnicmother.getText().toString().isEmpty()) {
-            mBinding.txtEthnicmother.requestFocus();
-            mBinding.txtEthnicmother.setError(getString(R.string.please_input_ethnic));
-            return;
-        }else if (mBinding.txtNationaltymother.getText().toString()==null||mBinding.txtNationaltymother.getText().toString().isEmpty()) {
-            mBinding.txtNationaltymother.requestFocus();
-            mBinding.txtNationaltymother.setError(getString(R.string.have_nationality));
-            return;
-        }else if (mBinding.txtAddressmother.getText().toString()==null||mBinding.txtAddressmother.getText().toString().isEmpty()) {
-            mBinding.txtAddressmother.requestFocus();
-            mBinding.txtAddressmother.setError(getString(R.string.please_input_address));
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateUserActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.please_select_status_be_alive_m);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
             return;
         }else if (!mBinding.txtNamefather.getText().toString().matches(namePattern)) {
             mBinding.txtNamefather.requestFocus();
@@ -580,14 +541,6 @@ public class CreateUserActivity extends AppCompatActivity {
         }else if (!mBinding.txtNamemother.getText().toString().matches(namePattern)) {
             mBinding.txtNamemother.requestFocus();
             mBinding.txtNamemother.setError(getString(R.string.name_not_match));
-            return;
-        }else if (!mBinding.txtBirthday.getText().toString().matches(datePattern)) {
-            mBinding.txtBirthday.requestFocus();
-            mBinding.txtBirthday.setError(getString(R.string.birthday_not_match));
-            return;
-        }else if (mBinding.RadioGroupHomeStatus.getCheckedRadioButtonId()==-1) {
-            mBinding.RadioGroupHomeStatus.requestFocus();
-            Toast.makeText(CreateUserActivity.this,R.string.please_select_home_status_now,Toast.LENGTH_LONG).show();
             return;
         }else if (mBinding.txtUsernameregister.getText() == null || mBinding.txtUsernameregister.getText().toString().isEmpty()) {
             mBinding.txtUsernameregister.requestFocus();
@@ -605,7 +558,22 @@ public class CreateUserActivity extends AppCompatActivity {
             mBinding.txtConfirmpassword.requestFocus();
             mBinding.txtConfirmpassword.setError(getString(R.string.password_not_match));
             return;
-        }else{
+        }else if (mBinding.txtIdcard.getText().toString().isEmpty()){
+            mBinding.txtIdcard.requestFocus();
+            mBinding.txtIdcard.setError(getString(R.string.please_input_id_card));
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateUserActivity.this);
+            builder.setTitle("คำเตือน");
+            builder.setMessage(R.string.no_idcard_no);
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+            return;
+        } else {
             string = mBinding.txtIdcard.getText().toString().replaceAll(" ","");
             substringidcard = string.substring(0,7);
             sub1 = substringidcard.substring(0,1);
@@ -677,8 +645,17 @@ public class CreateUserActivity extends AppCompatActivity {
         statelessPerson.setReligion(mBinding.txtReligion.getText().toString().trim().replaceAll(" ",""));
         statelessPerson.setEthnic(mBinding.txtEthnic.getText().toString().trim().replaceAll(" ",""));
         statelessPerson.setNationality(mBinding.txtNationality.getText().toString().trim().replaceAll(" ",""));
+        if(mBinding.txtNationality.getText() == null || mBinding.txtNationality.getText().toString().isEmpty()){
+            statelessPerson.setNationality("ไม่มีสัญชาติ");
+        }
         statelessPerson.setHomeid(mBinding.txtHomeid.getText().toString().trim().replaceAll(" ",""));
+        if(mBinding.txtHomeid.getText().toString()==null || mBinding.txtHomeid.getText().toString().isEmpty()){
+            statelessPerson.setHomeid("00000000000");
+        }
         statelessPerson.setIdcard(mBinding.txtIdcard.getText().toString().trim().replaceAll(" ",""));
+        if(mBinding.txtIdcard.getText().toString()==null || mBinding.txtIdcard.getText().toString().isEmpty()){
+            statelessPerson.setIdcard("0000000000000");
+        }
         statelessPerson.setStatusmarry(idstatusmarry+1);
         statelessPerson.setNameofspouse(mBinding.txtNamespouse.getText().toString().replaceAll(" ","+").replaceAll("/","%2F"));
         if(mBinding.txtNamespouse.getText().toString()==null||mBinding.txtNamespouse.getText().toString().isEmpty()){
@@ -735,9 +712,13 @@ public class CreateUserActivity extends AppCompatActivity {
         statelessPerson.setType(1);
         statelessPersonModel.setStatelessPerson(statelessPerson);
 
+        if(mBinding.txtIdcard.getText().toString().equalsIgnoreCase("0000000000000")){
+            statelessPerson.getIdcardtype().setIdcardno("0000000000000");
+        }
         if(sub1.equalsIgnoreCase("6")||sub1.equalsIgnoreCase("7")){
             statelessPerson.getIdcardtype().setIdcardno(sub1);
-        }else if(sub1.equalsIgnoreCase("0")) {
+        }
+        if((sub1.equalsIgnoreCase("0") && sub6.equalsIgnoreCase("0") && sub7.equalsIgnoreCase("0")) ||(sub1.equalsIgnoreCase("0") && sub6.equalsIgnoreCase("8") && sub7.equalsIgnoreCase("9"))) {
             statelessPerson.getIdcardtype().setIdcardno(sub1 + sub6 + sub7);
         }
 
@@ -750,6 +731,9 @@ public class CreateUserActivity extends AppCompatActivity {
         addressregister.setFromyears("-");
         addressregister.setToyears("-");
         addressregister.setHomestatus(idhomestatusregister+1);
+        if (mBinding.RadioGroupHomeStatusRegister.getCheckedRadioButtonId()==-1) {
+            addressregister.setHomestatus(0);
+        }
         addressregister.setStatusaddress(1);
 
         AddressModel.Address address = new AddressModel.Address();
@@ -757,13 +741,13 @@ public class CreateUserActivity extends AppCompatActivity {
         if(mBinding.txtAddressnow.getText().toString().isEmpty()||mBinding.txtAddressnow.getText().toString()==null){
             address.setDetailaddress("-");
         }
+        address.setFromyears(mBinding.txtFromyear.getText().toString());
         if(mBinding.txtToyear.getText().toString().isEmpty()){
             address.setFromyears("-");
-        }else if(mBinding.txtToyear.getText().toString().isEmpty()){
+        }
+        address.setToyears(mBinding.txtToyear.getText().toString());
+        if(mBinding.txtToyear.getText().toString().isEmpty()){
             address.setToyears("-");
-        }else{
-            address.setFromyears(mBinding.txtFromyear.getText().toString());
-            address.setToyears(mBinding.txtToyear.getText().toString());
         }
         address.setHomestatus(idhomestatus+1);
         address.setStatusaddress(2);
@@ -773,15 +757,18 @@ public class CreateUserActivity extends AppCompatActivity {
         if(mBinding.txtAddressbefor.getText().toString().isEmpty()||mBinding.txtAddressbefor.getText().toString()==null){
             addressbefor.setDetailaddress("-");
         }
+        addressbefor.setFromyears(mBinding.txtFromyearbefor.getText().toString());
         if(mBinding.txtFromyearbefor.getText().toString().isEmpty()||mBinding.txtFromyearbefor.getText().toString()==null){
             addressbefor.setFromyears("-");
-        }else if(mBinding.txtToyearbefor.getText().toString().isEmpty()||mBinding.txtToyearbefor.getText().toString()==null){
+        }
+        addressbefor.setToyears(mBinding.txtToyearbefor.getText().toString());
+        if(mBinding.txtToyearbefor.getText().toString().isEmpty()||mBinding.txtToyearbefor.getText().toString()==null){
             addressbefor.setToyears("-");
-        }else{
-            addressbefor.setFromyears(mBinding.txtFromyearbefor.getText().toString());
-            addressbefor.setToyears(mBinding.txtToyearbefor.getText().toString());
         }
         addressbefor.setHomestatus(idhomestatusbefor+1);
+        if(mBinding.RadioGroupHomeStatusBefor.getCheckedRadioButtonId() == -1){
+            addressbefor.setHomestatus(0);
+        }
         addressbefor.setStatusaddress(3);
 
         List<AddressModel.Address> listAddress = new ArrayList<>();
@@ -793,11 +780,17 @@ public class CreateUserActivity extends AppCompatActivity {
 
         EducationModel.Education education = new EducationModel.Education();
         education.setEducationdetails(mBinding.educationlevel.getText().toString().replaceAll(" ", "+").replaceAll("/", "%2F").replaceAll(",", "%2C").replaceAll("\n","%0A"));
+        if(mBinding.educationlevel.getText().toString().isEmpty()){
+            education.setEducationdetails("-");
+        }
         List<EducationModel.Education> listEducations = new ArrayList<>();
         listEducations.add(education);
         for(EditText e : listEditTextEducation){
             EducationModel.Education education2 = new EducationModel.Education();
             education2.setEducationdetails(e.getText().toString().replaceAll(" ", "+").replaceAll("/", "%2F").replaceAll(",", "%2C").replaceAll("\n","%0A"));
+            if(e.getText().toString().isEmpty()){
+                education2.setEducationdetails("-");
+            }
             listEducations.add(education2);
         }
         statelessPerson.setEducationList(listEducations);
@@ -807,35 +800,80 @@ public class CreateUserActivity extends AppCompatActivity {
         ParentModel.Parent father = new ParentModel.Parent();
         father.setName(mBinding.txtNamefather.getText().toString().replaceAll(" ","+").replaceAll("/","%2F"));
         father.setStatusbealive(idstatusbealivef+1);
+        if(mBinding.RadioGroupFather.getCheckedRadioButtonId() == -1){
+            father.setStatusbealive(0);
+        }
+        if(mBinding.txtFatherbirth.getText().toString() != null){
+            if (!mBinding.txtFatherbirth.getText().toString().matches(datePattern)){
+                mBinding.txtFatherbirth.requestFocus();
+                mBinding.txtFatherbirth.setError(getString(R.string.birthday_not_match));
+                return;
+            }
+        }
         father.setBirthday(mBinding.txtFatherbirth.getText().toString().replaceAll("/","%2F"));
         if(mBinding.txtFatherbirth.getText().toString()==null||mBinding.txtFatherbirth.getText().toString().isEmpty()){
             father.setBirthday("-");
         }
         father.setIdcard(mBinding.txtIdcardfather.getText().toString().replaceAll(" ",""));
+        if(mBinding.txtIdcardfather.getText().toString().isEmpty()){
+            father.setIdcard("0000000000000");
+        }
         father.setEthnic(mBinding.txtEthnicfather.getText().toString().replaceAll(" ",""));
+        if(mBinding.txtEthnicfather.getText().toString().isEmpty()){
+            father.setEthnic("-");
+        }
         father.setNationality(mBinding.txtNationaltyfather.getText().toString().replaceAll(" ",""));
+        if (mBinding.txtNationaltyfather.getText().toString().isEmpty()){
+            father.setNationality("-");
+        }
         father.setDatecomethai(mBinding.txtDatecomethaifather.getText().toString().replaceAll("/","%2F"));
         if(mBinding.txtDatecomethaifather.getText().toString().isEmpty()){
             father.setDatecomethai("-");
         }
         father.setAddress(mBinding.txtAddressfather.getText().toString().replaceAll(" ", "+").replaceAll("/", "%2F").replaceAll(",", "%2C").replaceAll("\n","%0A"));
+        if(mBinding.txtAddressfather.getText().toString().isEmpty()){
+            father.setAddress("-");
+        }
         father.setStatusparent(1);
 
         ParentModel.Parent mother = new ParentModel.Parent();
         mother.setName(mBinding.txtNamemother.getText().toString().replaceAll(" ","+"));
         mother.setStatusbealive(idstatusbealivem+1);
+        if(mBinding.RadioGroupMother.getCheckedRadioButtonId() == -1){
+            mother.setStatusbealive(0);
+        }
+        if(mBinding.txtMotherbirth.getText().toString() != null){
+            if (!mBinding.txtMotherbirth.getText().toString().matches(datePattern)){
+                mBinding.txtMotherbirth.requestFocus();
+                mBinding.txtMotherbirth.setError(getString(R.string.birthday_not_match));
+                return;
+            }
+        }
         mother.setBirthday(mBinding.txtMotherbirth.getText().toString().replaceAll("/","%2F"));
         if(mBinding.txtMotherbirth.getText().toString()==null||mBinding.txtMotherbirth.getText().toString().isEmpty()){
-            father.setBirthday("-");
+            mother.setBirthday("-");
         }
+
         mother.setIdcard(mBinding.txtIdcardmother.getText().toString().replaceAll(" ",""));
+        if(mBinding.txtIdcardmother.getText().toString().isEmpty()){
+            mother.setIdcard("0000000000000");
+        }
         mother.setEthnic(mBinding.txtEthnicmother.getText().toString().replaceAll(" ",""));
+        if(mBinding.txtEthnicmother.getText().toString().isEmpty()){
+            mother.setEthnic("-");
+        }
         mother.setNationality(mBinding.txtNationaltymother.getText().toString().replaceAll(" ",""));
+        if(mBinding.txtNationaltymother.getText().toString().isEmpty()){
+            mother.setNationality("-");
+        }
         mother.setDatecomethai(mBinding.txtDatecomethaimother.getText().toString().replaceAll("/","%2F"));
         if(mBinding.txtDatecomethaimother.getText().toString().isEmpty()){
             mother.setDatecomethai("-");
         }
         mother.setAddress(mBinding.txtAddressmother.getText().toString().replaceAll(" ", "+").replaceAll("/", "%2F").replaceAll(",", "%2C").replaceAll("\n","%0A"));
+        if(mBinding.txtAddressmother.getText().toString().isEmpty()){
+            mother.setAddress("-");
+        }
         mother.setStatusparent(2);
 
         listParent.add(father);
