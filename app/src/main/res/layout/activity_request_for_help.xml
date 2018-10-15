@@ -45,7 +45,7 @@
                         android:textColor="@android:color/holo_red_dark" />
 
                     <TextView
-                        android:id="@+id/textView1"
+                        android:id="@+id/textView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -318,6 +318,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="ส่งคำร้อง"
+                        android:background="@drawable/rounded_button"
                         android:onClick="isAddRequest"
                         android:textSize="18sp" />
 

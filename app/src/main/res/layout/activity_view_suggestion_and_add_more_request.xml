@@ -103,6 +103,7 @@
                         android:layout_weight="1"
                         android:onClick="isAddMoreRequest"
                         android:text="ส่งคำร้องเพิ่มเติม"
+                        android:background="@drawable/rounded_button_approve"
                         android:textSize="18sp" />
 
                     <android.support.v7.widget.CardView

@@ -512,16 +512,18 @@ public class MorerequestActivity extends AppCompatActivity {
 
                                 TextView textViewfactpersonshow = new TextView(MorerequestActivity.this);
                                 textViewfactpersonshow.setText(assignModel.getAssign().getFactperson());
+                                textViewfactpersonshow.setTextColor(Color.parseColor("#055ACE"));
                                 Listdetailrequest.addView(textViewfactpersonshow);
 
 
                                 TextView textViewfactfathermother = new TextView(MorerequestActivity.this);
-                                textViewfactfathermother.setText("\n\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
+                                textViewfactfathermother.setText("\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
                                 textViewfactfathermother.setTypeface(null, Typeface.BOLD);
                                 Listdetailrequest.addView(textViewfactfathermother);
 
                                 TextView textViewfactfathermothershow = new TextView(MorerequestActivity.this);
                                 textViewfactfathermothershow.setText(assignModel.getAssign().getFactfathermother());
+                                textViewfactfathermothershow.setTextColor(Color.parseColor("#055ACE"));
                                 Listdetailrequest.addView(textViewfactfathermothershow);
 
 
@@ -532,22 +534,24 @@ public class MorerequestActivity extends AppCompatActivity {
 
                                 TextView textViewforlegalopinionshow = new TextView(MorerequestActivity.this);
                                 textViewforlegalopinionshow.setText(assignModel.getAssign().getForlegalopinion());
+                                textViewforlegalopinionshow.setTextColor(Color.parseColor("#055ACE"));
                                 Listdetailrequest.addView(textViewforlegalopinionshow);
 
                                 TextView textViewperonstatus = new TextView(MorerequestActivity.this);
-                                textViewperonstatus.setText("\n\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
+                                textViewperonstatus.setText("\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
                                 textViewperonstatus.setTypeface(null, Typeface.BOLD);
                                 Listdetailrequest.addView(textViewperonstatus);
 
                                 TextView textViewperonstatusshow = new TextView(MorerequestActivity.this);
                                 textViewperonstatusshow.setText(assignModel.getAssign().getPersonstatus());
+                                textViewperonstatusshow.setTextColor(Color.parseColor("#055ACE"));
                                 Listdetailrequest.addView(textViewperonstatusshow);
 
                                 TextView textViewHeadMoreRequest = new TextView(MorerequestActivity.this);
                                 textViewHeadMoreRequest.setText("\nรายการคำร้องเพิ่มเติม");
                                 textViewHeadMoreRequest.setTextSize(20);
                                 textViewHeadMoreRequest.setTypeface(null, Typeface.BOLD);
-                                textViewHeadMoreRequest.setTextColor(Color.parseColor("#5EE500"));
+                                textViewHeadMoreRequest.setTextColor(Color.parseColor("#D81101"));
                                 Listdetailrequest.addView(textViewHeadMoreRequest);
 
                                 MoreRequestController manager = MoreRequestController.getWsManager(MorerequestActivity.this);
@@ -590,7 +594,8 @@ public class MorerequestActivity extends AppCompatActivity {
 
                                             if(moreRequests.get(i).getStatusmrequest()==1){
                                                 Button detailmbtn = new Button(MorerequestActivity.this);
-                                                detailmbtn.setText("ตอบคำร้อง\n");
+                                                detailmbtn.setText("ตอบคำร้อง");
+                                                detailmbtn.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
                                                 Listdetailrequest.addView(detailmbtn);
                                                 line.setText("");
                                                 Listdetailrequest.addView(line);

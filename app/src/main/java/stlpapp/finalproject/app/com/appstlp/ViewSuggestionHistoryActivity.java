@@ -504,6 +504,7 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                                 TextView textViewfactperson = new TextView(ViewSuggestionHistoryActivity.this);
                                 textViewfactperson.setText("=ข้อเท็จจริงของ=");
                                 textViewfactperson.setTypeface(null, Typeface.BOLD);
+                                textViewfactperson.setTextColor(Color.parseColor("#EC7063"));
                                 Listdetailrequest.addView(textViewfactperson);
 
                                 TextView textViewfactpersonshow = new TextView(ViewSuggestionHistoryActivity.this);
@@ -514,6 +515,7 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                                 TextView textViewfactfathermother = new TextView(ViewSuggestionHistoryActivity.this);
                                 textViewfactfathermother.setText("\n\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
                                 textViewfactfathermother.setTypeface(null, Typeface.BOLD);
+                                textViewfactfathermother.setTextColor(Color.parseColor("#EC7063"));
                                 Listdetailrequest.addView(textViewfactfathermother);
 
                                 TextView textViewfactfathermothershow = new TextView(ViewSuggestionHistoryActivity.this);
@@ -524,6 +526,7 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                                 TextView textViewforlegalopinion = new TextView(ViewSuggestionHistoryActivity.this);
                                 textViewforlegalopinion.setText("\n\n=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
                                 textViewforlegalopinion.setTypeface(null, Typeface.BOLD);
+                                textViewforlegalopinion.setTextColor(Color.parseColor("#EC7063"));
                                 Listdetailrequest.addView(textViewforlegalopinion);
 
                                 TextView textViewforlegalopinionshow = new TextView(ViewSuggestionHistoryActivity.this);
@@ -532,6 +535,7 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
 
                                 TextView textViewperonstatus = new TextView(ViewSuggestionHistoryActivity.this);
                                 textViewperonstatus.setText("\n\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
+                                textViewperonstatus.setTextColor(Color.parseColor("#EC7063"));
                                 textViewperonstatus.setTypeface(null, Typeface.BOLD);
                                 Listdetailrequest.addView(textViewperonstatus);
 

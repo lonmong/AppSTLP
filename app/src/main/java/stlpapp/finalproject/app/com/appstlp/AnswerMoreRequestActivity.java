@@ -47,6 +47,7 @@ public class AnswerMoreRequestActivity extends AppCompatActivity {
 
         Button btnanswer = new Button(AnswerMoreRequestActivity.this);
         btnanswer.setText("ตอบคำร้อง");
+        btnanswer.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
         Listdetailmorerequest.addView(btnanswer);
         btnanswer.setOnClickListener(new View.OnClickListener() {
             @Override

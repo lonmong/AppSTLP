@@ -71,10 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                         StaffModel staffModel = (StaffModel) response;
                         Staff staff = staffModel.getStaff();
                         globalClass.setLogin(staff);
-                    } else if (((response instanceof PersonModel))) {
-                        PersonModel personModel = (PersonModel) response;
-                        Person person = personModel.getPerson();
-                        globalClass.setLogin(person);
                     }
                     progress.dismiss();
                     Toast.makeText(LoginActivity.this, "เข้าสู่ระบบสำเร็จ", Toast.LENGTH_SHORT).show();

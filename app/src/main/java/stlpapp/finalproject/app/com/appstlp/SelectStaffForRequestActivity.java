@@ -154,7 +154,7 @@ public class SelectStaffForRequestActivity extends AppCompatActivity {
                         alert.show();
                     }
                 });
-                btngotolistrequest.setTextColor(Color.parseColor("#BF9100"));
+                btngotolistrequest.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
                 linearLayoutListStaff.addView(btngotolistrequest);
             }
 

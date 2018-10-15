@@ -3,43 +3,43 @@
     package="stlpapp.finalproject.app.com.appstlp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="stlpapp.finalproject.app.com.appstlp.tool.GlobalClass"
+        android:name=".tool.GlobalClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.SearchIDCardTypeActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.RequestForHelpActivity" />
+        <activity android:name=".SearchIDCardTypeActivity" />
+        <activity android:name=".RequestForHelpActivity" />
         <activity
-            android:name="stlpapp.finalproject.app.com.appstlp.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.MainUserActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.ViewSuggestionAndAddMoreRequestActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.CreateUserActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.ProfilePresidentActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.DetailRequestActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.SelectStaffForRequestActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.ProfileStaffAndViewSuggestionHistoryActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.GiveSuggenstionActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.ChooseTheBestSuggestionActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.DetailSuggestionActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.ViewSuggestionHistoryActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.ExportToPDFActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.MorerequestActivity" />
-        <activity android:name="stlpapp.finalproject.app.com.appstlp.AnswerMoreRequestActivity"></activity>
+        <activity android:name=".MainUserActivity" />
+        <activity android:name=".ViewSuggestionAndAddMoreRequestActivity" />
+        <activity android:name=".CreateUserActivity" />
+        <activity android:name=".ProfilePresidentActivity" />
+        <activity android:name=".DetailRequestActivity" />
+        <activity android:name=".SelectStaffForRequestActivity" />
+        <activity android:name=".ProfileStaffAndViewSuggestionHistoryActivity" />
+        <activity android:name=".GiveSuggenstionActivity" />
+        <activity android:name=".ChooseTheBestSuggestionActivity" />
+        <activity android:name=".DetailSuggestionActivity" />
+        <activity android:name=".ViewSuggestionHistoryActivity" />
+        <activity android:name=".ExportToPDFActivity" />
+        <activity android:name=".MorerequestActivity" />
+        <activity android:name=".AnswerMoreRequestActivity" />
     </application>
 
 </manifest>

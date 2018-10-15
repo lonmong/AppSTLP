@@ -1,7 +1,9 @@
 package stlpapp.finalproject.app.com.appstlp;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,38 +23,21 @@ public class SearchIDCardTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         searchIdcardTypeBinding = DataBindingUtil.setContentView(this,R.layout.activity_search_idcard_type);
 
-        searchIdcardTypeBinding.textView1.setVisibility(View.GONE);
-        searchIdcardTypeBinding.txtShowidcard.setVisibility(View.GONE);
-
-        searchIdcardTypeBinding.line1.setVisibility(View.GONE);
-        searchIdcardTypeBinding.textView2.setVisibility(View.GONE);
-        searchIdcardTypeBinding.txtShowidcardcall.setVisibility(View.GONE);
-
-        searchIdcardTypeBinding.line2.setVisibility(View.GONE);
-        searchIdcardTypeBinding.textView3.setVisibility(View.GONE);
-        searchIdcardTypeBinding.txtShowidcardmean.setVisibility(View.GONE);
-
-        searchIdcardTypeBinding.line3.setVisibility(View.GONE);
-        searchIdcardTypeBinding.textView4.setVisibility(View.GONE);
-        searchIdcardTypeBinding.txtShowjob.setVisibility(View.GONE);
-
-        searchIdcardTypeBinding.line4.setVisibility(View.GONE);
-        searchIdcardTypeBinding.textView5.setVisibility(View.GONE);
-        searchIdcardTypeBinding.txtShowbenefit.setVisibility(View.GONE);
-
-        searchIdcardTypeBinding.line5.setVisibility(View.GONE);
-        searchIdcardTypeBinding.textView6.setVisibility(View.GONE);
-        searchIdcardTypeBinding.imageViewIdcard.setVisibility(View.GONE);
+        searchIdcardTypeBinding.cardviewidcardno.setVisibility(View.GONE);
+        searchIdcardTypeBinding.cardviewidcardcall.setVisibility(View.GONE);
+        searchIdcardTypeBinding.cardviewidcardmean.setVisibility(View.GONE);
+        searchIdcardTypeBinding.cardviewidcardjob.setVisibility(View.GONE);
+        searchIdcardTypeBinding.cardviewbenefits.setVisibility(View.GONE);
     }
 
     public void searchIDCardTypeByPattern(View view){
-        if(searchIdcardTypeBinding.txtSearch.getText()==null||searchIdcardTypeBinding.txtSearch.getText().toString().isEmpty()){
-            searchIdcardTypeBinding.txtSearch.setError(getString(R.string.please_input_data));
+        if(searchIdcardTypeBinding.textSearchIdcardtype.getText()==null||searchIdcardTypeBinding.textSearchIdcardtype.getText().toString().isEmpty()){
+            searchIdcardTypeBinding.textSearchIdcardtype.setError(getString(R.string.please_input_data));
             return;
-        }else if(!searchIdcardTypeBinding.txtSearch.getText().toString().matches(idcardPattern)){
-            searchIdcardTypeBinding.txtSearch.setError(getString(R.string.id_card_not_match));
+        }else if(!searchIdcardTypeBinding.textSearchIdcardtype.getText().toString().matches(idcardPattern)){
+            searchIdcardTypeBinding.textSearchIdcardtype.setError(getString(R.string.id_card_not_match));
         }else {
-            String string = searchIdcardTypeBinding.txtSearch.getText().toString().replaceAll(" ","");
+            String string = searchIdcardTypeBinding.textSearchIdcardtype.getText().toString().replaceAll(" ","");
             String substringidcard = string.substring(0,7);
             String sub1 = substringidcard.substring(0,1);
             String sub2 = substringidcard.substring(1,2);
@@ -63,11 +48,17 @@ public class SearchIDCardTypeActivity extends AppCompatActivity {
             String sub7 = substringidcard.substring(6,7);
             if(sub1.equalsIgnoreCase("6")||sub1.equalsIgnoreCase("7")){
                 idcardforquery = sub1;
-            }else if(sub1.equalsIgnoreCase("0")){
-                idcardforquery = sub1+sub6+sub7;
-            }else {
-                idcardforquery = " ";
+            }else if((sub1.equalsIgnoreCase("0")&&sub6.equalsIgnoreCase("8")&&sub7.equalsIgnoreCase("9")) || (sub1.equalsIgnoreCase("0")&&sub6.equalsIgnoreCase("0")&&sub7.equalsIgnoreCase("0"))){
+                if(sub1.equalsIgnoreCase("0") && sub2.equalsIgnoreCase("0") && sub3.equalsIgnoreCase("0")) {
+                    idcardforquery = "0000000000000";
+                }
+                else{
+                    idcardforquery = sub1+sub6+sub7;
+                }
+            }else if (sub1.equalsIgnoreCase("0") && sub2.equalsIgnoreCase("0")) {
+                idcardforquery = "00";
             }
+            Toast.makeText(SearchIDCardTypeActivity.this,idcardforquery,Toast.LENGTH_LONG).show();
             final ProgressDialog progress = ProgressDialog.show(this, getString(R.string.please_wait),
                     getString(R.string.please_wait), true);
 
@@ -79,76 +70,43 @@ public class SearchIDCardTypeActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(Object response) {
                     IDCardTypeModel idCardTypeModel1 = (IDCardTypeModel)response;
-
-                    IDCardTypeModel.IDCardType idCardType = new IDCardTypeModel.IDCardType();
-                    idCardType.setIdcardno(idCardTypeModel1.getIdCardType().getIdcardno());
-                    idCardType.setIdcardcall(idCardTypeModel1.getIdCardType().getIdcardcall());
-                    idCardType.setIdcardmean(idCardTypeModel1.getIdCardType().getIdcardmean());
-                    idCardType.setIdcardjob(idCardTypeModel1.getIdCardType().getIdcardjob());
-                    idCardType.setBenefitsfromgovern(idCardTypeModel1.getIdCardType().getBenefitsfromgovern());
-
                     progress.dismiss();
+                    searchIdcardTypeBinding.cardviewidcardno.setVisibility(View.VISIBLE);
+                    searchIdcardTypeBinding.showidcardno.setText(idCardTypeModel1.getIdCardType().getIdcardno());
 
-                    searchIdcardTypeBinding.textView1.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcard.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcard.setText(idCardType.getIdcardno());
+                    searchIdcardTypeBinding.cardviewidcardcall.setVisibility(View.VISIBLE);
+                    searchIdcardTypeBinding.showidcardcall.setText(idCardTypeModel1.getIdCardType().getIdcardcall());
 
-                    searchIdcardTypeBinding.line1.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView2.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardcall.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardcall.setText(idCardType.getIdcardcall());
+                    searchIdcardTypeBinding.cardviewidcardmean.setVisibility(View.VISIBLE);
+                    searchIdcardTypeBinding.showidcardmean.setText(idCardTypeModel1.getIdCardType().getIdcardmean());
 
-                    searchIdcardTypeBinding.line2.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView3.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardmean.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardmean.setText(idCardType.getIdcardmean());
+                    searchIdcardTypeBinding.cardviewidcardjob.setVisibility(View.VISIBLE);
+                    searchIdcardTypeBinding.showidcardjob.setText(idCardTypeModel1.getIdCardType().getIdcardjob());
 
-                    searchIdcardTypeBinding.line3.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView4.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowjob.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowjob.setText(idCardType.getIdcardjob());
+                    searchIdcardTypeBinding.cardviewbenefits.setVisibility(View.VISIBLE);
+                    searchIdcardTypeBinding.showbenefits.setText(idCardTypeModel1.getIdCardType().getBenefitsfromgovern());
 
-                    searchIdcardTypeBinding.line4.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView5.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowbenefit.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowbenefit.setText(idCardType.getBenefitsfromgovern());
-
-                    searchIdcardTypeBinding.line5.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView6.setVisibility(View.GONE);
-                    searchIdcardTypeBinding.imageViewIdcard.setVisibility(View.GONE);
                 }
 
                 @Override
                 public void onError(String err) {
                     progress.dismiss();
-                    Toast.makeText(SearchIDCardTypeActivity.this, err, Toast.LENGTH_SHORT).show();
-                    searchIdcardTypeBinding.textView1.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcard.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcard.setText("ไม่พบข้อมูล?");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SearchIDCardTypeActivity.this);
+                    builder.setTitle("คำเตือน");
+                    builder.setMessage(err);
+                    builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    searchIdcardTypeBinding.line1.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView2.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardcall.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardcall.setText("ไม่พบข้อมูล?");
-
-                    searchIdcardTypeBinding.line2.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView3.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardmean.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowidcardmean.setText("ไม่พบข้อมูล?");
-
-                    searchIdcardTypeBinding.line3.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView4.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowjob.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowjob.setText("ไม่พบข้อมูล?");
-
-                    searchIdcardTypeBinding.line4.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView5.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowbenefit.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.txtShowbenefit.setText("ไม่พบข้อมูล?");
-
-                    searchIdcardTypeBinding.line5.setVisibility(View.VISIBLE);
-                    searchIdcardTypeBinding.textView6.setVisibility(View.GONE);
-                    searchIdcardTypeBinding.imageViewIdcard.setVisibility(View.GONE);
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    searchIdcardTypeBinding.cardviewidcardno.setVisibility(View.GONE);
+                    searchIdcardTypeBinding.cardviewidcardcall.setVisibility(View.GONE);
+                    searchIdcardTypeBinding.cardviewidcardmean.setVisibility(View.GONE);
+                    searchIdcardTypeBinding.cardviewidcardjob.setVisibility(View.GONE);
+                    searchIdcardTypeBinding.cardviewbenefits.setVisibility(View.GONE);
                 }
             });
         }

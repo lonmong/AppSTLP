@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,8 @@ import stlpapp.finalproject.app.com.appstlp.databinding.ActivityProfileStaffAndV
 import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
 import stlpapp.finalproject.app.com.appstlp.model.Staff;
 import stlpapp.finalproject.app.com.appstlp.model.StaffModel;
+import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
+import stlpapp.finalproject.app.com.appstlp.model.MoreRequestModel;
 import stlpapp.finalproject.app.com.appstlp.tool.GlobalClass;
 
 public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActivity {
@@ -101,11 +104,11 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
             public void onComplete(Object response) {
                 AssignModel assignModel = (AssignModel) response;
                 final List<AssignModel.Assign> assigns = assignModel.getAssignList();
-                LinearLayout linearLayoutAssign = (LinearLayout) findViewById(R.id.ListAssign);
+                final LinearLayout linearLayoutAssign = (LinearLayout) findViewById(R.id.ListAssign);
                 for(int i=0;i<assigns.size();i++) {
                     if(assigns.get(i).getStatusassign()==1&&assigns.get(i).getRequestforhelp().getStatusrequest()!=3){
                         final TextView textViewIdrequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
-                        textViewIdrequest.setText("รหัสคำแนะนำ : "+assigns.get(i).getAssignid());
+                        textViewIdrequest.setText("\nรหัสคำแนะนำ : "+assigns.get(i).getAssignid());
 
                         TextView textViewPersonName = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
                         textViewPersonName.setText("คำร้องของ : " + assigns.get(i).getRequestforhelp().getStatelessperon().getNameperson());
@@ -122,15 +125,16 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
 
                         TextView textViewStatusRequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
                         if (assigns.get(i).getRequestforhelp().getStatusrequest() == 1) {
-                            textViewStatusRequest.setText("สถานะคำร้อง : รอการอนุมัติจากประธานศูนย์");
+                            textViewStatusRequest.setText("สถานะคำร้อง : รอการอนุมัติจากประธานศูนย์\n");
                             textViewStatusRequest.setTextColor(Color.parseColor("#F70202"));
                         } else if (assigns.get(i).getRequestforhelp().getStatusrequest() == 2) {
-                            textViewStatusRequest.setText("สถานะคำร้อง : รอการพิจารณาให้คำแนะนำ");
+                            textViewStatusRequest.setText("สถานะคำร้อง : รอการพิจารณาให้คำแนะนำ\n");
                             textViewStatusRequest.setTextColor(Color.parseColor("#B30AF7"));
                         }
 
                         Button btnmanagerequest = new Button(ProfileStaffAndViewSuggestionHistoryActivity.this);
                         btnmanagerequest.setText("กดเพื่อดูรายละเอียด");
+                        btnmanagerequest.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
 
                         linearLayoutAssign.addView(textViewIdrequest);
                         linearLayoutAssign.addView(textViewPersonName);
@@ -154,7 +158,7 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
                         });
                     }else if(assigns.get(i).getStatusassign()==3){
                         final TextView textViewIdrequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
-                        textViewIdrequest.setText("รหัสคำแนะนำ : "+assigns.get(i).getAssignid());
+                        textViewIdrequest.setText("\nรหัสคำแนะนำ : "+assigns.get(i).getAssignid());
 
                         TextView textViewPersonName = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
                         textViewPersonName.setText("คำร้องของ : " + assigns.get(i).getRequestforhelp().getStatelessperon().getNameperson());
@@ -173,30 +177,59 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
                         textViewStatusRequest.setText("สถานะคำร้อง : การพิจารณาถูกเลือก");
                         textViewStatusRequest.setTextColor(Color.parseColor("#0FA700"));
 
-                        Button btnmanagerequest = new Button(ProfileStaffAndViewSuggestionHistoryActivity.this);
-                        btnmanagerequest.setText("กดเพื่อดูรายละเอียดคำร้องเพิ่มเติม");
+                        WSManager manager = WSManager.getWsManager(ProfileStaffAndViewSuggestionHistoryActivity.this);
+                        RequestForHelpModel requestForHelpModel = new RequestForHelpModel();
+                        requestForHelpModel.getRequestForHelp().setRequestid(assigns.get(i).getRequestforhelp().getRequestid());
+                        final int finalI1 = i;
+                        manager.listMoreRequestForStatus(requestForHelpModel, new WSManager.WSManagerListener() {
+                            @Override
+                            public void onComplete(Object response) {
+                                MoreRequestModel moreRequestModel = (MoreRequestModel) response;
+                                List<MoreRequestModel.MoreRequest> moreRequests = moreRequestModel.getMoreRequestList();
+                                TextView textViewsizemorerequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
+                                textViewsizemorerequest.setText("รายการคำร้องเพิ่มเติม "+moreRequests.size() +" รายการรอการตอบ\n");
+                                textViewsizemorerequest.setTypeface(null, Typeface.BOLD);
+                                textViewsizemorerequest.setTextColor(Color.parseColor("#055ACE"));
+                                linearLayoutAssign.addView(textViewsizemorerequest);
+
+                                Button btnmanagerequest = new Button(ProfileStaffAndViewSuggestionHistoryActivity.this);
+                                btnmanagerequest.setText("กดเพื่อดูรายละเอียดคำร้องเพิ่มเติม");
+                                btnmanagerequest.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
+                                linearLayoutAssign.addView(btnmanagerequest);
+
+                                btnmanagerequest.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intent = new Intent(ProfileStaffAndViewSuggestionHistoryActivity.this, MorerequestActivity.class);
+                                        intent.putExtra("idrequest", assigns.get(finalI1).getRequestforhelp().getRequestid());
+                                        intent.putExtra("assignid", assigns.get(finalI1).getAssignid());
+                                        intent.putExtra("username", assigns.get(finalI1).getRequestforhelp().getStatelessperon().getUsername());
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(intent);
+                                        finish();
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onError(String err) {
+                                TextView textViewsizemorerequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
+                                textViewsizemorerequest.setText(err);
+                                textViewsizemorerequest.setTypeface(null, Typeface.BOLD);
+                                textViewsizemorerequest.setTextColor(Color.parseColor("#D81101"));
+                                linearLayoutAssign.addView(textViewsizemorerequest);
+                            }
+                        });
+
+
 
                         linearLayoutAssign.addView(textViewIdrequest);
                         linearLayoutAssign.addView(textViewPersonName);
                         linearLayoutAssign.addView(textViewreIdcardPerson);
                         linearLayoutAssign.addView(textViewGender);
                         linearLayoutAssign.addView(textViewStatusRequest);
-                        linearLayoutAssign.addView(btnmanagerequest);
-                        final int finalI = i;
 
-                        btnmanagerequest.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(ProfileStaffAndViewSuggestionHistoryActivity.this, MorerequestActivity.class);
-                                intent.putExtra("idrequest", assigns.get(finalI).getRequestforhelp().getRequestid());
-                                intent.putExtra("assignid", assigns.get(finalI).getAssignid());
-                                intent.putExtra("username", assigns.get(finalI).getRequestforhelp().getStatelessperon().getUsername());
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
-
-                            }
-                        });
                     }
                 }
                 progress.dismiss();
@@ -228,7 +261,7 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
                 LinearLayout linearLayoutAssignFinish = (LinearLayout) findViewById(R.id.ListAssignFinish);
                 for(int i=0;i<assigns.size();i++) {
                         final TextView textViewIdrequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
-                        textViewIdrequest.setText("รหัสคำแนะนำ : "+assigns.get(i).getAssignid());
+                        textViewIdrequest.setText("\nรหัสคำแนะนำ : "+assigns.get(i).getAssignid());
 
                         TextView textViewPersonName = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
                         textViewPersonName.setText("คำร้องของ : " + assigns.get(i).getRequestforhelp().getStatelessperon().getNameperson());
@@ -245,18 +278,19 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
 
                         TextView textViewStatusRequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
                         if (assigns.get(i).getRequestforhelp().getStatusrequest() == 1) {
-                            textViewStatusRequest.setText("สถานะคำร้อง : มีการแก้ไขคำร้อง");
+                            textViewStatusRequest.setText("สถานะคำร้อง : มีการแก้ไขคำร้อง\n");
                             textViewStatusRequest.setTextColor(Color.parseColor("#F70202"));
                         } else if (assigns.get(i).getRequestforhelp().getStatusrequest() == 2) {
-                            textViewStatusRequest.setText("สถานะคำร้อง : ให้คำแนะนำคำร้องนี้แล้ว");
+                            textViewStatusRequest.setText("สถานะคำร้อง : ให้คำแนะนำคำร้องนี้แล้ว\n");
                             textViewStatusRequest.setTextColor(Color.parseColor("#B30AF7"));
                         }else if (assigns.get(i).getRequestforhelp().getStatusrequest() == 3) {
-                            textViewStatusRequest.setText("สถานะคำร้อง : การพิจารณาเสร็จสิ้น");
+                            textViewStatusRequest.setText("สถานะคำร้อง : การพิจารณาเสร็จสิ้น\n");
                             textViewStatusRequest.setTextColor(Color.parseColor("#0FA700"));
                         }
 
                         Button btnmanagerequest = new Button(ProfileStaffAndViewSuggestionHistoryActivity.this);
                         btnmanagerequest.setText("กดเพื่อดูรายละเอียด");
+                        btnmanagerequest.setBackgroundResource(R.drawable.rounded_button_approve);
 
                         linearLayoutAssignFinish.addView(textViewIdrequest);
                         linearLayoutAssignFinish.addView(textViewPersonName);

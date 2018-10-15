@@ -475,7 +475,7 @@ public class DetailRequestActivity extends AppCompatActivity {
                         }
                         Button btnapprove = new Button(DetailRequestActivity.this);
                         btnapprove.setText("รับเรื่อง/ไม่รับเรื่อง?");
-                        btnapprove.setTextColor(Color.parseColor("#009D1D"));
+                        btnapprove.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
                         Listdetailrequest.addView(btnapprove);
                         btnapprove.setOnClickListener(new View.OnClickListener() {
                             @Override

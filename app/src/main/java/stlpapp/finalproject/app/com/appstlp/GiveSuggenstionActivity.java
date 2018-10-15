@@ -59,6 +59,7 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
         requestForHelp.setRequestid(idrequest);
         requestForHelpModel.setRequestForHelp(requestForHelp);
 
+
         manager.detailRequestByIdRequest(requestForHelpModel, new GiveSuggestionController.GiveSuggestionControllerListener() {
             @Override
             public void onComplete(Object response) {
@@ -492,6 +493,7 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                         final TextView editTextFactPersonShow = new TextView(GiveSuggenstionActivity.this);
                         editTextFactPersonShow.setText("*ข้อเท็จจริงของ*");
                         editTextFactPersonShow.setTextSize(16);
+                        editTextFactPersonShow.setTextColor(Color.parseColor("#EC7063"));
                         editTextFactPersonShow.setTypeface(null, Typeface.BOLD);
                         Listdetailrequest.addView(editTextFactPersonShow);
                         final EditText editTextFactPerson = new EditText(GiveSuggenstionActivity.this);
@@ -505,6 +507,7 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                         editTextFactFatherMothershow.setText("\n*ข้อเท็จจริงบิดา/มารดาของ*");
                         editTextFactFatherMothershow.setTextSize(16);
                         editTextFactFatherMothershow.setTypeface(null, Typeface.BOLD);
+                        editTextFactFatherMothershow.setTextColor(Color.parseColor("#EC7063"));
                         Listdetailrequest.addView(editTextFactFatherMothershow);
                         final EditText editTextFactFatherMother = new EditText(GiveSuggenstionActivity.this);
                         editTextFactFatherMother.setHint("ข้อเท็จจริงบิดา/มารดาของ");
@@ -515,6 +518,7 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                         editTextForLegalOpinionshow.setText("\n*ความคิดเห็นทางกฎหมาย(การทะเบียนราษฎร และสัญชาติ)*");
                         editTextForLegalOpinionshow.setTextSize(16);
                         editTextForLegalOpinionshow.setTypeface(null, Typeface.BOLD);
+                        editTextForLegalOpinionshow.setTextColor(Color.parseColor("#EC7063"));
                         Listdetailrequest.addView(editTextForLegalOpinionshow);
                         final EditText editTextForLegalOpinion = new EditText(GiveSuggenstionActivity.this);
                         editTextForLegalOpinion.setHint("ความคิดเห็นทางกฎหมาย(การทะเบียนราษฎร และสัญชาติ)");
@@ -522,9 +526,10 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                         Listdetailrequest.addView(editTextForLegalOpinion);
 
                         final TextView editTextPersonStatusshow = new TextView(GiveSuggenstionActivity.this);
-                        editTextPersonStatusshow.setHint("\n*คำแนะนำขั้นตอนดำเนินการพัฒนาสถานะ*");
+                        editTextPersonStatusshow.setText("\n*คำแนะนำขั้นตอนดำเนินการพัฒนาสถานะ*");
                         editTextPersonStatusshow.setTextSize(16);
                         editTextPersonStatusshow.setTypeface(null, Typeface.BOLD);
+                        editTextPersonStatusshow.setTextColor(Color.parseColor("#EC7063"));
                         Listdetailrequest.addView(editTextPersonStatusshow);
                         final EditText editTextPersonStatus = new EditText(GiveSuggenstionActivity.this);
                         editTextPersonStatus.setHint("คำแนะนำขั้นตอนดำเนินการพัฒนาสถานะ");
@@ -533,7 +538,7 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
 
                         Button btngivesuggestion = new Button(GiveSuggenstionActivity.this);
                         btngivesuggestion.setText("ยืนยันการพิจารณา");
-                        btngivesuggestion.setTextColor(Color.parseColor("#009D1D"));
+                        btngivesuggestion.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
                         Listdetailrequest.addView(btngivesuggestion);
                         btngivesuggestion.setOnClickListener(new View.OnClickListener() {
                             @Override

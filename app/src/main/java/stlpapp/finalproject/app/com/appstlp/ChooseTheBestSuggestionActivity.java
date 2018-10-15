@@ -510,12 +510,11 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                                 for(int i=0;i<requestForHelp1.getAssigntList().size();i++) {
                                     if(telcenter.equalsIgnoreCase(assigns.get(i).getStaff().getCenter().getTelcenter())) {
                                         final TextView textViewIdrequest = new TextView(ChooseTheBestSuggestionActivity.this);
-                                        textViewIdrequest.setText("คำแนะนำจาก : " + requestForHelp1.getAssigntList().get(i).getStaff().getNameperson());
-
+                                        textViewIdrequest.setText("\nคำแนะนำจาก : " + requestForHelp1.getAssigntList().get(i).getStaff().getNameperson());
+                                        textViewIdrequest.setTypeface(null, Typeface.BOLD);
                                         Button btnmanageassign = new Button(ChooseTheBestSuggestionActivity.this);
                                         btnmanageassign.setText("กดเพื่อดูรายละเอียด");
-                                        btnmanageassign.setTextColor(Color.parseColor("#2F02C7"));
-
+                                        btnmanageassign.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
                                         Listdetailrequest.addView(textViewIdrequest);
                                         Listdetailrequest.addView(btnmanageassign);
 

@@ -8,6 +8,7 @@ import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
 import stlpapp.finalproject.app.com.appstlp.model.EducationModel;
 import stlpapp.finalproject.app.com.appstlp.model.ParentModel;
 import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
+import stlpapp.finalproject.app.com.appstlp.model.MoreRequestModel;
 import stlpapp.finalproject.app.com.appstlp.model.StaffModel;
 import stlpapp.finalproject.app.com.appstlp.model.StatelessPersonModel;
 import stlpapp.finalproject.app.com.appstlp.model.WitnessModel;
@@ -153,6 +154,27 @@ public class WSManager {
         });
 
         task.execute(context.getString(R.string.getAssignByUsername_url),staffModel.toJSONString());
+    }
+
+    public void listMoreRequestForStatus(Object object, final WSManagerListener listener) {
+        if (!(object instanceof RequestForHelpModel)) {
+            return;
+        }
+        final RequestForHelpModel requestForHelpModel = (RequestForHelpModel) object;
+        WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
+            @Override
+            public void onComplete(String response) {
+                MoreRequestModel moreRequestModel = new MoreRequestModel(response);
+                listener.onComplete(moreRequestModel);
+            }
+
+            @Override
+            public void onError(String err) {
+                listener.onError(err);
+            }
+        });
+        task.execute(context.getString(R.string.listmorerequest_url), requestForHelpModel.toJSONString());
+
     }
 
 }

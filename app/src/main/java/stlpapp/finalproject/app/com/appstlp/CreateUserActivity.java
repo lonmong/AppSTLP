@@ -51,6 +51,7 @@ public class CreateUserActivity extends AppCompatActivity {
     private String sub5 ;
     private String sub6 ;
     private String sub7 ;
+    private String idcardstring;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,38 +118,7 @@ public class CreateUserActivity extends AppCompatActivity {
                 }, mYear, mMonth, mDay);
         dpd.show();
     }
-    public void fromYears(View view){
-        final Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
-        int mDay = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog dpd = new DatePickerDialog(CreateUserActivity.this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                          int dayOfMonth) {
-                        mBinding.txtFromyear.setText(year);
-                    }
-                }, mYear, mMonth, mDay);
-        dpd.show();
 
-    }
-
-    public void toYears(View view){
-        final Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
-        int mDay = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog dpd = new DatePickerDialog(CreateUserActivity.this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                          int dayOfMonth) {
-                        mBinding.txtToyear.setText(year);
-                    }
-                }, mYear, mMonth, mDay);
-        dpd.show();
-    }
     public void dateComethai(View view){
         final Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR);
@@ -583,6 +553,18 @@ public class CreateUserActivity extends AppCompatActivity {
             sub5 = substringidcard.substring(4,5);
             sub6 = substringidcard.substring(5,6);
             sub7 = substringidcard.substring(6,7);
+            if(sub1.equalsIgnoreCase("6")||sub1.equalsIgnoreCase("7")){
+                idcardstring = sub1;
+            }else if((sub1.equalsIgnoreCase("0")&&sub6.equalsIgnoreCase("8")&&sub7.equalsIgnoreCase("9")) || (sub1.equalsIgnoreCase("0")&&sub6.equalsIgnoreCase("0")&&sub7.equalsIgnoreCase("0"))){
+                if(sub1.equalsIgnoreCase("0") && sub2.equalsIgnoreCase("0") && sub3.equalsIgnoreCase("0")) {
+                    idcardstring = "0000000000000";
+                }
+                else{
+                    idcardstring = sub1+sub6+sub7;
+                }
+            }else if (sub1.equalsIgnoreCase("0") && sub2.equalsIgnoreCase("0")) {
+                idcardstring = "00";
+            }
             if(sub1.toString().matches(idcardno1_1)||sub1.toString().matches(idcardno1_2)){
                 mBinding.txtIdcard.requestFocus();
                 mBinding.txtIdcard.setError(getString(R.string.id_card_thai));
@@ -712,14 +694,10 @@ public class CreateUserActivity extends AppCompatActivity {
         statelessPerson.setType(1);
         statelessPersonModel.setStatelessPerson(statelessPerson);
 
-        if(mBinding.txtIdcard.getText().toString().equalsIgnoreCase("0000000000000")){
+        if(mBinding.txtIdcard.getText().toString() == null || mBinding.txtIdcard.getText().toString().isEmpty()){
             statelessPerson.getIdcardtype().setIdcardno("0000000000000");
-        }
-        if(sub1.equalsIgnoreCase("6")||sub1.equalsIgnoreCase("7")){
-            statelessPerson.getIdcardtype().setIdcardno(sub1);
-        }
-        if((sub1.equalsIgnoreCase("0") && sub6.equalsIgnoreCase("0") && sub7.equalsIgnoreCase("0")) ||(sub1.equalsIgnoreCase("0") && sub6.equalsIgnoreCase("8") && sub7.equalsIgnoreCase("9"))) {
-            statelessPerson.getIdcardtype().setIdcardno(sub1 + sub6 + sub7);
+        }else{
+            statelessPerson.getIdcardtype().setIdcardno(idcardstring);
         }
 
 
@@ -803,13 +781,7 @@ public class CreateUserActivity extends AppCompatActivity {
         if(mBinding.RadioGroupFather.getCheckedRadioButtonId() == -1){
             father.setStatusbealive(0);
         }
-        if(mBinding.txtFatherbirth.getText().toString() != null){
-            if (!mBinding.txtFatherbirth.getText().toString().matches(datePattern)){
-                mBinding.txtFatherbirth.requestFocus();
-                mBinding.txtFatherbirth.setError(getString(R.string.birthday_not_match));
-                return;
-            }
-        }
+
         father.setBirthday(mBinding.txtFatherbirth.getText().toString().replaceAll("/","%2F"));
         if(mBinding.txtFatherbirth.getText().toString()==null||mBinding.txtFatherbirth.getText().toString().isEmpty()){
             father.setBirthday("-");
@@ -841,13 +813,6 @@ public class CreateUserActivity extends AppCompatActivity {
         mother.setStatusbealive(idstatusbealivem+1);
         if(mBinding.RadioGroupMother.getCheckedRadioButtonId() == -1){
             mother.setStatusbealive(0);
-        }
-        if(mBinding.txtMotherbirth.getText().toString() != null){
-            if (!mBinding.txtMotherbirth.getText().toString().matches(datePattern)){
-                mBinding.txtMotherbirth.requestFocus();
-                mBinding.txtMotherbirth.setError(getString(R.string.birthday_not_match));
-                return;
-            }
         }
         mother.setBirthday(mBinding.txtMotherbirth.getText().toString().replaceAll("/","%2F"));
         if(mBinding.txtMotherbirth.getText().toString()==null||mBinding.txtMotherbirth.getText().toString().isEmpty()){

@@ -60,6 +60,7 @@ public class DetailSuggestionActivity extends AppCompatActivity {
                 TextView textViewfactperson = new TextView(DetailSuggestionActivity.this);
                 textViewfactperson.setText("=ข้อเท็จจริงของ=");
                 textViewfactperson.setTypeface(null, Typeface.BOLD);
+                textViewfactperson.setTextColor(Color.parseColor("#EC7063"));
                 detailsuggestion.addView(textViewfactperson);
 
                 TextView textViewfactpersonshow = new TextView(DetailSuggestionActivity.this);
@@ -67,8 +68,9 @@ public class DetailSuggestionActivity extends AppCompatActivity {
                 detailsuggestion.addView(textViewfactpersonshow);
 
                 TextView textViewfactfathermother = new TextView(DetailSuggestionActivity.this);
-                textViewfactfathermother.setText("\n\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
+                textViewfactfathermother.setText("\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
                 textViewfactfathermother.setTypeface(null, Typeface.BOLD);
+                textViewfactfathermother.setTextColor(Color.parseColor("#EC7063"));
                 detailsuggestion.addView(textViewfactfathermother);
 
                 TextView textViewfactfathermothershow = new TextView(DetailSuggestionActivity.this);
@@ -77,8 +79,9 @@ public class DetailSuggestionActivity extends AppCompatActivity {
 
 
                 TextView textViewforlegalopinion = new TextView(DetailSuggestionActivity.this);
-                textViewforlegalopinion.setText("\n\n=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
+                textViewforlegalopinion.setText("\n=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
                 textViewforlegalopinion.setTypeface(null, Typeface.BOLD);
+                textViewforlegalopinion.setTextColor(Color.parseColor("#EC7063"));
                 detailsuggestion.addView(textViewforlegalopinion);
 
                 TextView textViewforlegalopinionshow = new TextView(DetailSuggestionActivity.this);
@@ -86,17 +89,18 @@ public class DetailSuggestionActivity extends AppCompatActivity {
                 detailsuggestion.addView(textViewforlegalopinionshow);
 
                 TextView textViewperonstatus = new TextView(DetailSuggestionActivity.this);
-                textViewperonstatus.setText("\n\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
+                textViewperonstatus.setText("\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
+                textViewperonstatus.setTextColor(Color.parseColor("#EC7063"));
                 textViewperonstatus.setTypeface(null, Typeface.BOLD);
                 detailsuggestion.addView(textViewperonstatus);
 
                 TextView textViewperonstatusshow = new TextView(DetailSuggestionActivity.this);
-                textViewperonstatusshow.setText(assignModel.getAssign().getPersonstatus());
+                textViewperonstatusshow.setText(assignModel.getAssign().getPersonstatus()+"\n");
                 detailsuggestion.addView(textViewperonstatusshow);
 
                 Button btnselestthissuggestion = new Button(DetailSuggestionActivity.this);
                 btnselestthissuggestion.setText("เลือกคำแนะนำนี้");
-                btnselestthissuggestion.setTextColor(Color.parseColor("#0FA700"));
+                btnselestthissuggestion.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
                 detailsuggestion.addView(btnselestthissuggestion);
                 btnselestthissuggestion.setOnClickListener(new View.OnClickListener() {
                     @Override

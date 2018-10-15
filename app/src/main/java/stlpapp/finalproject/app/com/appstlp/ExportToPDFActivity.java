@@ -567,6 +567,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                     TextView textViewfactperson = new TextView(ExportToPDFActivity.this);
                                     textViewfactperson.setText("=ข้อเท็จจริงของ=");
                                     textViewfactperson.setTypeface(null, Typeface.BOLD);
+                                    textViewfactperson.setTextColor(Color.parseColor("#EC7063"));
                                     factperson = textViewfactperson.getText().toString();
                                     Listdetailrequest.addView(textViewfactperson);
 
@@ -578,6 +579,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                     TextView textViewfactfathermother = new TextView(ExportToPDFActivity.this);
                                     textViewfactfathermother.setText("=ข้อเท็จจริงของบิดา/มารดา ของ=");
                                     textViewfactfathermother.setTypeface(null, Typeface.BOLD);
+                                    textViewfactfathermother.setTextColor(Color.parseColor("#EC7063"));
                                     factfm = textViewfactfathermother.getText().toString();
                                     Listdetailrequest.addView(textViewfactfathermother);
 
@@ -590,6 +592,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                     TextView textViewforlegalopinion = new TextView(ExportToPDFActivity.this);
                                     textViewforlegalopinion.setText("=ความคิดเห็นทางกฏหมาย=");
                                     textViewforlegalopinion.setTypeface(null, Typeface.BOLD);
+                                    textViewforlegalopinion.setTextColor(Color.parseColor("#EC7063"));
                                     forlegal = textViewforlegalopinion.getText().toString();
                                     Listdetailrequest.addView(textViewforlegalopinion);
 
@@ -601,6 +604,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                     TextView textViewperonstatus = new TextView(ExportToPDFActivity.this);
                                     textViewperonstatus.setText("=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
                                     textViewperonstatus.setTypeface(null, Typeface.BOLD);
+                                    textViewperonstatus.setTextColor(Color.parseColor("#EC7063"));
                                     personstatus = textViewperonstatus.getText().toString();
                                     Listdetailrequest.addView(textViewperonstatus);
 

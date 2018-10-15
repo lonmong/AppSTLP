@@ -847,7 +847,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                             linearLayoutSuggestion.addView(textViewfactpersonshow);
 
                             TextView textViewfactfathermother = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewfactfathermother.setText("\n\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
+                            textViewfactfathermother.setText("\n=ข้อเท็จจริงของบิดา/มารดา ของ=");
                             textViewfactfathermother.setTypeface(null, Typeface.BOLD);
                             linearLayoutSuggestion.addView(textViewfactfathermother);
 
@@ -858,7 +858,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
 
 
                             TextView textViewforlegalopinion = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewforlegalopinion.setText("\n\n=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
+                            textViewforlegalopinion.setText("\n=ความคิดเห็นทางกฏหมาย(การทะเบียนราษฎร และสัญชาติ)=");
                             textViewforlegalopinion.setTypeface(null, Typeface.BOLD);
                             linearLayoutSuggestion.addView(textViewforlegalopinion);
 
@@ -868,7 +868,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                             linearLayoutSuggestion.addView(textViewforlegalopinionshow);
 
                             TextView textViewperonstatus = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                            textViewperonstatus.setText("\n\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
+                            textViewperonstatus.setText("\n=คำแนะนำ ขั้นตอนการพัฒนาสถานะ=");
                             textViewperonstatus.setTypeface(null, Typeface.BOLD);
                             linearLayoutSuggestion.addView(textViewperonstatus);
 

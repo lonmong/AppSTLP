@@ -42,10 +42,7 @@ public class LoginMobileController {
             public void onComplete(String response) {
                 LoginModel loginModel1 = new LoginModel(response);
                 Login login = loginModel1.getLogin();
-                if(login.getType()==0){
-                    PersonModel personModel = new PersonModel(response);
-                    listener.onComplete(personModel);
-                }else if(login.getType()==1){
+                if(login.getType()==1){
                     StatelessPersonModel statelessPersonModel = new StatelessPersonModel(response);
                     listener.onComplete(statelessPersonModel);
 
