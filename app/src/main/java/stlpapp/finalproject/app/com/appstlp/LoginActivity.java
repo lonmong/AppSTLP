@@ -10,9 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import stlpapp.finalproject.app.com.appstlp.controller.LoginMobileController;
-import stlpapp.finalproject.app.com.appstlp.model.LoginModel;
-import stlpapp.finalproject.app.com.appstlp.model.Person;
-import stlpapp.finalproject.app.com.appstlp.model.PersonModel;
+import java.util.ArrayList;
+import java.util.List;
 import stlpapp.finalproject.app.com.appstlp.model.Staff;
 import stlpapp.finalproject.app.com.appstlp.model.StaffModel;
 import stlpapp.finalproject.app.com.appstlp.model.StatelessPerson;
@@ -56,11 +55,11 @@ public class LoginActivity extends AppCompatActivity {
 
             LoginMobileController manager = LoginMobileController.getWsManager(LoginActivity.this);
 
-            LoginModel loginModel = new LoginModel();
-            loginModel.getLogin().setUsername(username.getText().toString());
-            loginModel.getLogin().setPassword(password.getText().toString());
+            List<String> stringLogin = new ArrayList<>();
+            stringLogin.add(username.getText().toString().trim());
+            stringLogin.add(password.getText().toString().trim());
 
-            manager.verifyLogin(loginModel, new LoginMobileController.LoginMobileControllerListener() {
+            manager.verifyLogin(stringLogin, new LoginMobileController.LoginMobileControllerListener() {
                 @Override
                 public void onComplete(Object response) {
                     if ((response instanceof StatelessPersonModel)) {

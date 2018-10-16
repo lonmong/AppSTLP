@@ -2,6 +2,9 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
 import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
@@ -28,11 +31,8 @@ public class ExportToPDFController {
         return wsManager;
     }
 
-    public void detailRequestByidRequest(Object object, final ExportToPDFControllerListener listener) {
-        if (!(object instanceof RequestForHelpModel)) {
-            return;
-        }
-        final RequestForHelpModel requestForHelpModel = (RequestForHelpModel) object;
+    public void detailRequestByidRequest(int idrequest, final ExportToPDFControllerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -45,15 +45,14 @@ public class ExportToPDFController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.exportpdf_getdetailrequestbyidrequest_url), requestForHelpModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idrequestjson = gson.toJson(idrequest);
+        task.execute(context.getString(R.string.exportpdf_getdetailrequestbyidrequest_url), idrequestjson);
 
     }
 
-    public void detailBestSuggestionByIdrequestAndStatusAssign(Object object,final ExportToPDFControllerListener listener) {
-        if (!(object instanceof AssignModel)) {
-            return;
-        }
-        final AssignModel assignModel = (AssignModel) object;
+    public void detailBestSuggestionByIdrequestAndStatusAssign(int idrequest,final ExportToPDFControllerListener listener) {
+
 
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
@@ -67,7 +66,8 @@ public class ExportToPDFController {
                 listener.onError(err);
             }
         });
-
-        task.execute(context.getString(R.string.detailBestsuggestion_url),assignModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idrequestjson = gson.toJson(idrequest);
+        task.execute(context.getString(R.string.detailBestsuggestion_url),idrequestjson);
     }
 }

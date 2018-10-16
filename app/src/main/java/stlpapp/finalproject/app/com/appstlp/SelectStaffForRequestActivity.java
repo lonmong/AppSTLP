@@ -53,10 +53,8 @@ public class SelectStaffForRequestActivity extends AppCompatActivity {
                 getString(R.string.please_wait), true);
 
         SelectStaffsForRequestController manager = SelectStaffsForRequestController.getWsManager(SelectStaffForRequestActivity.this);
-        final CenterModel centerModel = new CenterModel();
-        centerModel.getCenter().setTelcenter(staff.getCenter().getTelcenter());
 
-        manager.listStaffsByTelCenter(centerModel, new SelectStaffsForRequestController.SelectStaffsForRequestControllerListener() {
+        manager.listStaffsByTelCenter(staff.getCenter().getTelcenter(), new SelectStaffsForRequestController.SelectStaffsForRequestControllerListener() {
             @Override
             public void onComplete(Object response) {
                 progress.dismiss();

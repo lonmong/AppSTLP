@@ -91,19 +91,12 @@ public class ExportToPDFActivity extends AppCompatActivity {
                 getString(R.string.please_wait), true);
         final DateFormat dfm = DateFormat.getDateInstance(DateFormat.MEDIUM, new Locale("th", "TH"));
         ExportToPDFController manager = ExportToPDFController.getWsManager(ExportToPDFActivity.this);
-        final RequestForHelpModel requestForHelpModel = new RequestForHelpModel();
-        final RequestForHelp requestForHelp = new RequestForHelp();
-        requestForHelp.setRequestid(requestid);
-        requestForHelpModel.setRequestForHelp(requestForHelp);
 
-        manager.detailRequestByidRequest(requestForHelpModel, new ExportToPDFController.ExportToPDFControllerListener() {
+        manager.detailRequestByidRequest(requestid, new ExportToPDFController.ExportToPDFControllerListener() {
             @Override
             public void onComplete(Object response) {
-                if (((response instanceof RequestForHelpModel))) {
-                    RequestForHelpModel requestForHelpModel1 = (RequestForHelpModel) response;
-                    RequestForHelp requestForHelp1 = requestForHelpModel1.getRequestForHelp();
-                    requestForHelpModel.setRequestForHelp(requestForHelp1);
-                }
+                RequestForHelpModel requestForHelpModel = (RequestForHelpModel) response;
+
                 progress.dismiss();
 
                 final TextView textViewNameperson = new TextView(ExportToPDFActivity.this);
@@ -249,12 +242,8 @@ public class ExportToPDFActivity extends AppCompatActivity {
                         final WSManager manager = new WSManager(ExportToPDFActivity.this);
                         final ProgressDialog progress = ProgressDialog.show(ExportToPDFActivity.this, getString(R.string.please_wait),
                                 getString(R.string.please_wait), true);
-                        StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                        StatelessPerson statelessPerson = new StatelessPerson();
-                        statelessPerson.setUsername(username);
-                        statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                        manager.getListWitnessByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+                        manager.getListWitnessByUsername(username, new WSManager.WSManagerListener() {
                             @Override
                             public void onComplete(Object response) {
                                 progress.dismiss();
@@ -320,11 +309,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                     final WSManager manager = new WSManager(ExportToPDFActivity.this);
                     final ProgressDialog progress = ProgressDialog.show(ExportToPDFActivity.this, getString(R.string.please_wait),
                             getString(R.string.please_wait), true);
-                    StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                    StatelessPerson statelessPerson = new StatelessPerson();
-                    statelessPerson.setUsername(username);
-                    statelessPersonModel.setStatelessPerson(statelessPerson);
-                    manager.getListWitnessByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+                    manager.getListWitnessByUsername(username, new WSManager.WSManagerListener() {
                         @Override
                         public void onComplete(Object response) {
                             progress.dismiss();
@@ -376,12 +361,8 @@ public class ExportToPDFActivity extends AppCompatActivity {
                 final WSManager manager = new WSManager(ExportToPDFActivity.this);
                 final ProgressDialog progress = ProgressDialog.show(ExportToPDFActivity.this, getString(R.string.please_wait),
                         getString(R.string.please_wait), true);
-                StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                StatelessPerson statelessPerson = new StatelessPerson();
-                statelessPerson.setUsername(username);
-                statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                manager.getListAddressByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+                manager.getListAddressByUsername(username, new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -453,7 +434,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                     }
                 });
 
-                manager.getListEducationByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+                manager.getListEducationByUsername(username, new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -478,7 +459,7 @@ public class ExportToPDFActivity extends AppCompatActivity {
                         Toast.makeText(ExportToPDFActivity.this, err, Toast.LENGTH_SHORT).show();
                     }
                 });
-                manager.getListParentByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+                manager.getListParentByUsername(username, new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -557,10 +538,8 @@ public class ExportToPDFActivity extends AppCompatActivity {
                                 getString(R.string.please_wait), true);
 
                         ExportToPDFController manager = ExportToPDFController.getWsManager(ExportToPDFActivity.this);
-                        final AssignModel assignModel = new AssignModel();
-                        assignModel.getAssign().getRequestforhelp().setRequestid(requestid);
 
-                        manager.detailBestSuggestionByIdrequestAndStatusAssign(assignModel, new ExportToPDFController.ExportToPDFControllerListener() {
+                        manager.detailBestSuggestionByIdrequestAndStatusAssign(requestid, new ExportToPDFController.ExportToPDFControllerListener() {
                             @Override
                             public void onComplete(Object response) {
                                 AssignModel assignModel1 = (AssignModel) response;

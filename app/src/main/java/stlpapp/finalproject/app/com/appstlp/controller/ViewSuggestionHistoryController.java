@@ -2,6 +2,9 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
 import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
@@ -29,11 +32,7 @@ public class ViewSuggestionHistoryController {
         return wsManager;
     }
 
-    public void listSuggestionHistoryByUsernameAndStatusAssign(Object object,final ViewSuggestionHistoryControllerListener listener) {
-        if (!(object instanceof StaffModel)) {
-            return;
-        }
-        final StaffModel staffModel = (StaffModel) object;
+    public void listSuggestionHistoryByUsernameAndStatusAssign(String username,final ViewSuggestionHistoryControllerListener listener) {
 
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
@@ -47,15 +46,13 @@ public class ViewSuggestionHistoryController {
                 listener.onError(err);
             }
         });
-
-        task.execute(context.getString(R.string.listsuggestionhistory_url),staffModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String usernamejson = gson.toJson(username);
+        task.execute(context.getString(R.string.listsuggestionhistory_url),usernamejson);
     }
 
-    public void detailRequestByidRequest(Object object, final ViewSuggestionHistoryControllerListener listener) {
-        if (!(object instanceof RequestForHelpModel)) {
-            return;
-        }
-        final RequestForHelpModel requestForHelpModel = (RequestForHelpModel) object;
+    public void detailRequestByidRequest(int requestid, final ViewSuggestionHistoryControllerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -68,15 +65,13 @@ public class ViewSuggestionHistoryController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.getdetailrequestbyidrequest_url), requestForHelpModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String requestidjson = gson.toJson(requestid);
+        task.execute(context.getString(R.string.getdetailrequestbyidrequest_url_viewhistory), requestidjson);
 
     }
 
-    public void detailSuggestionByIdAssign(Object object, final ViewSuggestionHistoryControllerListener listener) {
-        if (!(object instanceof AssignModel)) {
-            return;
-        }
-        final AssignModel assignModel = (AssignModel) object;
+    public void detailSuggestionByIdAssign(int assignid, final ViewSuggestionHistoryControllerListener listener) {
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -89,7 +84,9 @@ public class ViewSuggestionHistoryController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.viewhistorysuggestion_url), assignModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String assignidjson = gson.toJson(assignid);
+        task.execute(context.getString(R.string.viewhistorysuggestion_url), assignidjson);
 
     }
 

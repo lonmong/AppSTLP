@@ -2,6 +2,9 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
 import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
@@ -28,11 +31,8 @@ public class ChooseTheBestSuggestionController {
         return wsManager;
     }
 
-    public void detailRequestByUsername(Object object, final ChooseTheBestSuggestionControllerListener listener) {
-        if (!(object instanceof RequestForHelpModel)) {
-            return;
-        }
-        final RequestForHelpModel requestForHelpModel = (RequestForHelpModel) object;
+    public void detailRequestByUsername(String username, final ChooseTheBestSuggestionControllerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -45,14 +45,12 @@ public class ChooseTheBestSuggestionController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.getdetailrequestbyusername_url), requestForHelpModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String usernamejson = gson.toJson(username);
+        task.execute(context.getString(R.string.getdetailrequestbyusername_url_choosebest), usernamejson);
 
     }
-    public void listSuggestionByIdRequest(Object object,final ChooseTheBestSuggestionControllerListener listener) {
-        if (!(object instanceof RequestForHelpModel)) {
-            return;
-        }
-        final RequestForHelpModel requestForHelpModel = (RequestForHelpModel) object;
+    public void listSuggestionByIdRequest(int idrequest,final ChooseTheBestSuggestionControllerListener listener) {
 
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
@@ -66,15 +64,13 @@ public class ChooseTheBestSuggestionController {
                 listener.onError(err);
             }
         });
-
-        task.execute(context.getString(R.string.getAssignByIDrequest_url),requestForHelpModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idrequestjson = gson.toJson(idrequest);
+        task.execute(context.getString(R.string.getAssignByIDrequest_url),idrequestjson);
     }
 
-    public void detailSuggestionByIdassign(Object object, final ChooseTheBestSuggestionControllerListener listener) {
-        if (!(object instanceof AssignModel)) {
-            return;
-        }
-        final AssignModel assignModel = (AssignModel) object;
+    public void detailSuggestionByIdassign(int idassign, final ChooseTheBestSuggestionControllerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -87,7 +83,9 @@ public class ChooseTheBestSuggestionController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.detailsuggestion_url), assignModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idassignjson = gson.toJson(idassign);
+        task.execute(context.getString(R.string.detailsuggestion_url), idassignjson);
 
     }
 

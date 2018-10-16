@@ -57,16 +57,15 @@ public class SearchIDCardTypeActivity extends AppCompatActivity {
                 }
             }else if (sub1.equalsIgnoreCase("0") && sub2.equalsIgnoreCase("0")) {
                 idcardforquery = "00";
+            }else{
+                idcardforquery = " ";
             }
-            Toast.makeText(SearchIDCardTypeActivity.this,idcardforquery,Toast.LENGTH_LONG).show();
             final ProgressDialog progress = ProgressDialog.show(this, getString(R.string.please_wait),
                     getString(R.string.please_wait), true);
 
             SearchIDCardTypeController manager = SearchIDCardTypeController.getWsManager(SearchIDCardTypeActivity.this);
-            final IDCardTypeModel idCardTypeModel = new IDCardTypeModel();
-            idCardTypeModel.getIdCardType().setIdcardno(idcardforquery);
 
-            manager.searchIDCardTypeByPattern(idCardTypeModel, new SearchIDCardTypeController.SearchIDCardTypeControllerListener() {
+            manager.searchIDCardTypeByPattern(idcardforquery, new SearchIDCardTypeController.SearchIDCardTypeControllerListener() {
                 @Override
                 public void onComplete(Object response) {
                     IDCardTypeModel idCardTypeModel1 = (IDCardTypeModel)response;

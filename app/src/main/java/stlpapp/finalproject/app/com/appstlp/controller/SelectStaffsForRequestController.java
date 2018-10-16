@@ -2,6 +2,9 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
 import stlpapp.finalproject.app.com.appstlp.model.CenterModel;
@@ -29,11 +32,8 @@ public class SelectStaffsForRequestController {
         return wsManager;
     }
 
-    public void listStaffsByTelCenter(Object object,final SelectStaffsForRequestControllerListener listener) {
-        if (!(object instanceof CenterModel)) {
-            return;
-        }
-        final CenterModel centerModel = (CenterModel) object;
+    public void listStaffsByTelCenter(String telcenter,final SelectStaffsForRequestControllerListener listener) {
+
 
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
@@ -47,8 +47,9 @@ public class SelectStaffsForRequestController {
                 listener.onError(err);
             }
         });
-
-        task.execute(context.getString(R.string.getListStaffByTelCenter_url),centerModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String telcenterjson = gson.toJson(telcenter);
+        task.execute(context.getString(R.string.getListStaffByTelCenter_url),telcenterjson);
     }
 
     public void setStaffForRequest(Object object, final SelectStaffsForRequestControllerListener listener) {

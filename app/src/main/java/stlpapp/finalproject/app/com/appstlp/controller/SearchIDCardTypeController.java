@@ -2,6 +2,9 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.IDCardTypeModel;
 import stlpapp.finalproject.app.com.appstlp.task.WSTask;
@@ -27,11 +30,7 @@ public class SearchIDCardTypeController {
         return wsManager;
     }
 
-    public void searchIDCardTypeByPattern(Object object, final SearchIDCardTypeControllerListener listener) {
-        if (!(object instanceof IDCardTypeModel)) {
-            return;
-        }
-        final IDCardTypeModel idCardTypeModel = (IDCardTypeModel) object;
+    public void searchIDCardTypeByPattern(String idcardno, final SearchIDCardTypeControllerListener listener) {
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -44,7 +43,9 @@ public class SearchIDCardTypeController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.searchidcardtype_url), idCardTypeModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idcardfroquery = gson.toJson(idcardno);
+        task.execute(context.getString(R.string.searchidcardtype_url), idcardfroquery);
 
     }
 

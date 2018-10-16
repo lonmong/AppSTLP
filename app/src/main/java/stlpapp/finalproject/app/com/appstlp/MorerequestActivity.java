@@ -53,19 +53,13 @@ public class MorerequestActivity extends AppCompatActivity {
                 getString(R.string.please_wait), true);
         final DateFormat dfm = DateFormat.getDateInstance(DateFormat.MEDIUM,new Locale("th", "TH"));
         MoreRequestController manager = MoreRequestController.getWsManager(MorerequestActivity.this);
-        final RequestForHelpModel requestForHelpModel = new RequestForHelpModel();
-        final RequestForHelp requestForHelp = new RequestForHelp();
-        requestForHelp.setRequestid(requestid);
-        requestForHelpModel.setRequestForHelp(requestForHelp);
 
-        manager.detailRequestByIdRequest(requestForHelpModel, new MoreRequestController.MoreRequestControllerListener() {
+        manager.detailRequestByIdRequest(requestid, new MoreRequestController.MoreRequestControllerListener() {
             @Override
             public void onComplete(Object response) {
-                if (((response instanceof RequestForHelpModel))) {
-                    RequestForHelpModel requestForHelpModel1 = (RequestForHelpModel) response;
-                    RequestForHelp requestForHelp1 = requestForHelpModel1.getRequestForHelp();
-                    requestForHelpModel.setRequestForHelp(requestForHelp1);
-                }
+                RequestForHelpModel requestForHelpModel = (RequestForHelpModel) response;
+
+
                 progress.dismiss();
 
                 TextView textViewNameperson = new TextView(MorerequestActivity.this);
@@ -195,12 +189,9 @@ public class MorerequestActivity extends AppCompatActivity {
                         final WSManager manager = new WSManager(MorerequestActivity.this);
                         final ProgressDialog progress = ProgressDialog.show(MorerequestActivity.this, getString(R.string.please_wait),
                                 getString(R.string.please_wait), true);
-                        StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                        StatelessPerson statelessPerson = new StatelessPerson();
-                        statelessPerson.setUsername(username);
-                        statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                        manager.getListWitnessByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+
+                        manager.getListWitnessByUsername(username, new WSManager.WSManagerListener() {
                             @Override
                             public void onComplete(Object response) {
                                 progress.dismiss();
@@ -261,11 +252,8 @@ public class MorerequestActivity extends AppCompatActivity {
                     final WSManager manager = new WSManager(MorerequestActivity.this);
                     final ProgressDialog progress = ProgressDialog.show(MorerequestActivity.this, getString(R.string.please_wait),
                             getString(R.string.please_wait), true);
-                    StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                    StatelessPerson statelessPerson = new StatelessPerson();
-                    statelessPerson.setUsername(username);
-                    statelessPersonModel.setStatelessPerson(statelessPerson);
-                    manager.getListWitnessByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+
+                    manager.getListWitnessByUsername(username,new WSManager.WSManagerListener() {
                         @Override
                         public void onComplete(Object response) {
                             progress.dismiss();
@@ -316,12 +304,8 @@ public class MorerequestActivity extends AppCompatActivity {
                 final WSManager manager = new WSManager(MorerequestActivity.this);
                 final ProgressDialog progress = ProgressDialog.show(MorerequestActivity.this, getString(R.string.please_wait),
                         getString(R.string.please_wait), true);
-                StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                StatelessPerson statelessPerson = new StatelessPerson();
-                statelessPerson.setUsername(username);
-                statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                manager.getListAddressByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListAddressByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -389,7 +373,7 @@ public class MorerequestActivity extends AppCompatActivity {
                     }
                 });
 
-                manager.getListEducationByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListEducationByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -414,7 +398,7 @@ public class MorerequestActivity extends AppCompatActivity {
                         Toast.makeText(MorerequestActivity.this, err, Toast.LENGTH_SHORT).show();
                     }
                 });
-                manager.getListParentByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListParentByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -492,17 +476,12 @@ public class MorerequestActivity extends AppCompatActivity {
                         final ProgressDialog progress = ProgressDialog.show(MorerequestActivity.this, getString(R.string.please_wait),
                                 getString(R.string.please_wait), true);
 
-                        final AssignModel assignModel = new AssignModel();
-                        assignModel.getAssign().setAssignid(assignid);
 
-                        manager.viewSuggestionHistory(assignModel, new MoreRequestController.MoreRequestControllerListener() {
+                        manager.detailSuggestionByIdassign(assignid, new MoreRequestController.MoreRequestControllerListener() {
                             @Override
                             public void onComplete(Object response) {
-                                if (((response instanceof AssignModel))) {
-                                    AssignModel assignModel1 = (AssignModel) response;
-                                    AssignModel.Assign assign = assignModel1.getAssign();
-                                    assignModel.setAssign(assign);
-                                }
+                                AssignModel assignModel = (AssignModel) response;
+
                                 progress.dismiss();
 
                                 TextView textViewfactperson = new TextView(MorerequestActivity.this);
@@ -558,10 +537,8 @@ public class MorerequestActivity extends AppCompatActivity {
                                 final ProgressDialog progress = ProgressDialog.show(MorerequestActivity.this, getString(R.string.please_wait),
                                         getString(R.string.please_wait), true);
 
-                                MoreRequestModel moreRequestModel = new MoreRequestModel();
-                                moreRequestModel.getMoreRequest().getRequestforhelp().setRequestid(requestid);
 
-                                manager.moreRequestlistByidRequest(moreRequestModel, new MoreRequestController.MoreRequestControllerListener() {
+                                manager.moreRequestlistByidRequest(requestid, new MoreRequestController.MoreRequestControllerListener() {
                                     @Override
                                     public void onComplete(Object response) {
                                         progress.dismiss();

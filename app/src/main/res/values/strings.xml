@@ -52,17 +52,18 @@
     <string name="please_select_status_witness_be_alive">กรุณาเลือกสถานะการมีชีวิตของพยานคนที่1?</string>
 
     <!--URL-->
-    <string name="root_url">http://10.0.20.111:8080</string>
+    <string name="root_url">http://10.0.22.79:8080</string>
     <string name="login_url">/loginmobile/login</string>
     <string name="searchidcardtype_url">/searchidcardtype/searchidcardtypebypattern</string>
-    <string name="detailrequestbyusername_url">/requestforhelp/detailrequestbyusername</string>
+    <string name="detailrequestbyusername_url">/viewsuggestion/detailrequestbyusername</string>
     <string name="listmorerequest_url">/list/listmorerequest</string>
     <string name="detailsuggestion_url">/choosethebest/detailsuggestionbyassignid</string>
     <string name="detailmorerequest_url">/morerequestforhelp/detailmorerequestbyid</string>
-    <string name="viewhistorysuggestion_url">/suggestion/detailsuggestionbyidassign</string>
+    <string name="viewhistorysuggestion_url">/suggestionhistory/detailsuggestionbyidassign</string>
+    <string name="viewsuggestionbyidassign_more_url">/morerequestforhelp/detailsuggestionbyidassign</string>
     <string name="getRequestByTelCenter_url">/approverequest/listrequestforhelp</string>
     <string name="getAssignByUsername_url">/list/assign</string>
-    <string name="listsuggestionhistory_url">/suggestion/listhistory</string>
+    <string name="listsuggestionhistory_url">/suggestionhistory/listhistory</string>
     <string name="getAssignByUsernamerequest_url">/list/assignbyusernamerequest</string>
     <string name="getAssignByIDrequest_url">/choosethebest/suggestionbyidrequest</string>
     <string name="detailBestsuggestion_url">/exporttopdf/detailbestsuggestion</string>
@@ -89,8 +90,11 @@
     <string name="get_list_test">/list/test</string>
     <string name="get_list_request">/list/request</string>
     <string name="getdetailrequestbyidrequest_url">/givesuggestion/getdetailsrequestbyidrequest</string>
+    <string name="getdetailrequestbyidrequest_url_viewhistory">/suggestionhistory/getdetailsrequestbyidrequest</string>
+    <string name="getdetailrequestbyidrequest_url_more">/morerequestforhelp/getdetailsrequestbyidrequest</string>
     <string name="exportpdf_getdetailrequestbyidrequest_url">/exporttopdf/getdetailsrequestbyidrequest</string>
     <string name="getdetailrequestbyusername_url">/approverequest/getdetailsrequestbyusername</string>
+    <string name="getdetailrequestbyusername_url_choosebest">/choosethebest/detailrequestbyusername</string>
     <string name="approve_request_url">/approverequest/setapproverequeststatus</string>
 
     <!--ERROR-->

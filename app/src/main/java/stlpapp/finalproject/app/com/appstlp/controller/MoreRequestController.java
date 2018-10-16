@@ -2,6 +2,9 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
 import stlpapp.finalproject.app.com.appstlp.model.MoreRequestModel;
@@ -52,11 +55,7 @@ public class MoreRequestController {
         task.execute(context.getString(R.string.more_request_for_help_url), moreRequestModel.toJSONString());
     }
 
-    public void moreRequestlistByidRequest(Object object,final MoreRequestControllerListener listener) {
-        if (!(object instanceof MoreRequestModel)) {
-            return;
-        }
-        final MoreRequestModel moreRequestModel = (MoreRequestModel) object;
+    public void moreRequestlistByidRequest(int requestid,final MoreRequestControllerListener listener) {
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -69,7 +68,9 @@ public class MoreRequestController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.list_morerequest_url),moreRequestModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idrequestjson = gson.toJson(requestid);
+        task.execute(context.getString(R.string.list_morerequest_url),idrequestjson);
     }
 
     public void removeMoreRequest(Object object, final MoreRequestControllerListener listener) {
@@ -94,11 +95,8 @@ public class MoreRequestController {
         task.execute(context.getString(R.string.removeMoreRequest_url), moreRequestModel.toJSONString());
     }
 
-    public void detailRequestByIdRequest(Object object, final MoreRequestControllerListener listener) {
-        if (!(object instanceof RequestForHelpModel)) {
-            return;
-        }
-        final RequestForHelpModel requestForHelpModel = (RequestForHelpModel) object;
+    public void detailRequestByIdRequest(int requestid, final MoreRequestControllerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -111,15 +109,14 @@ public class MoreRequestController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.getdetailrequestbyidrequest_url), requestForHelpModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idrequestjson = gson.toJson(requestid);
+        task.execute(context.getString(R.string.getdetailrequestbyidrequest_url_more), idrequestjson);
 
     }
 
-    public void viewSuggestionHistory(Object object, final MoreRequestControllerListener listener) {
-        if (!(object instanceof AssignModel)) {
-            return;
-        }
-        final AssignModel assignModel = (AssignModel) object;
+    public void detailSuggestionByIdassign(int idassign, final MoreRequestControllerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -132,7 +129,9 @@ public class MoreRequestController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.viewhistorysuggestion_url), assignModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idassignjson = gson.toJson(idassign);
+        task.execute(context.getString(R.string.viewsuggestionbyidassign_more_url), idassignjson);
 
     }
 

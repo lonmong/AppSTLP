@@ -58,19 +58,13 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                 getString(R.string.please_wait), true);
         final DateFormat dfm = DateFormat.getDateInstance(DateFormat.MEDIUM,new Locale("th", "TH"));
         ChooseTheBestSuggestionController manager = ChooseTheBestSuggestionController.getWsManager(ChooseTheBestSuggestionActivity.this);
-        final RequestForHelpModel requestForHelpModel = new RequestForHelpModel();
-        final RequestForHelp requestForHelp = new RequestForHelp();
-        requestForHelp.getStatelessperon().setUsername(username);
-        requestForHelpModel.setRequestForHelp(requestForHelp);
 
-        manager.detailRequestByUsername(requestForHelpModel, new ChooseTheBestSuggestionController.ChooseTheBestSuggestionControllerListener() {
+        manager.detailRequestByUsername(username, new ChooseTheBestSuggestionController.ChooseTheBestSuggestionControllerListener() {
             @Override
             public void onComplete(Object response) {
-                if (((response instanceof RequestForHelpModel))) {
-                    RequestForHelpModel requestForHelpModel1 = (RequestForHelpModel) response;
-                    RequestForHelp requestForHelp1 = requestForHelpModel1.getRequestForHelp();
-                    requestForHelpModel.setRequestForHelp(requestForHelp1);
-                }
+
+                RequestForHelpModel requestForHelpModel = (RequestForHelpModel) response;
+
                 progress.dismiss();
 
                 TextView textViewNameperson = new TextView(ChooseTheBestSuggestionActivity.this);
@@ -205,7 +199,7 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                         statelessPerson.setUsername(username);
                         statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                        manager.getListWitnessByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+                        manager.getListWitnessByUsername(username, new WSManager.WSManagerListener() {
                             @Override
                             public void onComplete(Object response) {
                                 progress.dismiss();
@@ -270,7 +264,7 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                     StatelessPerson statelessPerson = new StatelessPerson();
                     statelessPerson.setUsername(username);
                     statelessPersonModel.setStatelessPerson(statelessPerson);
-                    manager.getListWitnessByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                    manager.getListWitnessByUsername(username,new WSManager.WSManagerListener() {
                         @Override
                         public void onComplete(Object response) {
                             progress.dismiss();
@@ -321,12 +315,8 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                 final WSManager manager = new WSManager(ChooseTheBestSuggestionActivity.this);
                 final ProgressDialog progress = ProgressDialog.show(ChooseTheBestSuggestionActivity.this, getString(R.string.please_wait),
                         getString(R.string.please_wait), true);
-                StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                StatelessPerson statelessPerson = new StatelessPerson();
-                statelessPerson.setUsername(username);
-                statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                manager.getListAddressByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListAddressByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -394,7 +384,7 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                     }
                 });
 
-                manager.getListEducationByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListEducationByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -419,7 +409,7 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                         Toast.makeText(ChooseTheBestSuggestionActivity.this, err, Toast.LENGTH_SHORT).show();
                     }
                 });
-                manager.getListParentByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListParentByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -497,20 +487,17 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                                 getString(R.string.please_wait), true);
 
                         ChooseTheBestSuggestionController manager = ChooseTheBestSuggestionController.getWsManager(ChooseTheBestSuggestionActivity.this);
-                        final RequestForHelpModel requestForHelpModel1 = new RequestForHelpModel();
-                        requestForHelpModel1.getRequestForHelp().setRequestid(idrequest);
 
-                        manager.listSuggestionByIdRequest(requestForHelpModel1, new ChooseTheBestSuggestionController.ChooseTheBestSuggestionControllerListener() {
+                        manager.listSuggestionByIdRequest(idrequest, new ChooseTheBestSuggestionController.ChooseTheBestSuggestionControllerListener() {
                             @Override
                             public void onComplete(Object response) {
                                 AssignModel assignModel = (AssignModel) response;
                                 final List<AssignModel.Assign> assigns = assignModel.getAssignList();
-                                final RequestForHelp requestForHelp1 = new RequestForHelp();
-                                requestForHelp1.setAssigntList(assigns);
-                                for(int i=0;i<requestForHelp1.getAssigntList().size();i++) {
+
+                                for(int i=0;i<assigns.size();i++) {
                                     if(telcenter.equalsIgnoreCase(assigns.get(i).getStaff().getCenter().getTelcenter())) {
                                         final TextView textViewIdrequest = new TextView(ChooseTheBestSuggestionActivity.this);
-                                        textViewIdrequest.setText("\nคำแนะนำจาก : " + requestForHelp1.getAssigntList().get(i).getStaff().getNameperson());
+                                        textViewIdrequest.setText("\nคำแนะนำจาก : " + assigns.get(i).getStaff().getNameperson());
                                         textViewIdrequest.setTypeface(null, Typeface.BOLD);
                                         Button btnmanageassign = new Button(ChooseTheBestSuggestionActivity.this);
                                         btnmanageassign.setText("กดเพื่อดูรายละเอียด");
@@ -524,8 +511,8 @@ public class ChooseTheBestSuggestionActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(View view) {
                                                 Intent intent = new Intent(ChooseTheBestSuggestionActivity.this, DetailSuggestionActivity.class);
-                                                intent.putExtra("nameperson", requestForHelp1.getAssigntList().get(finalI).getRequestforhelp().getStatelessperon().getNameperson());
-                                                intent.putExtra("assignid", requestForHelp1.getAssigntList().get(finalI).getAssignid());
+                                                intent.putExtra("nameperson", assigns.get(finalI).getRequestforhelp().getStatelessperon().getNameperson());
+                                                intent.putExtra("assignid", assigns.get(finalI).getAssignid());
                                                 startActivity(intent);
                                             }
                                         });

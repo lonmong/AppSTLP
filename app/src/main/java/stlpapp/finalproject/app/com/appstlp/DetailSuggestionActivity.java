@@ -44,17 +44,13 @@ public class DetailSuggestionActivity extends AppCompatActivity {
                 getString(R.string.please_wait), true);
 
         ChooseTheBestSuggestionController manager = ChooseTheBestSuggestionController.getWsManager(DetailSuggestionActivity.this);
-        final AssignModel assignModel = new AssignModel();
-        assignModel.getAssign().setAssignid(assignid);
 
-        manager.detailSuggestionByIdassign(assignModel, new ChooseTheBestSuggestionController.ChooseTheBestSuggestionControllerListener() {
+        manager.detailSuggestionByIdassign(assignid, new ChooseTheBestSuggestionController.ChooseTheBestSuggestionControllerListener() {
             @Override
             public void onComplete(Object response) {
-                if(((response instanceof AssignModel))){
-                    AssignModel assignModel1 = (AssignModel) response;
-                    AssignModel.Assign assign = assignModel1.getAssign();
-                    assignModel.setAssign(assign);
-                }
+
+                AssignModel assignModel = (AssignModel) response;
+
                 progress.dismiss();
                 textViewNameStaff.setText("สรุป/วิเคราะห์("+assignModel.getAssign().getStaff().getNameperson()+")");
                 TextView textViewfactperson = new TextView(DetailSuggestionActivity.this);

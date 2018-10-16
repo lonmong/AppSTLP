@@ -222,7 +222,7 @@ public class StatelessPerson extends Person implements Parcelable {
 	public void setIdcardtype(IDCardTypeModel.IDCardType idcardtype) {
 		this.idcardtype = idcardtype;
 	}
-	private List<AddressModel.Address> addressList = new ArrayList<>();
+	private List<AddressModel.Address> addressList = new ArrayList<AddressModel.Address>();
 	public List<AddressModel.Address> getAddressList() {
 		return addressList;
 	}

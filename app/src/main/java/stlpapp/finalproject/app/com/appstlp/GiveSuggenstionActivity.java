@@ -54,20 +54,14 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                 getString(R.string.please_wait), true);
         final DateFormat dfm = DateFormat.getDateInstance(DateFormat.MEDIUM,new Locale("th", "TH"));
         GiveSuggestionController manager = GiveSuggestionController.getWsManager(GiveSuggenstionActivity.this);
-        final RequestForHelpModel requestForHelpModel = new RequestForHelpModel();
-        final RequestForHelp requestForHelp = new RequestForHelp();
-        requestForHelp.setRequestid(idrequest);
-        requestForHelpModel.setRequestForHelp(requestForHelp);
 
 
-        manager.detailRequestByIdRequest(requestForHelpModel, new GiveSuggestionController.GiveSuggestionControllerListener() {
+        manager.detailRequestByIdRequest(idrequest, new GiveSuggestionController.GiveSuggestionControllerListener() {
             @Override
             public void onComplete(Object response) {
-                if (((response instanceof RequestForHelpModel))) {
-                    RequestForHelpModel requestForHelpModel1 = (RequestForHelpModel) response;
-                    RequestForHelp requestForHelp1 = requestForHelpModel1.getRequestForHelp();
-                    requestForHelpModel.setRequestForHelp(requestForHelp1);
-                }
+
+                RequestForHelpModel requestForHelpModel = (RequestForHelpModel) response;
+
                 progress.dismiss();
 
                 TextView textViewNameperson = new TextView(GiveSuggenstionActivity.this);
@@ -198,12 +192,8 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                         final WSManager manager = new WSManager(GiveSuggenstionActivity.this);
                         final ProgressDialog progress = ProgressDialog.show(GiveSuggenstionActivity.this, getString(R.string.please_wait),
                                 getString(R.string.please_wait), true);
-                        StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                        StatelessPerson statelessPerson = new StatelessPerson();
-                        statelessPerson.setUsername(username);
-                        statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                        manager.getListWitnessByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+                        manager.getListWitnessByUsername(username, new WSManager.WSManagerListener() {
                             @Override
                             public void onComplete(Object response) {
                                 progress.dismiss();
@@ -264,11 +254,8 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                     final WSManager manager = new WSManager(GiveSuggenstionActivity.this);
                     final ProgressDialog progress = ProgressDialog.show(GiveSuggenstionActivity.this, getString(R.string.please_wait),
                             getString(R.string.please_wait), true);
-                    StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                    StatelessPerson statelessPerson = new StatelessPerson();
-                    statelessPerson.setUsername(username);
-                    statelessPersonModel.setStatelessPerson(statelessPerson);
-                    manager.getListWitnessByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+
+                    manager.getListWitnessByUsername(username,new WSManager.WSManagerListener() {
                         @Override
                         public void onComplete(Object response) {
                             progress.dismiss();
@@ -319,12 +306,8 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                 final WSManager manager = new WSManager(GiveSuggenstionActivity.this);
                 final ProgressDialog progress = ProgressDialog.show(GiveSuggenstionActivity.this, getString(R.string.please_wait),
                         getString(R.string.please_wait), true);
-                StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                StatelessPerson statelessPerson = new StatelessPerson();
-                statelessPerson.setUsername(username);
-                statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                manager.getListAddressByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListAddressByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -392,7 +375,7 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                     }
                 });
 
-                manager.getListEducationByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListEducationByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -417,7 +400,7 @@ public class GiveSuggenstionActivity extends AppCompatActivity {
                         Toast.makeText(GiveSuggenstionActivity.this, err, Toast.LENGTH_SHORT).show();
                     }
                 });
-                manager.getListParentByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListParentByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();

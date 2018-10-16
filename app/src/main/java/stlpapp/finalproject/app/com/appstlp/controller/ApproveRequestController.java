@@ -2,6 +2,9 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.CenterModel;
 import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
@@ -29,11 +32,7 @@ public class ApproveRequestController {
         return wsManager;
     }
 
-    public void listRequestByTelCenter(Object object,final ApproveRequestControllerListener listener) {
-        if (!(object instanceof CenterModel)) {
-            return;
-        }
-        final CenterModel centerModel = (CenterModel) object;
+    public void listRequestByTelCenter(String telcenter,final ApproveRequestControllerListener listener) {
 
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
@@ -47,15 +46,13 @@ public class ApproveRequestController {
                 listener.onError(err);
             }
         });
-
-        task.execute(context.getString(R.string.getRequestByTelCenter_url),centerModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String telcenterjson= gson.toJson(telcenter);
+        task.execute(context.getString(R.string.getRequestByTelCenter_url),telcenterjson);
     }
 
-    public void detailRequestByUsername(Object object, final ApproveRequestControllerListener listener) {
-        if (!(object instanceof RequestForHelpModel)) {
-            return;
-        }
-        final RequestForHelpModel requestForHelpModel = (RequestForHelpModel) object;
+    public void detailRequestByUsername(String username, final ApproveRequestControllerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -68,7 +65,9 @@ public class ApproveRequestController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.getdetailrequestbyusername_url), requestForHelpModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String usernamejson= gson.toJson(username);
+        task.execute(context.getString(R.string.getdetailrequestbyusername_url), usernamejson);
 
     }
 

@@ -2,6 +2,11 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.List;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.Login;
 import stlpapp.finalproject.app.com.appstlp.model.LoginModel;
@@ -32,11 +37,10 @@ public class LoginMobileController {
     }
 
 
-    public void verifyLogin(Object object, final LoginMobileControllerListener listener) {
-        if (!(object instanceof LoginModel)) {
-            return;
-        }
-        final LoginModel loginModel = (LoginModel) object;
+    public void verifyLogin(List<String> objectLogin, final LoginMobileControllerListener listener) {
+
+        List<String> listLogin = objectLogin;
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -58,7 +62,10 @@ public class LoginMobileController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.login_url), loginModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String jsonLogin = gson.toJson(listLogin);
+
+        task.execute(context.getString(R.string.login_url), jsonLogin);
 
     }
 

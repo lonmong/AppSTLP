@@ -157,25 +157,6 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
                             }
                         });
                     }else if(assigns.get(i).getStatusassign()==3){
-                        final TextView textViewIdrequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
-                        textViewIdrequest.setText("\nรหัสคำแนะนำ : "+assigns.get(i).getAssignid());
-
-                        TextView textViewPersonName = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
-                        textViewPersonName.setText("คำร้องของ : " + assigns.get(i).getRequestforhelp().getStatelessperon().getNameperson());
-
-                        TextView textViewreIdcardPerson = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
-                        textViewreIdcardPerson.setText("เลขประจำตัว 13 หลัก : " + assigns.get(i).getRequestforhelp().getStatelessperon().getIdcard());
-
-                        TextView textViewGender = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
-                        if (assigns.get(i).getRequestforhelp().getStatelessperon().getGender() == 1) {
-                            textViewGender.setText("เพศ : ชาย");
-                        } else {
-                            textViewGender.setText("เพศ : หญิง");
-                        }
-
-                        TextView textViewStatusRequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
-                        textViewStatusRequest.setText("สถานะคำร้อง : การพิจารณาถูกเลือก");
-                        textViewStatusRequest.setTextColor(Color.parseColor("#0FA700"));
 
                         WSManager manager = WSManager.getWsManager(ProfileStaffAndViewSuggestionHistoryActivity.this);
                         RequestForHelpModel requestForHelpModel = new RequestForHelpModel();
@@ -184,18 +165,35 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
                         manager.listMoreRequestForStatus(requestForHelpModel, new WSManager.WSManagerListener() {
                             @Override
                             public void onComplete(Object response) {
+                                final TextView textViewIdrequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
+                                textViewIdrequest.setText("\nรหัสคำแนะนำ : "+assigns.get(finalI1).getAssignid());
+
+                                TextView textViewPersonName = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
+                                textViewPersonName.setText("คำร้องของ : " + assigns.get(finalI1).getRequestforhelp().getStatelessperon().getNameperson());
+
+                                TextView textViewreIdcardPerson = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
+                                textViewreIdcardPerson.setText("เลขประจำตัว 13 หลัก : " + assigns.get(finalI1).getRequestforhelp().getStatelessperon().getIdcard());
+
+                                TextView textViewGender = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
+                                if (assigns.get(finalI1).getRequestforhelp().getStatelessperon().getGender() == 1) {
+                                    textViewGender.setText("เพศ : ชาย");
+                                } else {
+                                    textViewGender.setText("เพศ : หญิง");
+                                }
+
+                                TextView textViewStatusRequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
+                                textViewStatusRequest.setText("สถานะคำร้อง : การพิจารณาถูกเลือก");
+                                textViewStatusRequest.setTextColor(Color.parseColor("#0FA700"));
+
                                 MoreRequestModel moreRequestModel = (MoreRequestModel) response;
                                 List<MoreRequestModel.MoreRequest> moreRequests = moreRequestModel.getMoreRequestList();
                                 TextView textViewsizemorerequest = new TextView(ProfileStaffAndViewSuggestionHistoryActivity.this);
                                 textViewsizemorerequest.setText("รายการคำร้องเพิ่มเติม "+moreRequests.size() +" รายการรอการตอบ\n");
                                 textViewsizemorerequest.setTypeface(null, Typeface.BOLD);
                                 textViewsizemorerequest.setTextColor(Color.parseColor("#055ACE"));
-                                linearLayoutAssign.addView(textViewsizemorerequest);
-
                                 Button btnmanagerequest = new Button(ProfileStaffAndViewSuggestionHistoryActivity.this);
                                 btnmanagerequest.setText("กดเพื่อดูรายละเอียดคำร้องเพิ่มเติม");
                                 btnmanagerequest.setBackgroundResource(R.drawable.rounded_button_approve_or_not);
-                                linearLayoutAssign.addView(btnmanagerequest);
 
                                 btnmanagerequest.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -210,6 +208,15 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
 
                                     }
                                 });
+
+                                linearLayoutAssign.addView(textViewIdrequest);
+                                linearLayoutAssign.addView(textViewPersonName);
+                                linearLayoutAssign.addView(textViewreIdcardPerson);
+                                linearLayoutAssign.addView(textViewGender);
+                                linearLayoutAssign.addView(textViewStatusRequest);
+                                linearLayoutAssign.addView(textViewsizemorerequest);
+                                linearLayoutAssign.addView(btnmanagerequest);
+
                             }
 
                             @Override
@@ -222,13 +229,6 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
                             }
                         });
 
-
-
-                        linearLayoutAssign.addView(textViewIdrequest);
-                        linearLayoutAssign.addView(textViewPersonName);
-                        linearLayoutAssign.addView(textViewreIdcardPerson);
-                        linearLayoutAssign.addView(textViewGender);
-                        linearLayoutAssign.addView(textViewStatusRequest);
 
                     }
                 }
@@ -247,10 +247,8 @@ public class ProfileStaffAndViewSuggestionHistoryActivity extends AppCompatActiv
                 getString(R.string.please_wait), true);
 
         ViewSuggestionHistoryController manager = ViewSuggestionHistoryController.getWsManager(ProfileStaffAndViewSuggestionHistoryActivity.this);
-        final StaffModel staffModel = new StaffModel();
-        staffModel.getStaff().setUsername(username);
 
-        manager.listSuggestionHistoryByUsernameAndStatusAssign(staffModel, new ViewSuggestionHistoryController.ViewSuggestionHistoryControllerListener() {
+        manager.listSuggestionHistoryByUsernameAndStatusAssign(username, new ViewSuggestionHistoryController.ViewSuggestionHistoryControllerListener() {
             @Override
             public void onComplete(Object response) {
                 AssignModel assignModel = (AssignModel) response;

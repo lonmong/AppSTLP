@@ -12,7 +12,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -83,6 +85,11 @@ public class IDCardTypeModel {
 		}
 
 		public String getIdcardcall() {
+			try {
+				this.idcardcall = URLDecoder.decode(idcardcall,"UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 			return idcardcall;
 		}
 
@@ -91,6 +98,11 @@ public class IDCardTypeModel {
 		}
 
 		public String getIdcardmean() {
+			try {
+				this.idcardmean = URLDecoder.decode(idcardmean,"UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 			return idcardmean;
 		}
 
@@ -99,6 +111,11 @@ public class IDCardTypeModel {
 		}
 
 		public String getIdcardjob() {
+			try {
+				this.idcardjob = URLDecoder.decode(idcardjob,"UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 			return idcardjob;
 		}
 
@@ -107,6 +124,11 @@ public class IDCardTypeModel {
 		}
 
 		public String getBenefitsfromgovern() {
+			try {
+				this.benefitsfromgovern = URLDecoder.decode(benefitsfromgovern,"UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 			return benefitsfromgovern;
 		}
 

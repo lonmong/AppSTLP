@@ -2,8 +2,12 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
+import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
 import stlpapp.finalproject.app.com.appstlp.task.WSTask;
 
 
@@ -27,12 +31,29 @@ public class ViewSuggesstionController {
         return wsManager;
     }
 
+    public void detailRequestByUsername(String username, final ViewSuggesstionControllerListener listener) {
 
-    public void listSuggestionByIdRequest(Object object, final ViewSuggesstionControllerListener listener) {
-        if (!(object instanceof AssignModel)) {
-            return;
-        }
-        AssignModel assignModel = (AssignModel) object;
+        WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
+            @Override
+            public void onComplete(String response) {
+                RequestForHelpModel requestForHelpModel = new RequestForHelpModel(response);
+                listener.onComplete(requestForHelpModel);
+            }
+
+            @Override
+            public void onError(String err) {
+                listener.onError(err);
+            }
+        });
+        Gson gson = new GsonBuilder().create();
+        String usernamejson= gson.toJson(username);
+        task.execute(context.getString(R.string.detailrequestbyusername_url), usernamejson);
+
+    }
+
+
+    public void listSuggestionByIdRequest(int idrequest, final ViewSuggesstionControllerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -46,6 +67,8 @@ public class ViewSuggesstionController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.viewsuggestion_url), assignModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idrequestjson= gson.toJson(idrequest);
+        task.execute(context.getString(R.string.viewsuggestion_url), idrequestjson);
     }
 }

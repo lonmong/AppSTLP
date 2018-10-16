@@ -2,6 +2,9 @@ package stlpapp.finalproject.app.com.appstlp.controller;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import stlpapp.finalproject.app.com.appstlp.R;
 import stlpapp.finalproject.app.com.appstlp.model.AssignModel;
 import stlpapp.finalproject.app.com.appstlp.model.RequestForHelpModel;
@@ -28,11 +31,8 @@ public class GiveSuggestionController {
         return wsManager;
     }
 
-    public void detailRequestByIdRequest(Object object, final GiveSuggestionControllerListener listener) {
-        if (!(object instanceof RequestForHelpModel)) {
-            return;
-        }
-        final RequestForHelpModel requestForHelpModel = (RequestForHelpModel) object;
+    public void detailRequestByIdRequest(int idrequest, final GiveSuggestionControllerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -45,7 +45,9 @@ public class GiveSuggestionController {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.getdetailrequestbyidrequest_url), requestForHelpModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String idrequestjson = gson.toJson(idrequest);
+        task.execute(context.getString(R.string.getdetailrequestbyidrequest_url), idrequestjson);
 
     }
 

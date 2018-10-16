@@ -13,6 +13,8 @@ import stlpapp.finalproject.app.com.appstlp.model.StaffModel;
 import stlpapp.finalproject.app.com.appstlp.model.StatelessPersonModel;
 import stlpapp.finalproject.app.com.appstlp.model.WitnessModel;
 import stlpapp.finalproject.app.com.appstlp.task.WSTask;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 public class WSManager {
@@ -35,11 +37,8 @@ public class WSManager {
         return wsManager;
     }
 
-    public void getListEducationByUsername(Object object,final WSManagerListener listener) {
-        if (!(object instanceof StatelessPersonModel)) {
-            return;
-        }
-        final StatelessPersonModel statelessPersonModel = (StatelessPersonModel) object;
+    public void getListEducationByUsername(String username,final WSManagerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -52,13 +51,11 @@ public class WSManager {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.list_education_url),statelessPersonModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String usernamejson = gson.toJson(username);
+        task.execute(context.getString(R.string.list_education_url),usernamejson);
     }
-    public void getListWitnessByUsername(Object object,final WSManagerListener listener) {
-        if (!(object instanceof StatelessPersonModel)) {
-            return;
-        }
-        final StatelessPersonModel statelessPersonModel = (StatelessPersonModel) object;
+    public void getListWitnessByUsername(String username,final WSManagerListener listener) {
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -71,13 +68,12 @@ public class WSManager {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.list_witness_url),statelessPersonModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String usernamejson = gson.toJson(username);
+        task.execute(context.getString(R.string.list_witness_url),usernamejson);
     }
-    public void getListAddressByUsername(Object object,final WSManagerListener listener) {
-        if (!(object instanceof StatelessPersonModel)) {
-            return;
-        }
-        final StatelessPersonModel statelessPersonModel = (StatelessPersonModel) object;
+    public void getListAddressByUsername(String username,final WSManagerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -90,14 +86,13 @@ public class WSManager {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.list_address_url),statelessPersonModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String usernamejson = gson.toJson(username);
+        task.execute(context.getString(R.string.list_address_url),usernamejson);
     }
 
-    public void getListParentByUsername(Object object,final WSManagerListener listener) {
-        if (!(object instanceof StatelessPersonModel)) {
-            return;
-        }
-        final StatelessPersonModel statelessPersonModel = (StatelessPersonModel) object;
+    public void getListParentByUsername(String username,final WSManagerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -110,14 +105,13 @@ public class WSManager {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.list_parent_url),statelessPersonModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String usernamejson = gson.toJson(username);
+        task.execute(context.getString(R.string.list_parent_url),usernamejson);
     }
 
-    public void detailRequestByUsername(Object object, final WSManagerListener listener) {
-        if (!(object instanceof StatelessPersonModel)) {
-            return;
-        }
-        final StatelessPersonModel statelessPersonModel = (StatelessPersonModel) object;
+    public void detailRequestByUsername(String username, final WSManagerListener listener) {
+
         WSTask task = new WSTask(this.context,new WSTask.WSTaskListener() {
             @Override
             public void onComplete(String response) {
@@ -130,7 +124,9 @@ public class WSManager {
                 listener.onError(err);
             }
         });
-        task.execute(context.getString(R.string.detailrequestbyusername_url), statelessPersonModel.toJSONString());
+        Gson gson = new GsonBuilder().create();
+        String usernamejson= gson.toJson(username);
+        task.execute(context.getString(R.string.detailrequestbyusername_url), usernamejson);
 
     }
 

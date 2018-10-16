@@ -49,19 +49,13 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                 getString(R.string.please_wait), true);
         final DateFormat dfm = DateFormat.getDateInstance(DateFormat.MEDIUM,new Locale("th", "TH"));
         ViewSuggestionHistoryController manager = ViewSuggestionHistoryController.getWsManager(ViewSuggestionHistoryActivity.this);
-        final RequestForHelpModel requestForHelpModel = new RequestForHelpModel();
-        final RequestForHelp requestForHelp = new RequestForHelp();
-        requestForHelp.setRequestid(requestid);
-        requestForHelpModel.setRequestForHelp(requestForHelp);
 
-        manager.detailRequestByidRequest(requestForHelpModel, new ViewSuggestionHistoryController.ViewSuggestionHistoryControllerListener() {
+        manager.detailRequestByidRequest(requestid, new ViewSuggestionHistoryController.ViewSuggestionHistoryControllerListener() {
             @Override
             public void onComplete(Object response) {
-                if (((response instanceof RequestForHelpModel))) {
-                    RequestForHelpModel requestForHelpModel1 = (RequestForHelpModel) response;
-                    RequestForHelp requestForHelp1 = requestForHelpModel1.getRequestForHelp();
-                    requestForHelpModel.setRequestForHelp(requestForHelp1);
-                }
+
+                RequestForHelpModel requestForHelpModel = (RequestForHelpModel) response;
+
                 progress.dismiss();
 
                 TextView textViewNameperson = new TextView(ViewSuggestionHistoryActivity.this);
@@ -191,12 +185,8 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                         final WSManager manager = new WSManager(ViewSuggestionHistoryActivity.this);
                         final ProgressDialog progress = ProgressDialog.show(ViewSuggestionHistoryActivity.this, getString(R.string.please_wait),
                                 getString(R.string.please_wait), true);
-                        StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                        StatelessPerson statelessPerson = new StatelessPerson();
-                        statelessPerson.setUsername(username);
-                        statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                        manager.getListWitnessByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+                        manager.getListWitnessByUsername(username, new WSManager.WSManagerListener() {
                             @Override
                             public void onComplete(Object response) {
                                 progress.dismiss();
@@ -257,11 +247,8 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                     final WSManager manager = new WSManager(ViewSuggestionHistoryActivity.this);
                     final ProgressDialog progress = ProgressDialog.show(ViewSuggestionHistoryActivity.this, getString(R.string.please_wait),
                             getString(R.string.please_wait), true);
-                    StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                    StatelessPerson statelessPerson = new StatelessPerson();
-                    statelessPerson.setUsername(username);
-                    statelessPersonModel.setStatelessPerson(statelessPerson);
-                    manager.getListWitnessByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+
+                    manager.getListWitnessByUsername(username,new WSManager.WSManagerListener() {
                         @Override
                         public void onComplete(Object response) {
                             progress.dismiss();
@@ -312,12 +299,8 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                 final WSManager manager = new WSManager(ViewSuggestionHistoryActivity.this);
                 final ProgressDialog progress = ProgressDialog.show(ViewSuggestionHistoryActivity.this, getString(R.string.please_wait),
                         getString(R.string.please_wait), true);
-                StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                StatelessPerson statelessPerson = new StatelessPerson();
-                statelessPerson.setUsername(username);
-                statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                manager.getListAddressByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListAddressByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -385,7 +368,7 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                     }
                 });
 
-                manager.getListEducationByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListEducationByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -410,7 +393,7 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                         Toast.makeText(ViewSuggestionHistoryActivity.this, err, Toast.LENGTH_SHORT).show();
                     }
                 });
-                manager.getListParentByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                manager.getListParentByUsername(username,new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
@@ -488,17 +471,13 @@ public class ViewSuggestionHistoryActivity extends AppCompatActivity {
                         final ProgressDialog progress = ProgressDialog.show(ViewSuggestionHistoryActivity.this, getString(R.string.please_wait),
                                 getString(R.string.please_wait), true);
 
-                        final AssignModel assignModel = new AssignModel();
-                        assignModel.getAssign().setAssignid(assignid);
 
-                        manager.detailSuggestionByIdAssign(assignModel, new ViewSuggestionHistoryController.ViewSuggestionHistoryControllerListener() {
+                        manager.detailSuggestionByIdAssign(assignid, new ViewSuggestionHistoryController.ViewSuggestionHistoryControllerListener() {
                             @Override
                             public void onComplete(Object response) {
-                                if (((response instanceof AssignModel))) {
-                                    AssignModel assignModel1 = (AssignModel) response;
-                                    AssignModel.Assign assign = assignModel1.getAssign();
-                                    assignModel.setAssign(assign);
-                                }
+
+                                AssignModel assignModel = (AssignModel) response;
+
                                 progress.dismiss();
 
                                 TextView textViewfactperson = new TextView(ViewSuggestionHistoryActivity.this);

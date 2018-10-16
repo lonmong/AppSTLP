@@ -263,44 +263,42 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                     final WSManager manager = new WSManager(this);
                     final ProgressDialog progress = ProgressDialog.show(this, getString(R.string.please_wait),
                             getString(R.string.please_wait), true);
-                    StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                    StatelessPerson statelessPerson = new StatelessPerson();
-                    statelessPerson.setUsername(globalClass.getLogin().getUsername());
-                    statelessPersonModel.setStatelessPerson(statelessPerson);
 
-                    manager.getListWitnessByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+                    manager.getListWitnessByUsername(globalClass.getLogin().getUsername(),new WSManager.WSManagerListener() {
                         @Override
                         public void onComplete(Object response) {
                             progress.dismiss();
                             WitnessModel witnessModel = (WitnessModel) response;
                             List<WitnessModel.Witness> witnesses = witnessModel.getWitnessList();
+                            statelessPerson.setWitnessList(witnesses);
+
                             TextView textViewDetailWitness = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                             textViewDetailWitness.setText("=ข้อมูลพยานรู้เห็นการเกิด=");
                             textViewDetailWitness.setTypeface(null, Typeface.BOLD);
                             textViewDetailWitness.setTextColor(Color.parseColor("#00189D"));
                             linearLayoutProfile.addView(textViewDetailWitness);
 
-                            for(int i = 0 ; i<witnesses.size();i++){
+                            for(int i = 0 ; i<statelessPerson.getWitnessList().size();i++){
                                 TextView textViewWitnessName = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                                 TextView textViewrelationship = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                                TextView textViewStatuswitness = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
+                                TextView textViewStatuswitnesse = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                                 TextView textViewAddresswitness = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                                 TextView textViewLine1 = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
 
-                                textViewWitnessName.setText("ชื่อพยานรู้เห็นการเกิดคนที่"+(i+1)+" : "+witnesses.get(i).getNamewitness());
-                                textViewrelationship.setText("เกี่ยวข้องเป็น : "+witnesses.get(i).getRelationship());
-                                if(witnesses.get(i).getStatusbealive()==1){
-                                    textViewStatuswitness.setText("สถานะ : มีชีวิต");
+                                textViewWitnessName.setText("ชื่อพยานรู้เห็นการเกิดคนที่"+(i+1)+" : "+statelessPerson.getWitnessList().get(i).getNamewitness());
+                                textViewrelationship.setText("เกี่ยวข้องเป็น : "+statelessPerson.getWitnessList().get(i).getRelationship());
+                                if(statelessPerson.getWitnessList().get(i).getStatusbealive()==1){
+                                    textViewStatuswitnesse.setText("สถานะ : มีชีวิต");
                                 }
-                                if (witnesses.get(i).getStatusbealive()==2){
-                                    textViewStatuswitness.setText("สถานะ : เสียชีวิต");
+                                if (statelessPerson.getWitnessList().get(i).getStatusbealive()==2){
+                                    textViewStatuswitnesse.setText("สถานะ : เสียชีวิต");
                                 }
-                                textViewAddresswitness.setText("ที่อยู่ : "+witnesses.get(i).getAddresswitness());
+                                textViewAddresswitness.setText("ที่อยู่ : "+statelessPerson.getWitnessList().get(i).getAddresswitness());
                                 textViewLine1.setText("--------------------------------");
 
                                 linearLayoutProfile.addView(textViewWitnessName);
                                 linearLayoutProfile.addView(textViewrelationship);
-                                linearLayoutProfile.addView(textViewStatuswitness);
+                                linearLayoutProfile.addView(textViewStatuswitnesse);
                                 linearLayoutProfile.addView(textViewAddresswitness);
                                 linearLayoutProfile.addView(textViewLine1);
                             }
@@ -312,6 +310,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                             Toast.makeText(ViewSuggestionAndAddMoreRequestActivity.this, err, Toast.LENGTH_SHORT).show();
                         }
                     });
+
                 }
 
             }else if(statelessPerson.getStatusthaiorabroadbirth()==2){
@@ -330,37 +329,36 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                 final WSManager manager = new WSManager(this);
                 final ProgressDialog progress = ProgressDialog.show(this, getString(R.string.please_wait),
                         getString(R.string.please_wait), true);
-                StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-                StatelessPerson statelessPerson = new StatelessPerson();
-                statelessPerson.setUsername(globalClass.getLogin().getUsername());
-                statelessPersonModel.setStatelessPerson(statelessPerson);
-                manager.getListWitnessByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+
+                manager.getListWitnessByUsername(globalClass.getLogin().getUsername(),new WSManager.WSManagerListener() {
                     @Override
                     public void onComplete(Object response) {
                         progress.dismiss();
                         WitnessModel witnessModel = (WitnessModel) response;
                         List<WitnessModel.Witness> witnesses = witnessModel.getWitnessList();
+                        statelessPerson.setWitnessList(witnesses);
+
                         TextView textViewDetailWitness = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         textViewDetailWitness.setText("=ข้อมูลพยานรู้เห็นการเข้ามาไทย=");
                         textViewDetailWitness.setTypeface(null, Typeface.BOLD);
                         textViewDetailWitness.setTextColor(Color.parseColor("#00189D"));
                         linearLayoutProfile.addView(textViewDetailWitness);
 
-                        for(int i = 0 ; i<witnesses.size();i++){
+                        for(int i = 0 ; i<statelessPerson.getWitnessList().size();i++){
                             TextView textViewWitnessName = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                             TextView textViewrelationship = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                             TextView textViewStatuswitness = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                             TextView textViewAddresswitness = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
 
-                            textViewWitnessName.setText("ชื่อพยานรู้เห็นการเข้ามาไทย : \n"+witnesses.get(i).getNamewitness());
-                            textViewrelationship.setText("ความเกี่ยวข้อง : "+witnesses.get(i).getRelationship());
-                            if(witnesses.get(i).getStatusbealive()==1){
+                            textViewWitnessName.setText("ชื่อพยานรู้เห็นการเข้ามาไทย : \n"+statelessPerson.getWitnessList().get(i).getNamewitness());
+                            textViewrelationship.setText("ความเกี่ยวข้อง : "+statelessPerson.getWitnessList().get(i).getRelationship());
+                            if(statelessPerson.getWitnessList().get(i).getStatusbealive()==1){
                                 textViewStatuswitness.setText("สถานะ : มีชีวิต");
                             }
-                            if (witnesses.get(i).getStatusbealive()==2){
+                            if (statelessPerson.getWitnessList().get(i).getStatusbealive()==2){
                                 textViewStatuswitness.setText("สถานะ : เสียชีวิต");
                             }
-                            textViewAddresswitness.setText("ที่อยู่ : "+witnesses.get(i).getAddresswitness());
+                            textViewAddresswitness.setText("ที่อยู่ : "+statelessPerson.getWitnessList().get(i).getAddresswitness());
 
                             linearLayoutProfile.addView(textViewWitnessName);
                             linearLayoutProfile.addView(textViewrelationship);
@@ -385,58 +383,45 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
             final WSManager manager = new WSManager(this);
             final ProgressDialog progress = ProgressDialog.show(this, getString(R.string.please_wait),
                     getString(R.string.please_wait), true);
-            StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-            StatelessPerson statelessPerson = new StatelessPerson();
-            statelessPerson.setUsername(globalClass.getLogin().getUsername());
-            statelessPersonModel.setStatelessPerson(statelessPerson);
 
-            manager.getListAddressByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+            manager.getListAddressByUsername(globalClass.getLogin().getUsername(),new WSManager.WSManagerListener() {
                 @Override
                 public void onComplete(Object response) {
                     progress.dismiss();
                     AddressModel addressModel = (AddressModel) response;
                     List<AddressModel.Address> addresses = addressModel.getAddressList();
+                    statelessPerson.setAddressList(addresses);
+
                     TextView textViewDetailAddress = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                     textViewDetailAddress.setText("=ข้อมูลที่อยู่=");
                     textViewDetailAddress.setTypeface(null, Typeface.BOLD);
                     textViewDetailAddress.setTextColor(Color.parseColor("#00189D"));
                     linearLayoutProfile.addView(textViewDetailAddress);
-                    for(int i = 0 ; i<addresses.size();i++){
+                    for(int i = 0 ; i<statelessPerson.getAddressList().size();i++){
                         TextView textViewdetailaddress = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         TextView textViewfromyears = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         TextView textViewtoyears = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         TextView textViewhomdstatus = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         TextView textViewstatusaddress = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         TextView textViewLine2 = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                        if(addresses.get(i).getStatusaddress()==1){
-                            textViewdetailaddress.setText("ที่อยู่ตามทะเบียนบ้าน \n"+addresses.get(i).getDetailaddress());
-                            if(addresses.get(i).getHomestatus()==1){
+                        if(statelessPerson.getAddressList().get(i).getStatusaddress()==1){
+                            textViewdetailaddress.setText("ที่อยู่ตามทะเบียนบ้าน \n"+statelessPerson.getAddressList().get(i).getDetailaddress());
+                            if(statelessPerson.getAddressList().get(i).getHomestatus()==1){
                                 textViewhomdstatus.setText("สถานะบ้าน : บ้านตัวเอง");
-                            }else if(addresses.get(i).getHomestatus()==2){
+                            }else if(statelessPerson.getAddressList().get(i).getHomestatus()==2){
                                 textViewhomdstatus.setText("สถานะบ้าน : บ้านเช่า");
-                            }else if(addresses.get(i).getHomestatus()==3){
+                            }else if(statelessPerson.getAddressList().get(i).getHomestatus()==3){
                                 textViewhomdstatus.setText("สถานะบ้าน : บ้านอาศัย");
                             }
-                        }else if(addresses.get(i).getStatusaddress()==2){
-                            textViewdetailaddress.setText("ที่อยู่ปัจจุบัน\n"+addresses.get(i).getDetailaddress());
-                            textViewfromyears.setText("อาศัยอยู่ตั้งแต่ปี : "+addresses.get(i).getFromyears());
-                            textViewtoyears.setText("ถึงปี : "+addresses.get(i).getToyears());
-                            if(addresses.get(i).getHomestatus()==1){
+                        }else if(statelessPerson.getAddressList().get(i).getStatusaddress()==2){
+                            textViewdetailaddress.setText("ที่อยู่ปัจจุบัน\n"+statelessPerson.getAddressList().get(i).getDetailaddress());
+                            textViewfromyears.setText("อาศัยอยู่ตั้งแต่ปี : "+statelessPerson.getAddressList().get(i).getFromyears());
+                            textViewtoyears.setText("ถึงปี : "+statelessPerson.getAddressList().get(i).getToyears());
+                            if(statelessPerson.getAddressList().get(i).getHomestatus()==1){
                                 textViewhomdstatus.setText("สถานะบ้าน : บ้านตัวเอง");
-                            }else if(addresses.get(i).getHomestatus()==2){
+                            }else if(statelessPerson.getAddressList().get(i).getHomestatus()==2){
                                 textViewhomdstatus.setText("สถานะบ้าน : บ้านเช่า");
-                            }else if(addresses.get(i).getHomestatus()==3){
-                                textViewhomdstatus.setText("สถานะบ้าน : บ้านอาศัย");
-                            }
-                        }else if(addresses.get(i).getStatusaddress()==3){
-                            textViewdetailaddress.setText("ที่อยู่ก่อนหน้า \n"+addresses.get(i).getDetailaddress());
-                            textViewfromyears.setText("อาศัยอยู่ตั้งแต่ปี : "+addresses.get(i).getFromyears());
-                            textViewtoyears.setText("ถึงปี : "+addresses.get(i).getToyears());
-                            if(addresses.get(i).getHomestatus()==1){
-                                textViewhomdstatus.setText("สถานะบ้าน : บ้านตัวเอง");
-                            }else if(addresses.get(i).getHomestatus()==2){
-                                textViewhomdstatus.setText("สถานะบ้าน : บ้านเช่า");
-                            }else if(addresses.get(i).getHomestatus()==3){
+                            }else if(statelessPerson.getAddressList().get(i).getHomestatus()==3){
                                 textViewhomdstatus.setText("สถานะบ้าน : บ้านอาศัย");
                             }
                         }
@@ -449,6 +434,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                         linearLayoutProfile.addView(textViewstatusaddress);
                         linearLayoutProfile.addView(textViewLine2);
                     }
+
                 }
 
                 @Override
@@ -458,21 +444,22 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                 }
             });
 
-            manager.getListEducationByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+            manager.getListEducationByUsername(globalClass.getLogin().getUsername(),new WSManager.WSManagerListener() {
                 @Override
                 public void onComplete(Object response) {
                     progress.dismiss();
                     EducationModel educationModel = (EducationModel) response;
                     List<EducationModel.Education> educations = educationModel.getEducationList();
+                    statelessPerson.setEducationList(educations);
                     TextView textViewDetailEducation = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                     textViewDetailEducation.setText("=ข้อมูลประวัติการศึกษา=");
                     textViewDetailEducation.setTypeface(null, Typeface.BOLD);
                     textViewDetailEducation.setTextColor(Color.parseColor("#00189D"));
                     linearLayoutProfile.addView(textViewDetailEducation);
 
-                    for(int i = 0 ; i<educations.size();i++){
+                    for(int i = 0 ; i<statelessPerson.getEducationList().size();i++){
                         TextView textViewEducation = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                        textViewEducation.setText("ระดับการศึกษา : "+educations.get(i).getEducationdetails());
+                        textViewEducation.setText("ระดับการศึกษา : "+statelessPerson.getEducationList().get(i).getEducationdetails());
                         linearLayoutProfile.addView(textViewEducation);
                     }
                 }
@@ -483,18 +470,21 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                     Toast.makeText(ViewSuggestionAndAddMoreRequestActivity.this, err, Toast.LENGTH_SHORT).show();
                 }
             });
-            manager.getListParentByUsername(statelessPersonModel,new WSManager.WSManagerListener() {
+
+
+            manager.getListParentByUsername(globalClass.getLogin().getUsername(),new WSManager.WSManagerListener() {
                 @Override
                 public void onComplete(Object response) {
                     progress.dismiss();
                     ParentModel parentModel = (ParentModel) response;
                     List<ParentModel.Parent> parents = parentModel.getParentList();
+                    statelessPerson.setParentList(parents);
                     TextView textViewDetailParent = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                     textViewDetailParent.setText("=ข้อมูลบิดา/มารดา=");
                     textViewDetailParent.setTypeface(null, Typeface.BOLD);
                     textViewDetailParent.setTextColor(Color.parseColor("#00189D"));
                     linearLayoutProfile.addView(textViewDetailParent);
-                    for(int i = 0 ; i<parents.size();i++){
+                    for(int i = 0 ; i<statelessPerson.getParentList().size();i++){
                         TextView textViewName = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         TextView textViewIdcard = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         TextView textViewbirthday = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
@@ -505,34 +495,34 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                         TextView textViewStatusParent = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         TextView textViewAddress = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
                         TextView textViewLine3 = new TextView(ViewSuggestionAndAddMoreRequestActivity.this);
-                        if(parents.get(i).getStatusparent()==1){
-                            textViewName.setText("ชื่อบิดา : "+parents.get(i).getName());
-                            textViewIdcard.setText("เลขประจำตัวประชาชน : "+parents.get(i).getIdcard());
-                            textViewbirthday.setText("วันเกิด : "+parents.get(i).getBirthday());
-                            textViewEthnic.setText("ชาติพันธุ์ : "+parents.get(i).getEthnic());
-                            textViewNationality.setText("สัญชาติ : "+parents.get(i).getNationality());
-                            textViewDatecomethai.setText("วันที่เดินทางมาไทย : "+parents.get(i).getDatecomethai());
-                            if(parents.get(i).getStatusbealive()==1){
+                        if(statelessPerson.getParentList().get(i).getStatusparent()==1){
+                            textViewName.setText("ชื่อบิดา : "+statelessPerson.getParentList().get(i).getName());
+                            textViewIdcard.setText("เลขประจำตัวประชาชน : "+statelessPerson.getParentList().get(i).getIdcard());
+                            textViewbirthday.setText("วันเกิด : "+statelessPerson.getParentList().get(i).getBirthday());
+                            textViewEthnic.setText("ชาติพันธุ์ : "+statelessPerson.getParentList().get(i).getEthnic());
+                            textViewNationality.setText("สัญชาติ : "+statelessPerson.getParentList().get(i).getNationality());
+                            textViewDatecomethai.setText("วันที่เดินทางมาไทย : "+statelessPerson.getParentList().get(i).getDatecomethai());
+                            if(statelessPerson.getParentList().get(i).getStatusbealive()==1){
                                 textViewStatusAlive.setText("สถานะ : มีชีวิต");
-                            }else if(parents.get(i).getStatusbealive()==2){
+                            }else if(statelessPerson.getParentList().get(i).getStatusbealive()==2){
                                 textViewStatusAlive.setText("สถานะ : เสียชีวิต");
                             }
-                            textViewAddress.setText("ที่อยู่ \n"+parents.get(i).getAddress());
+                            textViewAddress.setText("ที่อยู่ \n"+statelessPerson.getParentList().get(i).getAddress());
 
-                        }else if(parents.get(i).getStatusparent()==2){
+                        }else if(statelessPerson.getParentList().get(i).getStatusparent()==2){
 
-                            textViewName.setText("ชื่อมารดา : "+parents.get(i).getName());
-                            textViewIdcard.setText("เลขประจำตัวประชาชน : "+parents.get(i).getIdcard());
-                            textViewbirthday.setText("วันเกิด : "+parents.get(i).getBirthday());
-                            textViewEthnic.setText("ชาติพันธุ์ : "+parents.get(i).getEthnic());
-                            textViewNationality.setText("สัญชาติ : "+parents.get(i).getNationality());
-                            textViewDatecomethai.setText("วันที่เดินทางมาไทย : "+parents.get(i).getDatecomethai());
-                            if(parents.get(i).getStatusbealive()==1){
+                            textViewName.setText("ชื่อมารดา : "+statelessPerson.getParentList().get(i).getName());
+                            textViewIdcard.setText("เลขประจำตัวประชาชน : "+statelessPerson.getParentList().get(i).getIdcard());
+                            textViewbirthday.setText("วันเกิด : "+statelessPerson.getParentList().get(i).getBirthday());
+                            textViewEthnic.setText("ชาติพันธุ์ : "+statelessPerson.getParentList().get(i).getEthnic());
+                            textViewNationality.setText("สัญชาติ : "+statelessPerson.getParentList().get(i).getNationality());
+                            textViewDatecomethai.setText("วันที่เดินทางมาไทย : "+statelessPerson.getParentList().get(i).getDatecomethai());
+                            if(statelessPerson.getParentList().get(i).getStatusbealive()==1){
                                 textViewStatusAlive.setText("สถานะ : มีชีวิต");
-                            }else if(parents.get(i).getStatusbealive()==2){
+                            }else if(statelessPerson.getParentList().get(i).getStatusbealive()==2){
                                 textViewStatusAlive.setText("สถานะ : เสียชีวิต");
                             }
-                            textViewAddress.setText("ที่อยู่ \n"+parents.get(i).getAddress());
+                            textViewAddress.setText("ที่อยู่ \n"+statelessPerson.getParentList().get(i).getAddress());
                         }
                         textViewLine3.setText("--------------------------------");
 
@@ -560,17 +550,13 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
 
     }
     public void listSuggestion(){
-        StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-        StatelessPerson statelessPerson = new StatelessPerson();
-        statelessPerson.setUsername(username);
-        statelessPersonModel.setStatelessPerson(statelessPerson);
-        WSManager manager = WSManager.getWsManager(ViewSuggestionAndAddMoreRequestActivity.this);
+        ViewSuggesstionController manager = ViewSuggesstionController.getWsManager(ViewSuggestionAndAddMoreRequestActivity.this);
         final ProgressDialog progress = ProgressDialog.show(this, getString(R.string.please_wait),
                 getString(R.string.please_wait), true);
 
         final LinearLayout linearLayoutProfile = (LinearLayout)findViewById(R.id.LinearListProfile);
 
-        manager.detailRequestByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+        manager.detailRequestByUsername(username, new ViewSuggesstionController.ViewSuggesstionControllerListener() {
             @Override
             public void onComplete(Object response) {
                 if(((response instanceof RequestForHelpModel))){
@@ -817,10 +803,8 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                 idrequest = requestModel.getRequestForHelp().getRequestid();
 
                 ViewSuggesstionController manager = ViewSuggesstionController.getWsManager(ViewSuggestionAndAddMoreRequestActivity.this);
-                final AssignModel assignModel = new AssignModel();
-                assignModel.getAssign().getRequestforhelp().setRequestid(idrequest);
 
-                manager.listSuggestionByIdRequest(assignModel, new ViewSuggesstionController.ViewSuggesstionControllerListener() {
+                manager.listSuggestionByIdRequest(idrequest, new ViewSuggesstionController.ViewSuggesstionControllerListener() {
                     @Override
                     public void onComplete(Object response) {
                         AssignModel assignModel1 = (AssignModel) response;
@@ -896,10 +880,8 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
 
                 MoreRequestController managermore = MoreRequestController.getWsManager(ViewSuggestionAndAddMoreRequestActivity.this);
 
-                MoreRequestModel moreRequestModel = new MoreRequestModel();
-                moreRequestModel.getMoreRequest().getRequestforhelp().setRequestid(idrequest);
 
-                managermore.moreRequestlistByidRequest(moreRequestModel, new MoreRequestController.MoreRequestControllerListener() {
+                managermore.moreRequestlistByidRequest(idrequest, new MoreRequestController.MoreRequestControllerListener() {
                     @Override
                     public void onComplete(Object response) {
                         MoreRequestModel moreRequestModel = (MoreRequestModel) response;
@@ -928,62 +910,7 @@ public class ViewSuggestionAndAddMoreRequestActivity extends AppCompatActivity {
                             Listdetailrequest.addView(answer);
                             line3.setText("----------------------------------");
                             Listdetailrequest.addView(line3);
-                           /* if(moreRequests.get(i).getStatusmrequest() == 1){
-                                Button btndelete = new Button(ViewSuggestionAndAddMoreRequestActivity.this);
-                                btndelete.setText("ลบ");
-                                btndelete.setTypeface(null, Typeface.BOLD);
-                                btndelete.setTextColor(Color.parseColor("#D81101"));
-                                Listdetailrequest.addView(btndelete);
 
-                                final int finalI = i;
-                                btndelete.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(ViewSuggestionAndAddMoreRequestActivity.this);
-                                        builder.setTitle("คำเตือน");
-                                        builder.setMessage("ต้องการลบคำร้องนี้หรือไม่?");
-                                        builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                final ProgressDialog progress = ProgressDialog.show(ViewSuggestionAndAddMoreRequestActivity.this, getString(R.string.please_wait),
-                                                        getString(R.string.please_wait), true);
-
-                                                MoreRequestController manager = MoreRequestController.getWsManager(ViewSuggestionAndAddMoreRequestActivity.this);
-                                                MoreRequestModel moreRequestModel = new MoreRequestModel();
-                                                moreRequestModel.getMoreRequest().setMorerequestid(moreRequests.get(finalI).getMorerequestid());
-
-                                                manager.removeMoreRequest(moreRequestModel, new MoreRequestController.MoreRequestControllerListener() {
-                                                    @Override
-                                                    public void onComplete(Object response) {
-                                                        progress.dismiss();
-                                                        Toast.makeText(ViewSuggestionAndAddMoreRequestActivity.this, "ลบข้อมูลสำเร็จ", Toast.LENGTH_SHORT).show();
-                                                        Intent intent = new Intent(ViewSuggestionAndAddMoreRequestActivity.this, ViewSuggestionAndAddMoreRequestActivity.class);
-                                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                        startActivity(intent);
-                                                        finish();
-                                                    }
-
-                                                    @Override
-                                                    public void onError(String err) {
-                                                        progress.dismiss();
-                                                        Toast.makeText(ViewSuggestionAndAddMoreRequestActivity.this, err, Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
-
-                                            }
-                                        });
-                                        builder.setNeutralButton("ยกเลิก", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                            }
-                                        });
-                                        AlertDialog alert = builder.create();
-                                        alert.show();
-
-                                    }
-                                });
-                            }*/
 
                         }
                     }

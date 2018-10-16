@@ -33,14 +33,10 @@ public class MainUserActivity extends AppCompatActivity {
             linear_main.removeView(findViewById(R.id.cardviewstaff));
             linear_main.removeView(findViewById(R.id.cardviewpresident));
 
-            StatelessPersonModel statelessPersonModel = new StatelessPersonModel();
-            StatelessPerson statelessPerson = new StatelessPerson();
-            statelessPerson.setUsername(globalClass.getLogin().getUsername());
-            statelessPersonModel.setStatelessPerson(statelessPerson);
             WSManager manager = WSManager.getWsManager(MainUserActivity.this);
             final ProgressDialog progress = ProgressDialog.show(this, getString(R.string.please_wait),
                     getString(R.string.please_wait), true);
-            manager.detailRequestByUsername(statelessPersonModel, new WSManager.WSManagerListener() {
+            manager.detailRequestByUsername(globalClass.getLogin().getUsername(), new WSManager.WSManagerListener() {
                 @Override
                 public void onComplete(Object response) {
                     RequestForHelpModel requestForHelpModel = (RequestForHelpModel)response;
@@ -69,30 +65,6 @@ public class MainUserActivity extends AppCompatActivity {
                     progress.dismiss();
                 }
             });
-
-
-
-            /*StatelessPerson statelessPerson = (StatelessPerson) globalClass.getLogin();
-
-            TextView textViewIdPerson = new TextView(this);
-            textViewIdPerson.setText("หมายเลขบัตรประจำตัวคือ : " + statelessPerson.getIdcard());
-            TextView textViewIdcardNo = new TextView(this);
-            textViewIdcardNo.setText("หมายเลขประเภทบัตรที่ถือ : " + statelessPerson.getIdcardtype().getIdcardno());
-            TextView textViewIdcardCall = new TextView(this);
-            textViewIdcardCall.setText("คำเรียกทั่วไปของบัตรคือ : " + statelessPerson.getIdcardtype().getIdcardcall());
-            TextView textViewIdcardMean = new TextView(this);
-            textViewIdcardMean.setText("ความหมายประเภทบัตรคือ : " + statelessPerson.getIdcardtype().getIdcardmean());
-            TextView textViewIdcardjob = new TextView(this);
-            textViewIdcardjob.setText("งานที่สามารถทำได้คือ : " + statelessPerson.getIdcardtype().getIdcardjob());
-            TextView textViewBenefit = new TextView(this);
-            textViewBenefit.setText("สวัสดิการจากภาครัฐ : " + statelessPerson.getIdcardtype().getBenefitsfromgovern());*/
-
-            /*linear_idcardtype.addView(textViewIdPerson);
-            linear_idcardtype.addView(textViewIdcardNo);
-            linear_idcardtype.addView(textViewIdcardCall);
-            linear_idcardtype.addView(textViewIdcardMean);
-            linear_idcardtype.addView(textViewIdcardjob);
-            linear_idcardtype.addView(textViewBenefit);*/
 
         }else if(globalClass.getLogin().getType() == 2){
             linear_main.removeView(findViewById(R.id.statelesspersonmain));
