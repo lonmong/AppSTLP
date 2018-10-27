@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ public class MainUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user);
         globalClass = (GlobalClass) getApplicationContext();
-        LinearLayout linear_main = (LinearLayout)findViewById(R.id.linear_main);
+        final LinearLayout linear_main = (LinearLayout)findViewById(R.id.linear_main);
         final LinearLayout linear_requestforhelp = (LinearLayout)findViewById(R.id.linearrequest);
 
         if (globalClass.getLogin().getType() == 1) {
@@ -44,12 +45,18 @@ public class MainUserActivity extends AppCompatActivity {
                     if (requestForHelpModel.getRequestForHelp().getStatusrequest() == 0){
                         statusRequest.setText("สถานะคำร้อง : ไม่รับเรื่องคำร้อง");
                         statusRequest.setTextColor(Color.parseColor("#F70202"));
+                        CardView cardView = (CardView)findViewById(R.id.cardviewrequestforhelp);
+                        cardView.setEnabled(false);
                     }else if(requestForHelpModel.getRequestForHelp().getStatusrequest() == 1){
                         statusRequest.setText("สถานะคำร้อง : รอการอนุมัติคำร้อง");
                         statusRequest.setTextColor(Color.parseColor("#B30AF7"));
+                        CardView cardView = (CardView)findViewById(R.id.cardviewrequestforhelp);
+                        cardView.setEnabled(false);
                     }else if(requestForHelpModel.getRequestForHelp().getStatusrequest() == 2){
                         statusRequest.setText("สถานะคำร้อง : เจ้าหน้าที่กำลังพิจารณา");
                         statusRequest.setTextColor(Color.parseColor("#B30AF7"));
+                        CardView cardView = (CardView)findViewById(R.id.cardviewrequestforhelp);
+                        cardView.setEnabled(false);
                     }else if(requestForHelpModel.getRequestForHelp().getStatusrequest() == 3){
                         statusRequest.setText("สถานะคำร้อง : การพิจารณาเสร็จสิ้น");
                         statusRequest.setTextColor(Color.parseColor("#0FA700"));
